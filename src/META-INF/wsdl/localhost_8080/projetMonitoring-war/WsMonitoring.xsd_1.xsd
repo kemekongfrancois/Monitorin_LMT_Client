@@ -4,11 +4,17 @@
 
 <xs:element name="creerMachineResponse" type="tns:creerMachineResponse"/>
 
+<xs:element name="creerTacheSurveilleDD" type="tns:creerTacheSurveilleDD"/>
+
+<xs:element name="creerTacheSurveilleDDResponse" type="tns:creerTacheSurveilleDDResponse"/>
+
 <xs:element name="hello" type="tns:hello"/>
 
 <xs:element name="helloResponse" type="tns:helloResponse"/>
 
 <xs:element name="machine" type="tns:machine"/>
+
+<xs:element name="surveillerDd" type="tns:surveillerDd"/>
 
 <xs:element name="verifiOuCreerMachine" type="tns:verifiOuCreerMachine"/>
 
@@ -26,9 +32,53 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="creerTacheSurveilleDD">
+<xs:sequence>
+<xs:element name="adresIpMachine" type="xs:string" minOccurs="0"/>
+<xs:element name="periode" type="xs:int"/>
+<xs:element name="seuil" type="xs:int"/>
+<xs:element name="lettre_partition" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creerTacheSurveilleDDResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:surveillerDd" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="surveillerDd">
+<xs:sequence>
+<xs:element name="idMachine" type="tns:machine" minOccurs="0"/>
+<xs:element name="periodeVerrification" type="xs:int" minOccurs="0"/>
+<xs:element name="seuilPourAlerte" type="xs:int" minOccurs="0"/>
+<xs:element name="statue" type="xs:string" minOccurs="0"/>
+<xs:element name="surveillerDdPK" type="tns:surveillerDdPK" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="machine">
+<xs:sequence>
+<xs:element name="adresseIP" type="xs:string" minOccurs="0"/>
+<xs:element name="idMachine" type="xs:int" minOccurs="0"/>
+<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
+<xs:element name="periodeDeCheck" type="xs:int" minOccurs="0"/>
+<xs:element name="portEcoute" type="xs:string" minOccurs="0"/>
+<xs:element name="typeOS" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="surveillerDdPK">
+<xs:sequence>
+<xs:element name="idTache" type="xs:int"/>
+<xs:element name="lettrePartition" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="verifiOuCreerMachine">
 <xs:sequence>
 <xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
+<xs:element name="Port" type="xs:string" minOccurs="0"/>
 <xs:element name="nonOS" type="xs:string" minOccurs="0"/>
 <xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
 </xs:sequence>
@@ -40,18 +90,10 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="machine">
-<xs:sequence>
-<xs:element name="adresseIP" type="xs:string" minOccurs="0"/>
-<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
-<xs:element name="periodeDeCheck" type="xs:int" minOccurs="0"/>
-<xs:element name="typeOS" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="creerMachine">
 <xs:sequence>
 <xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
+<xs:element name="Port" type="xs:string" minOccurs="0"/>
 <xs:element name="nonOS" type="xs:string" minOccurs="0"/>
 <xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
 </xs:sequence>
@@ -59,7 +101,7 @@
 
 <xs:complexType name="creerMachineResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="tns:machine" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

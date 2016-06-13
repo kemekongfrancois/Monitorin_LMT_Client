@@ -25,14 +25,44 @@ import org.quartz.impl.StdSchedulerFactory;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
 
 /**
  *
  * @author KEF10
  */
 public class JobPrincipale implements Job {
-    //private Scheduler scheduler;
+    //private Scheduler SCHEDULER;
     static boolean sousJobOK = false;
+    
+    Scheduler scheduler = clientmonitoring.ClientMonitoring.SCHEDULER;
 
     public void execute(JobExecutionContext context)
             throws JobExecutionException {
@@ -51,7 +81,7 @@ public class JobPrincipale implements Job {
     
     public void demarerSousTache(){
         try {
-            Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
+            
             scheduler.start();
             
             Trigger trigger = newTrigger()

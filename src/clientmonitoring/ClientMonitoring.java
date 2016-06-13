@@ -38,6 +38,20 @@ import static org.quartz.TriggerBuilder.newTrigger;
 import org.quartz.TriggerKey;
 import org.quartz.impl.StdSchedulerFactory;
 import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
 
 /**
  *
@@ -48,11 +62,12 @@ public class ClientMonitoring {
     public static final String OSLinux= "Linux";
     public static final String ficfierConfig = "parametre.txt"; 
     
+    public static Scheduler SCHEDULER;
     public static WsMonitoring ws;
     public static Machine machine;
-    String adresseServeur="";
-    String adresseMachine="";
-    String PORTWSCLIENT;
+    public static String ADRESSE_SERVEUR="";
+    public static String ADRESSE_MACHINE="";
+    public static String PORTWSCLIENT;
 
     public ClientMonitoring() {
         initialisation();
@@ -74,15 +89,15 @@ public class ClientMonitoring {
         List<String> parmettre = Until.lectureFichier(ficfierConfig);//lecture du fichier de paramettre
        
         if(parmettre.size()>0){
-            adresseServeur = parmettre.get(0);
-            adresseMachine = parmettre.get(1);
+            ADRESSE_SERVEUR = parmettre.get(0);
+            ADRESSE_MACHINE = parmettre.get(1);
             PORTWSCLIENT = parmettre.get(2);
         }
         
         //------------on initialise le webService----------
         URL url=null;
         try {
-            url = new URL("http://"+adresseServeur+":8080/projetMonitoring-war/WsMonitoring?wsdl");
+            url = new URL("http://"+ADRESSE_SERVEUR+":8080/projetMonitoring-war/WsMonitoring?wsdl");
         } catch (MalformedURLException ex) {
             Logger.getLogger(ClientMonitoring.class.getName()).log(Level.SEVERE, null, ex);
             Until.savelog("Adresse du serveur invalide", Until.fichieLog);
@@ -91,13 +106,13 @@ public class ClientMonitoring {
         ws = service.getWsMonitoringPort();
        
         //--------- on recupere les paramettre de la machine---------
-        machine = ws.verifiOuCreerMachine(adresseServeur, typeOS, nomMachine);
+        machine = ws.verifiOuCreerMachine(ADRESSE_SERVEUR,PORTWSCLIENT, typeOS, nomMachine);
     }
     
     public void demarerTachePrincipale(){
         try {
-            Scheduler scheduler = StdSchedulerFactory.getDefaultScheduler();
-            scheduler.start();
+            SCHEDULER = StdSchedulerFactory.getDefaultScheduler();
+            SCHEDULER.start();
             JobDataMap data = new JobDataMap();
             data.put("machine", machine);
             
@@ -127,7 +142,7 @@ public class ClientMonitoring {
             .build();
             */
             // Tell quartz to schedule the job using our trigger
-            scheduler.scheduleJob(jobDetaille, trigger);
+            SCHEDULER.scheduleJob(jobDetaille, trigger);
             
         } catch (SchedulerException ex) {
             Logger.getLogger(ClientMonitoring.class.getName()).log(Level.SEVERE, null, ex);
@@ -135,8 +150,8 @@ public class ClientMonitoring {
     }
     
     public void demarerWS(){
-        //String URL = "http://"+adresseMachine+":8080/";
-        String URL = "http://"+adresseMachine+":"+PORTWSCLIENT+"/";
+        //String URL = "http://"+ADRESSE_MACHINE+":8080/";
+        String URL = "http://"+ADRESSE_MACHINE+":"+PORTWSCLIENT+"/";
         Endpoint.publish(URL, new WSClientMonitoring());
         System.out.println("Web Service démarer: "+URL);
     }
@@ -145,9 +160,9 @@ public class ClientMonitoring {
      */
     public static void main(String[] args) {
         ClientMonitoring client = new ClientMonitoring();
-        client.demarerWS();
         
         client.demarerTachePrincipale();
+        client.demarerWS();
         
         
     }
