@@ -11,65 +11,22 @@ import classeServeur.WsMonitoring_Service;
 import clientmonitoring.jobs.JobPrincipale;
 import clientmonitoring.until.Until;
 import clientmonitoring.ws.WSClientMonitoring;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.ws.Endpoint;
-import static org.quartz.CronScheduleBuilder.cronSchedule;
-import static org.quartz.JobBuilder.newJob;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
-import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import org.quartz.Trigger;
 import static org.quartz.TriggerBuilder.newTrigger;
-import org.quartz.TriggerKey;
 import org.quartz.impl.StdSchedulerFactory;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 
 /**
@@ -81,15 +38,21 @@ public class ClientMonitoring {
     public static final String OSWINDOWS = "Windows";
     public static final String OSLinux = "Linux";
     public static final String ficfierConfig = "parametre.txt";
+    public static final String TACHE_DD = "surveiller_dd";
+    public static final String PAUSE = "PAUSE";
+    public static final String START = "START";
+    public static final String STOP = "STOP";
 
     public static Scheduler SCHEDULER;
     public static WsMonitoring ws;
-    public static Machine machine;
+    //public static Machine machine;
     public static String ADRESSE_SERVEUR = "";
     public static String PORT_SERVEUR;
     public static String ADRESSE_MACHINE = "";
     public static String PORT_MACHINE;
 
+    private String typeOS;
+    private String nomMachine;
     public ClientMonitoring() {
         initialisation();
         
@@ -101,7 +64,7 @@ public class ClientMonitoring {
      */
     public void initialisation() {
         //---------on recupere le type d'OS du système------
-        String typeOS = System.getProperty("os.name");
+        typeOS = System.getProperty("os.name");
         if (typeOS.contains(OSWINDOWS)) {
             typeOS = OSWINDOWS;
         } else {
@@ -109,7 +72,7 @@ public class ClientMonitoring {
         }
 
         //----- on recuper le nom de la machine------------
-        String nomMachine = System.getProperty("user.name");
+        nomMachine = System.getProperty("user.name");
 
         //------------on recuper les paramettre contenue dans le fichie de paramettre-------------
         List<String> parmettre = Until.lectureFichier(ficfierConfig);//lecture du fichier de paramettre
@@ -129,7 +92,6 @@ public class ClientMonitoring {
             ws = service.getWsMonitoringPort();
 
             //--------- on recupere les paramettre de la machine---------
-            machine = ws.verifiOuCreerMachine(ADRESSE_SERVEUR, PORT_MACHINE, typeOS, nomMachine);
         } catch (MalformedURLException ex) {
             Logger.getLogger(ClientMonitoring.class.getName()).log(Level.SEVERE, null, ex);
             Until.savelog("Adresse du serveur ou port invalide\n" + ex, Until.fichieLog);
@@ -137,10 +99,11 @@ public class ClientMonitoring {
 
     }
 
-    public void demarerTachePrincipale() {
+    public void demarerTachePrincipaleEtSOusTache() {
         try {
             SCHEDULER = StdSchedulerFactory.getDefaultScheduler();
             SCHEDULER.start();
+            Machine machine = ws.verifiOuCreerMachine(ADRESSE_MACHINE, PORT_MACHINE, typeOS, nomMachine);
             JobDataMap data = new JobDataMap();
             data.put("machine", machine);
 
@@ -157,9 +120,14 @@ public class ClientMonitoring {
                     .startNow()
                     .withSchedule(cronSchedule(machine.getPeriodeDeCheck()))
                     .build();
-
+            
             // Tell quartz to schedule the job using our trigger
             SCHEDULER.scheduleJob(jobDetaille, trigger);
+            System.out.println("la tache principale à bien été lancé. cle=" + indentifiant + ", groupe=" + groupe);
+            
+            LesFonctions lesfonction = new LesFonctions();
+            lesfonction.demarerListeTAche(ws.getListTacheMachine(machine.getAdresseIP()));
+            
         } catch (SchedulerException ex) {
             Logger.getLogger(ClientMonitoring.class.getName()).log(Level.SEVERE, null, ex);
             Until.savelog("pb lors de l'éxécution du scheduler \n" + ex, Until.fichieLog);
@@ -179,7 +147,7 @@ public class ClientMonitoring {
     public static void main(String[] args) {
         ClientMonitoring client = new ClientMonitoring();
 
-        client.demarerTachePrincipale();
+        client.demarerTachePrincipaleEtSOusTache();
         client.demarerWS();
 
     }

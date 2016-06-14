@@ -4,17 +4,23 @@
 <xsd:import namespace="http://ws/" schemaLocation="http://localhost:8080/projetMonitoring-war/WsMonitoring?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="getListTacheMachine">
+<part name="parameters" element="tns:getListTacheMachine"/>
+</message>
+<message name="getListTacheMachineResponse">
+<part name="parameters" element="tns:getListTacheMachineResponse"/>
+</message>
 <message name="hello">
 <part name="parameters" element="tns:hello"/>
 </message>
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
 </message>
-<message name="creerTacheSurveilleDD">
-<part name="parameters" element="tns:creerTacheSurveilleDD"/>
+<message name="getMachine">
+<part name="parameters" element="tns:getMachine"/>
 </message>
-<message name="creerTacheSurveilleDDResponse">
-<part name="parameters" element="tns:creerTacheSurveilleDDResponse"/>
+<message name="getMachineResponse">
+<part name="parameters" element="tns:getMachineResponse"/>
 </message>
 <message name="verifiOuCreerMachine">
 <part name="parameters" element="tns:verifiOuCreerMachine"/>
@@ -23,13 +29,17 @@
 <part name="parameters" element="tns:verifiOuCreerMachineResponse"/>
 </message>
 <portType name="WsMonitoring">
+<operation name="getListTacheMachine">
+<input wsam:Action="http://ws/WsMonitoring/getListTacheMachineRequest" message="tns:getListTacheMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/getListTacheMachineResponse" message="tns:getListTacheMachineResponse"/>
+</operation>
 <operation name="hello">
 <input wsam:Action="http://ws/WsMonitoring/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://ws/WsMonitoring/helloResponse" message="tns:helloResponse"/>
 </operation>
-<operation name="creerTacheSurveilleDD">
-<input wsam:Action="http://ws/WsMonitoring/creerTacheSurveilleDDRequest" message="tns:creerTacheSurveilleDD"/>
-<output wsam:Action="http://ws/WsMonitoring/creerTacheSurveilleDDResponse" message="tns:creerTacheSurveilleDDResponse"/>
+<operation name="getMachine">
+<input wsam:Action="http://ws/WsMonitoring/getMachineRequest" message="tns:getMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/getMachineResponse" message="tns:getMachineResponse"/>
 </operation>
 <operation name="verifiOuCreerMachine">
 <input wsam:Action="http://ws/WsMonitoring/verifiOuCreerMachineRequest" message="tns:verifiOuCreerMachine"/>
@@ -38,6 +48,15 @@
 </portType>
 <binding name="WsMonitoringPortBinding" type="tns:WsMonitoring">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="getListTacheMachine">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="hello">
 <soap:operation soapAction=""/>
 <input>
@@ -47,7 +66,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="creerTacheSurveilleDD">
+<operation name="getMachine">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

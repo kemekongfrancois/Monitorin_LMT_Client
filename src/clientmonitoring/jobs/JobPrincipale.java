@@ -6,11 +6,9 @@
 package clientmonitoring.jobs;
 
 import classeServeur.Machine;
-import static clientmonitoring.ClientMonitoring.machine;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.quartz.Job;
-import static org.quartz.JobBuilder.newJob;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
@@ -21,69 +19,6 @@ import org.quartz.SchedulerException;
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import org.quartz.Trigger;
 import static org.quartz.TriggerBuilder.newTrigger;
-import org.quartz.impl.StdSchedulerFactory;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
 import static org.quartz.JobBuilder.newJob;
 
 /**
@@ -106,7 +41,7 @@ public class JobPrincipale implements Job {
 
         System.out.println("execution du job: key=" + key + " jobSays="+ jobSays+" userId="+userId + "machine=" + machine.getAdresseIP() );
         
-        if(!sousJobOK) demarerSousTache();
+        //if(!sousJobOK) demarerSousTache();
               
         
     }
