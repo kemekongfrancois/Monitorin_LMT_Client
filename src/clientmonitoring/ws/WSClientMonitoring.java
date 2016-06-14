@@ -23,6 +23,6 @@ public class WSClientMonitoring {
         } catch (SchedulerException ex) {
             Logger.getLogger(WSClientMonitoring.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "Hello " + txt + " !";
+        return "Hello je suis le WSClient " + txt + " !";
     }
 }

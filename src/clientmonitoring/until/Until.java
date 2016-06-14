@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clientmonitoring;
+package clientmonitoring.until;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author KEF10
  */
 public class Until {
-    static String fichieLog = "log.txt";
+    public static String fichieLog = "log.txt";
 
     /**
      * cette fonction prend en entre un fichier et retourne son contenu dans une liste

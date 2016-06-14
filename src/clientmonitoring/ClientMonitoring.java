@@ -9,6 +9,7 @@ import classeServeur.Machine;
 import classeServeur.WsMonitoring;
 import classeServeur.WsMonitoring_Service;
 import clientmonitoring.jobs.JobPrincipale;
+import clientmonitoring.until.Until;
 import clientmonitoring.ws.WSClientMonitoring;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,6 +27,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.ws.Endpoint;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
@@ -52,118 +54,133 @@ import static org.quartz.JobBuilder.newJob;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
 
 /**
  *
  * @author KEF10
  */
 public class ClientMonitoring {
+
     public static final String OSWINDOWS = "Windows";
-    public static final String OSLinux= "Linux";
-    public static final String ficfierConfig = "parametre.txt"; 
-    
+    public static final String OSLinux = "Linux";
+    public static final String ficfierConfig = "parametre.txt";
+
     public static Scheduler SCHEDULER;
     public static WsMonitoring ws;
     public static Machine machine;
-    public static String ADRESSE_SERVEUR="";
-    public static String ADRESSE_MACHINE="";
-    public static String PORTWSCLIENT;
+    public static String ADRESSE_SERVEUR = "";
+    public static String PORT_SERVEUR;
+    public static String ADRESSE_MACHINE = "";
+    public static String PORT_MACHINE;
 
     public ClientMonitoring() {
         initialisation();
+        
     }
-    
+
     /**
-     * cette fonction permet d'initialisé le client et certain paramètre globeaux
+     * cette fonction permet d'initialisé le client et certain paramètre
+     * globeaux
      */
-    public void initialisation(){
+    public void initialisation() {
         //---------on recupere le type d'OS du système------
         String typeOS = System.getProperty("os.name");
-        if(typeOS.contains(OSWINDOWS)) typeOS = OSWINDOWS;
-        else typeOS = OSLinux;
-        
+        if (typeOS.contains(OSWINDOWS)) {
+            typeOS = OSWINDOWS;
+        } else {
+            typeOS = OSLinux;
+        }
+
         //----- on recuper le nom de la machine------------
         String nomMachine = System.getProperty("user.name");
-        
+
         //------------on recuper les paramettre contenue dans le fichie de paramettre-------------
         List<String> parmettre = Until.lectureFichier(ficfierConfig);//lecture du fichier de paramettre
-       
-        if(parmettre.size()>0){
-            ADRESSE_SERVEUR = parmettre.get(0);
-            ADRESSE_MACHINE = parmettre.get(1);
-            PORTWSCLIENT = parmettre.get(2);
+
+        if (parmettre.size() > 0) {
+            int i = 0;
+            ADRESSE_SERVEUR = parmettre.get(i++);
+            PORT_SERVEUR = parmettre.get(i++);
+            ADRESSE_MACHINE = parmettre.get(i++);
+            PORT_MACHINE = parmettre.get(i++);
         }
-        
+
         //------------on initialise le webService----------
-        URL url=null;
         try {
-            url = new URL("http://"+ADRESSE_SERVEUR+":8080/projetMonitoring-war/WsMonitoring?wsdl");
+            URL url = new URL("http://" + ADRESSE_SERVEUR + ":" + PORT_SERVEUR + "/projetMonitoring-war/WsMonitoring?wsdl");
+            WsMonitoring_Service service = new WsMonitoring_Service(url);
+            ws = service.getWsMonitoringPort();
+
+            //--------- on recupere les paramettre de la machine---------
+            machine = ws.verifiOuCreerMachine(ADRESSE_SERVEUR, PORT_MACHINE, typeOS, nomMachine);
         } catch (MalformedURLException ex) {
             Logger.getLogger(ClientMonitoring.class.getName()).log(Level.SEVERE, null, ex);
-            Until.savelog("Adresse du serveur invalide", Until.fichieLog);
+            Until.savelog("Adresse du serveur ou port invalide\n" + ex, Until.fichieLog);
         }
-        WsMonitoring_Service service  = new WsMonitoring_Service(url);
-        ws = service.getWsMonitoringPort();
-       
-        //--------- on recupere les paramettre de la machine---------
-        machine = ws.verifiOuCreerMachine(ADRESSE_SERVEUR,PORTWSCLIENT, typeOS, nomMachine);
+
     }
-    
-    public void demarerTachePrincipale(){
+
+    public void demarerTachePrincipale() {
         try {
             SCHEDULER = StdSchedulerFactory.getDefaultScheduler();
             SCHEDULER.start();
             JobDataMap data = new JobDataMap();
             data.put("machine", machine);
-            
+
+            String groupe = machine.getAdresseIP();
+            String indentifiant = machine.getAdresseIP();
             // define the job and tie it to our MyJob class
             JobDetail jobDetaille = newJob(JobPrincipale.class)
-                    .withIdentity("job1", "group1")
-                    .usingJobData("jobSays", machine.getAdresseIP())
-                    .usingJobData("userId", machine.getNomMachine())
+                    .withIdentity(indentifiant,groupe)
                     .usingJobData(data)
                     .build();
-            
-            // Trigger the job to run now, and then repeat every 40 seconds
+
             Trigger trigger = newTrigger()
-                    .withIdentity("trigger1", "group1")
+                    .withIdentity(indentifiant,groupe)
                     .startNow()
-                    .withSchedule(simpleSchedule()
-                            .withIntervalInSeconds(machine.getPeriodeDeCheck())
-                            //.withRepeatCount(2))
-                            .repeatForever())
+                    .withSchedule(cronSchedule(machine.getPeriodeDeCheck()))
                     .build();
-            
-            /*
-            Trigger trigger = newTrigger()
-            .withIdentity("trigger1", "group1")
-            .startNow()
-            .withSchedule(cronSchedule("2 * * * * ?"))
-            .build();
-            */
+
             // Tell quartz to schedule the job using our trigger
             SCHEDULER.scheduleJob(jobDetaille, trigger);
-            
         } catch (SchedulerException ex) {
             Logger.getLogger(ClientMonitoring.class.getName()).log(Level.SEVERE, null, ex);
+            Until.savelog("pb lors de l'éxécution du scheduler \n" + ex, Until.fichieLog);
         }
     }
-    
-    public void demarerWS(){
+
+    public void demarerWS() {
         //String URL = "http://"+ADRESSE_MACHINE+":8080/";
-        String URL = "http://"+ADRESSE_MACHINE+":"+PORTWSCLIENT+"/";
+        String URL = "http://" + ADRESSE_MACHINE + ":" + PORT_MACHINE + "/";
         Endpoint.publish(URL, new WSClientMonitoring());
-        System.out.println("Web Service démarer: "+URL);
+        System.out.println("Web Service démarer: " + URL);
     }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         ClientMonitoring client = new ClientMonitoring();
-        
+
         client.demarerTachePrincipale();
         client.demarerWS();
-        
-        
+
     }
 }
