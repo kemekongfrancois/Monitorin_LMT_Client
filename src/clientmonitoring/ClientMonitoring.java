@@ -11,11 +11,15 @@ import classeServeur.WsMonitoring_Service;
 import clientmonitoring.jobs.JobPrincipale;
 import clientmonitoring.until.Until;
 import clientmonitoring.ws.WSClientMonitoring;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 import javax.xml.ws.Endpoint;
 import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
@@ -53,8 +57,11 @@ public class ClientMonitoring {
 
     private String typeOS;
     private String nomMachine;
+    
+    protected static Logger logger= Logger.getLogger(Class.class.getName());
+    
     public ClientMonitoring() {
-        initialisation();
+        Until.initialisationGestionFichierLog(logger);  
         
     }
 
@@ -62,7 +69,7 @@ public class ClientMonitoring {
      * cette fonction permet d'initialisé le client et certain paramètre
      * globeaux
      */
-    public void initialisation() {
+    public boolean initialisation() {
         //---------on recupere le type d'OS du système------
         typeOS = System.getProperty("os.name");
         if (typeOS.contains(OSWINDOWS)) {
@@ -90,11 +97,11 @@ public class ClientMonitoring {
             URL url = new URL("http://" + ADRESSE_SERVEUR + ":" + PORT_SERVEUR + "/projetMonitoring-war/WsMonitoring?wsdl");
             WsMonitoring_Service service = new WsMonitoring_Service(url);
             ws = service.getWsMonitoringPort();
-
+            return true;
             //--------- on recupere les paramettre de la machine---------
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(ClientMonitoring.class.getName()).log(Level.SEVERE, null, ex);
-            Until.savelog("Adresse du serveur ou port invalide\n" + ex, Until.fichieLog);
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "Adresse du serveur ou port invalide", ex);
+            return false;
         }
 
     }
@@ -129,8 +136,7 @@ public class ClientMonitoring {
             lesfonction.demarerListeTAche(ws.getListTacheMachine(machine.getAdresseIP()));
             
         } catch (SchedulerException ex) {
-            Logger.getLogger(ClientMonitoring.class.getName()).log(Level.SEVERE, null, ex);
-            Until.savelog("pb lors de l'éxécution du scheduler \n" + ex, Until.fichieLog);
+            logger.log(Level.SEVERE, "pb lors de l'éxécution du scheduler ", ex);
         }
     }
 
@@ -147,8 +153,11 @@ public class ClientMonitoring {
     public static void main(String[] args) {
         ClientMonitoring client = new ClientMonitoring();
 
-        client.demarerTachePrincipaleEtSOusTache();
-        client.demarerWS();
+        if( client.initialisation()){
+             client.demarerTachePrincipaleEtSOusTache();
+             client.demarerWS();
+        }
+        
 
     }
 }

@@ -16,16 +16,42 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 /**
  *
  * @author KEF10
  */
 public class Until {
-    public static String fichieLog = "log.txt";
+    private static final String fichieLog = "log.txt";
+    private static final String fichieLogErreur = "logErreur.txt";
 
+    protected static Logger logger= Logger.getLogger(Class.class.getName());
+    /**
+     * cette fonction permt d'initialisé la gestion des fichier de log 
+     * @param logger_ 
+     */
+    public static void initialisationGestionFichierLog(Logger logger_){
+        try {
+            Handler fh = new FileHandler(fichieLog,false); //Le fichier est recréé (false) ou repris tel quel (true)
+            fh.setFormatter(new SimpleFormatter());//on defini ici que les données écrit dans le fichier seront du text
+            logger_.addHandler(fh);//on ajouter le 
+            
+            Handler fhErreur = new FileHandler(fichieLogErreur,false);
+            fhErreur.setFormatter(new SimpleFormatter());
+            fhErreur.setLevel(Level.SEVERE);//cette instruction permet de dire que seul les alerte de niveau "SEVERE = Niveau le plus élevé" seront écri dans le fichier que represente ce Handler
+            logger_.addHandler(fhErreur);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(Until.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(Until.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * cette fonction prend en entre un fichier et retourne son contenu dans une liste
      * chaque élèment de la liste es une ligne du fichier
@@ -53,11 +79,10 @@ public class Until {
 
                 return result;
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(Until.class.getName()).log(Level.SEVERE, null, ex);
-                savelog("" + ex, fichieLog);
+                logger.log(Level.SEVERE, null, ex);
             }
         }else{
-            savelog(nomFichier + ": ce fichier n'existe pas", fichieLog);
+            logger.log(Level.SEVERE, "nomFichier + \": ce fichier n'existe pas\"");
         }
         return null;//
     }
@@ -69,6 +94,7 @@ public class Until {
      * @param msg
      * @param nomfichier
      */
+    /*
     public static void savelog(String msg, String nomfichier) {
         BufferedWriter bufWriter = null;
         FileWriter fileWriter = null;
@@ -105,4 +131,6 @@ public class Until {
             }
         }
     }
+    
+    */
 }

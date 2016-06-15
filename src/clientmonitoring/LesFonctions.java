@@ -29,7 +29,11 @@ import static org.quartz.JobBuilder.newJob;
  * @author KEF10
  */
 public class LesFonctions {
+    protected static Logger logger= Logger.getLogger(Class.class.getName());
 
+    public LesFonctions(){
+        Until.initialisationGestionFichierLog(logger);
+    }
     Scheduler scheduler = clientmonitoring.ClientMonitoring.SCHEDULER;
 
     /**
@@ -81,8 +85,7 @@ public class LesFonctions {
                     break;
                 default:
                     String msg = TypeDeTache + ": ce type n'es pas reconnue \n";
-                    System.out.println(msg);
-                    Until.savelog(msg, Until.fichieLog);
+                    logger.log(Level.WARNING, msg);
                     return false;
             }
 
@@ -90,8 +93,7 @@ public class LesFonctions {
             System.out.println("la tache à bien été demarer. cle=" + cle + ", groupe=" + groupe);
             return true;
         } catch (SchedulerException ex) {
-            Logger.getLogger(LesFonctions.class.getName()).log(Level.SEVERE, null, ex);
-            Until.savelog("pb sur le scheduler \n" + ex, Until.fichieLog);
+            logger.log(Level.SEVERE, "pb lors de l'éxécution du scheduler ", ex);
             return false;
         }
         
