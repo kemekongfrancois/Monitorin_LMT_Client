@@ -30,7 +30,7 @@ public class Until {
     private static final String fichieLog = "log.txt";
     private static final String fichieLogErreur = "logErreur.txt";
 
-    protected static Logger logger= Logger.getLogger(Class.class.getName());
+    static Logger logger= clientmonitoring.ClientMonitoring.LOGGER;
     /**
      * cette fonction permt d'initialisé la gestion des fichier de log 
      * @param logger_ 

@@ -5,6 +5,7 @@
  */
 package clientmonitoring.ws;
 
+import clientmonitoring.BeanClient;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebMethod;
@@ -15,14 +16,20 @@ import org.quartz.SchedulerException;
 
 @WebService
 public class WSClientMonitoring {
-    Scheduler scheduler = clientmonitoring.ClientMonitoring.SCHEDULER;
-    @WebMethod(operationName = "hello")
+
+    Logger logger = clientmonitoring.ClientMonitoring.LOGGER;
+    Scheduler scheduler = clientmonitoring.BeanClient.SCHEDULER;
+    
+    BeanClient beanClient = new BeanClient();
+
     public String hello(@WebParam(name = "name") String txt) {
-        try {
-            scheduler.shutdown();
-        } catch (SchedulerException ex) {
-            Logger.getLogger(WSClientMonitoring.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //logger.log(Level.SEVERE, "le message de test");
+        arreterLeScheduler();
         return "Hello je suis le WSClient " + txt + " !";
+    }
+
+    @WebMethod
+    public boolean arreterLeScheduler() {
+        return beanClient.arreterLeScheduler();
     }
 }

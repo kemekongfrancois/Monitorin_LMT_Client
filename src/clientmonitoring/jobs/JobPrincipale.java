@@ -20,32 +20,35 @@ import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 import org.quartz.Trigger;
 import static org.quartz.TriggerBuilder.newTrigger;
 import static org.quartz.JobBuilder.newJob;
+import static org.quartz.JobBuilder.newJob;
 
 /**
  *
  * @author KEF10
  */
 public class JobPrincipale implements Job {
-    //private Scheduler SCHEDULER;
-    static boolean sousJobOK = false;
-    
-    Scheduler scheduler = clientmonitoring.ClientMonitoring.SCHEDULER;
+    //protected static Logger logger = Logger.getLogger(Class.class.getName());
 
+    Logger logger= clientmonitoring.ClientMonitoring.LOGGER;
+    /*public JobPrincipale() {
+    clientmonitoring.until.Until.initialisationGestionFichierLog(logger);
+    }*/
+    
+    
+    
+    Scheduler scheduler = clientmonitoring.BeanClient.SCHEDULER;
+
+    @Override
     public void execute(JobExecutionContext context)
             throws JobExecutionException {
         JobKey key = context.getJobDetail().getKey();
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
-        String jobSays = dataMap.getString("jobSays");
-        String userId = dataMap.getString("userId");
-        Machine machine = (Machine) dataMap.get("machine");
 
-        System.out.println("execution du job: key=" + key + " jobSays="+ jobSays+" userId="+userId + "machine=" + machine.getAdresseIP() );
-        
-        //if(!sousJobOK) demarerSousTache();
-              
-        
+        logger.log(Level.INFO, "le job principale c'est bien exécuté");
+           // Logger.getLogger(JobPrincipale.class.getName()).log(Level.INFO, "le job principale c'est bien exécuté");
+          
     }
-    
+    /*
     public void demarerSousTache(){
         try {
             
@@ -69,5 +72,5 @@ public class JobPrincipale implements Job {
             Logger.getLogger(JobPrincipale.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    */
 }
