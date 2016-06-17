@@ -5,6 +5,7 @@
  */
 package clientmonitoring.ws;
 
+import classeServeur.Tache;
 import clientmonitoring.BeanClient;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,5 +32,15 @@ public class WSClientMonitoring {
     @WebMethod
     public boolean arreterLeScheduler() {
         return beanClient.arreterLeScheduler();
+    }
+    
+    @WebMethod
+    public boolean demarerMetAJourOUStopperTache(@WebParam(name = "tache")Tache tache) {
+        return beanClient.demarerMetAJourOUStopperTache(tache);
+    }
+    
+    @WebMethod
+    public boolean demarerLeScheduler(){
+        return beanClient.demarerLeScheduler();
     }
 }

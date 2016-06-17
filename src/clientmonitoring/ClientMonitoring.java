@@ -6,12 +6,15 @@
 package clientmonitoring;
 
 import classeServeur.Machine;
+import classeServeur.Tache;
 import classeServeur.WsMonitoring;
 import classeServeur.WsMonitoring_Service;
 import clientmonitoring.until.Until;
 import clientmonitoring.ws.WSClientMonitoring;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.ws.Endpoint;
@@ -30,6 +33,8 @@ public class ClientMonitoring {
     public static final String START = "START";
     public static final String STOP = "STOP";
     public static final int NB_LIGNE_FICHIER_CONF = 4;
+    
+    
     
 
     //public Scheduler SCHEDULER;

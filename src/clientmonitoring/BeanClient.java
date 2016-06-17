@@ -7,11 +7,16 @@ package clientmonitoring;
 
 import classeServeur.Machine;
 import classeServeur.Tache;
+import classeServeur.TachePK;
+import static clientmonitoring.ClientMonitoring.START;
 import static clientmonitoring.ClientMonitoring.STOP;
 import static clientmonitoring.ClientMonitoring.TACHE_DD;
 import clientmonitoring.jobs.JobPrincipale;
 import clientmonitoring.jobs.JobVerificationDisk;
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.quartz.JobDetail;
@@ -32,6 +37,8 @@ import static org.quartz.JobBuilder.newJob;
  * @author KEF10
  */
 public class BeanClient {
+    public static Map<JobKey,Tache> TACHE_EN_COUR_D_EXECUTION = new HashMap<>();
+    
     public static Scheduler SCHEDULER;
     
     static Logger logger= clientmonitoring.ClientMonitoring.LOGGER; 
@@ -40,6 +47,7 @@ public class BeanClient {
         try {
             SCHEDULER = StdSchedulerFactory.getDefaultScheduler();
             SCHEDULER.start();
+            logger.log(Level.INFO, "SCHEDULER démarer ");
             return true;
         } catch (SchedulerException ex) {
             logger.log(Level.SEVERE, "le SCHEDULER à bien démaré", ex);
@@ -50,6 +58,7 @@ public class BeanClient {
     public boolean arreterLeScheduler(){
         try {
             SCHEDULER.shutdown();
+            logger.log(Level.INFO, "SCHEDULER Arreté ");
             return true;
         } catch (SchedulerException ex) {
             logger.log(Level.SEVERE, "impossible de stopper le SCHEDULER", ex);
@@ -66,9 +75,14 @@ public class BeanClient {
         String identifiant = tache.getTachePK().getCleTache();
         String groupe = tache.getTachePK().getIdMachine() + "";
         JobKey cle = JobKey.jobKey(identifiant, groupe);
+        
+        //ajouter les données
+        JobDataMap data = new JobDataMap();
+        data.put("tache", tache);
 
         JobDetail jobDetaille = newJob(JobVerificationDisk.class)
                 .withIdentity(cle)
+                .usingJobData(data)
                 .build();
 
         return jobDetaille;
@@ -85,9 +99,10 @@ public class BeanClient {
             String groupe = tache.getTachePK().getIdMachine() + "";
             JobKey cle = JobKey.jobKey(identifiant, groupe);
 
-            if (tache.getStatue().equals(STOP) || SCHEDULER.checkExists(cle)) {//si le job existe déja on le stoppe
+            if (!tache.getStatue().equals(START) || SCHEDULER.checkExists(cle)) {//si le job existe déja on le stoppe
                 arreterJob(cle);//suppression du job
-                if(tache.getStatue().equals(STOP)){//cas où on veux stopper la tache
+                if(!tache.getStatue().equals(START)){//cas où on veux stopper la tache ou la mettre en pause
+                    TACHE_EN_COUR_D_EXECUTION.remove(cle);//on le retire des taches en cour d'exécution
                     return true;//le job a été stoppé
                 }
             }
@@ -107,13 +122,13 @@ public class BeanClient {
                     jobDetaille = initialiseVerificationDD(tache);
                     break;
                 default:
-                    String msg = TypeDeTache + ": ce type n'es pas reconnue \n";
-                    logger.log(Level.WARNING, msg);
+                    logger.log(Level.WARNING, TypeDeTache + ": ce type n'es pas reconnue ");
                     return false;
             }
 
             SCHEDULER.scheduleJob(jobDetaille, trigger);//on démare la tache
             logger.log(Level.INFO, "tache démaré. cle=" + cle );
+            TACHE_EN_COUR_D_EXECUTION.put(cle, tache);
             return true;
         } catch (SchedulerException ex) {
             logger.log(Level.SEVERE, null, ex);
@@ -172,7 +187,7 @@ public class BeanClient {
             
             //on démare les taches
             demarerListeTAche(listTache);
-            logger.log(Level.INFO, "Toutes les taches ont été démarer");
+            logger.log(Level.INFO, "Toutes les taches ont été démarer: nombre de tache="+TACHE_EN_COUR_D_EXECUTION.size());
             
             // on démarer le job principale
             SCHEDULER.scheduleJob(jobDetaille, trigger);
@@ -185,5 +200,29 @@ public class BeanClient {
         }
         
     }
+    
+    /**
+     * 
+     * @param lettreDD
+     * @return "200" dans le cas où lettre de partition ne corespond à aucune dd
+     */
+    public int pourcentageOccupationDD(String lettreDD) {
+        File cwd = new File(lettreDD);
+        //File cwd = new File("l:");
+        if(!cwd.exists()) return 200;
+        float espaleTotal = cwd.getTotalSpace();
+        float espaceLIbre = cwd.getFreeSpace();
+        float espaceUtilise = cwd.getUsableSpace();
+        
+        System.out.println("Espace total:  "+ espaleTotal/ (1024 * 1024) + " MBt"  );
+        System.out.println("Espace Libre:  "+ espaceLIbre / (1024 * 1024) + " MBt");
+        System.out.println("Espace Utilisé:  "+ espaceUtilise / (1024 * 1024) + " MBt");
+        
+        float pourcentage = 100 - (espaceLIbre/espaleTotal)*100;
+         System.out.println("pourcentage restant:  "+ pourcentage+"%");
+        return (int) pourcentage;
+        
+    }
+    
     
 }

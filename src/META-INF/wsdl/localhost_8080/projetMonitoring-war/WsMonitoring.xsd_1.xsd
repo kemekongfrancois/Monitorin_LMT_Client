@@ -14,11 +14,11 @@
 
 <xs:element name="machine" type="tns:machine"/>
 
-<xs:element name="pings" type="tns:pings"/>
-
 <xs:element name="tache" type="tns:tache"/>
 
-<xs:element name="telnet" type="tns:telnet"/>
+<xs:element name="traitementAlerte" type="tns:traitementAlerte"/>
+
+<xs:element name="traitementAlerteResponse" type="tns:traitementAlerteResponse"/>
 
 <xs:element name="verifiOuCreerMachine" type="tns:verifiOuCreerMachine"/>
 
@@ -36,28 +36,21 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getListTacheMachine">
+<xs:complexType name="traitementAlerte">
 <xs:sequence>
-<xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getListTacheMachineResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:tache" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="tache" type="tns:tache" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="tache">
 <xs:sequence>
 <xs:element name="descriptionFichier" type="xs:string" minOccurs="0"/>
+<xs:element name="listeAdresse" type="xs:string" minOccurs="0"/>
 <xs:element name="machine" type="tns:machine" minOccurs="0"/>
 <xs:element name="periodeVerrification" type="xs:string" minOccurs="0"/>
-<xs:element name="pings" type="tns:pings" minOccurs="0"/>
 <xs:element name="seuilAlerte" type="xs:int" minOccurs="0"/>
 <xs:element name="statue" type="xs:string" minOccurs="0"/>
 <xs:element name="tachePK" type="tns:tachePK" minOccurs="0"/>
-<xs:element name="telnet" type="tns:telnet" minOccurs="0"/>
 <xs:element name="typeTache" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
@@ -73,20 +66,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="pings">
-<xs:sequence>
-<xs:element name="pingsPK" type="tns:pingsPK" minOccurs="0"/>
-<xs:element name="tache" type="tns:tache" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="pingsPK">
-<xs:sequence>
-<xs:element name="cleTache" type="xs:string" minOccurs="0"/>
-<xs:element name="idMachine" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="tachePK">
 <xs:sequence>
 <xs:element name="cleTache" type="xs:string" minOccurs="0"/>
@@ -94,17 +73,9 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="telnet">
+<xs:complexType name="traitementAlerteResponse">
 <xs:sequence>
-<xs:element name="tache" type="tns:tache" minOccurs="0"/>
-<xs:element name="telnetPK" type="tns:telnetPK" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="telnetPK">
-<xs:sequence>
-<xs:element name="cleTache" type="xs:string" minOccurs="0"/>
-<xs:element name="idMachine" type="xs:int"/>
+<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -117,6 +88,18 @@
 <xs:complexType name="getMachineResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:machine" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getListTacheMachine">
+<xs:sequence>
+<xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getListTacheMachineResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tache" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
