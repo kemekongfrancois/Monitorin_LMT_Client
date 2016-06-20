@@ -7,7 +7,6 @@ package clientmonitoring;
 
 import classeServeur.Machine;
 import classeServeur.Tache;
-import classeServeur.TachePK;
 import static clientmonitoring.ClientMonitoring.START;
 import static clientmonitoring.ClientMonitoring.STOP;
 import static clientmonitoring.ClientMonitoring.TACHE_DD;
@@ -27,6 +26,10 @@ import org.quartz.Trigger;
 import static org.quartz.TriggerBuilder.newTrigger;
 import org.quartz.JobDataMap;
 import org.quartz.impl.StdSchedulerFactory;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
@@ -58,6 +61,7 @@ public class BeanClient {
     public boolean arreterLeScheduler(){
         try {
             SCHEDULER.shutdown();
+            TACHE_EN_COUR_D_EXECUTION.clear();
             logger.log(Level.INFO, "SCHEDULER Arreté ");
             return true;
         } catch (SchedulerException ex) {
@@ -72,17 +76,20 @@ public class BeanClient {
      * elle permet de démarer les taches de type verifie DD
      */
     private JobDetail initialiseVerificationDD(Tache tache) {
-        String identifiant = tache.getTachePK().getCleTache();
-        String groupe = tache.getTachePK().getIdMachine() + "";
+        String identifiant = tache.getIdTache()+"";
+        String groupe = tache.getIdMachine().getIdMachine() + "";
         JobKey cle = JobKey.jobKey(identifiant, groupe);
         
         //ajouter les données
-        JobDataMap data = new JobDataMap();
-        data.put("tache", tache);
+        //JobDataMap data = new JobDataMap();
+        //data.put("tache", tache);
 
         JobDetail jobDetaille = newJob(JobVerificationDisk.class)
                 .withIdentity(cle)
-                .usingJobData(data)
+                .usingJobData("seuil", tache.getSeuilAlerte())
+                .usingJobData("lettrePartition", tache.getNom())
+                .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
+                //.usingJobData(data)
                 .build();
 
         return jobDetaille;
@@ -95,14 +102,13 @@ public class BeanClient {
      */
     public boolean demarerMetAJourOUStopperTache(Tache tache) {
         try {
-            String identifiant = tache.getTachePK().getCleTache();
-            String groupe = tache.getTachePK().getIdMachine() + "";
-            JobKey cle = JobKey.jobKey(identifiant, groupe);
+            String identifiant = tache.getIdTache()+"";
+        String groupe = tache.getIdMachine().getIdMachine() + "";
+        JobKey cle = JobKey.jobKey(identifiant, groupe);
 
             if (!tache.getStatue().equals(START) || SCHEDULER.checkExists(cle)) {//si le job existe déja on le stoppe
                 arreterJob(cle);//suppression du job
                 if(!tache.getStatue().equals(START)){//cas où on veux stopper la tache ou la mettre en pause
-                    TACHE_EN_COUR_D_EXECUTION.remove(cle);//on le retire des taches en cour d'exécution
                     return true;//le job a été stoppé
                 }
             }
@@ -143,10 +149,13 @@ public class BeanClient {
             }
         }
     
-    private boolean arreterJob(JobKey cle){
+    public boolean arreterJob(JobKey cle){
         try {
+            if(SCHEDULER.checkExists(cle)){
             SCHEDULER.deleteJob(cle);//suppression du job
             logger.log(Level.INFO, "tache stoppé. cle=" + cle );
+            }
+            TACHE_EN_COUR_D_EXECUTION.remove(cle);//on le retire des taches en cour d'exécution
             return true;
         } catch (SchedulerException ex) {
             logger.log(Level.SEVERE, null, ex);
@@ -160,8 +169,8 @@ public class BeanClient {
      */
     public boolean redemarerTachePrincipaleEtSousTache(Machine machine,List<Tache> listTache){
         try {
-            String groupe = machine.getIdMachine()+"";//le groupe sera l'identifiant de la machine
-            String identifiant = machine.getAdresseIP();//l'identifiant sera l'adresse IP 
+            String identifiant = machine.getIdMachine()+"";
+            String groupe = machine.getAdresseIP();//le groupe sera l'adresse IP
             JobKey cle = JobKey.jobKey(identifiant, groupe);
              
             if (SCHEDULER.checkExists(cle)) {//si le job existe déja on le stoppe
@@ -214,12 +223,14 @@ public class BeanClient {
         float espaceLIbre = cwd.getFreeSpace();
         float espaceUtilise = cwd.getUsableSpace();
         
+        float pourcentage = 100 - (espaceLIbre/espaleTotal)*100;
+         /*
+        System.out.println("pourcentage restant:  "+ pourcentage+"%");
         System.out.println("Espace total:  "+ espaleTotal/ (1024 * 1024) + " MBt"  );
         System.out.println("Espace Libre:  "+ espaceLIbre / (1024 * 1024) + " MBt");
         System.out.println("Espace Utilisé:  "+ espaceUtilise / (1024 * 1024) + " MBt");
+        */
         
-        float pourcentage = 100 - (espaceLIbre/espaleTotal)*100;
-         System.out.println("pourcentage restant:  "+ pourcentage+"%");
         return (int) pourcentage;
         
     }

@@ -25,7 +25,7 @@ public class WSClientMonitoring {
 
     public String hello(@WebParam(name = "name") String txt) {
         //logger.log(Level.SEVERE, "le message de test");
-        arreterLeScheduler();
+        //arreterLeScheduler();
         return "Hello je suis le WSClient " + txt + " !";
     }
 

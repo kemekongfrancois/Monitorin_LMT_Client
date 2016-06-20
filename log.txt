@@ -1,40 +1,34 @@
-juin 17, 2016 5:11:29 PM clientmonitoring.BeanClient demarerLeScheduler
+juin 20, 2016 5:04:03 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-juin 17, 2016 5:11:29 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.c:
-juin 17, 2016 5:11:29 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+juin 20, 2016 5:04:03 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.1
+juin 20, 2016 5:04:03 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
 INFOS: Toutes les taches ont été démarer: nombre de tache=1
-juin 17, 2016 5:11:29 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: la tache principale à bien été lancé. cle=1.172.16.4.2
-juin 17, 2016 5:11:29 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 89%
-juin 17, 2016 5:11:29 PM clientmonitoring.ClientMonitoring demarerWSClient
+juin 20, 2016 5:04:03 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: la tache principale à bien été lancé. cle=172.16.4.2.1
+juin 20, 2016 5:04:04 PM clientmonitoring.ClientMonitoring demarerWSClient
 INFOS: Web Service démarer: http://172.16.4.2:8088/
-juin 17, 2016 5:11:30 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 89%
-juin 17, 2016 5:11:31 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 89%
-juin 17, 2016 5:11:32 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 89%
-juin 17, 2016 5:11:33 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 89%
-juin 17, 2016 5:11:34 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 89%
-juin 17, 2016 5:11:35 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 89%
-juin 17, 2016 5:11:36 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 89%
-juin 17, 2016 5:11:37 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 89%
-juin 17, 2016 5:11:38 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 89%
-juin 17, 2016 5:11:39 PM clientmonitoring.BeanClient arreterJob
-INFOS: tache stoppé. cle=1.c:
-juin 17, 2016 5:11:39 PM clientmonitoring.jobs.JobVerificationDisk fontionDeTraitementDeLAlerte
+juin 20, 2016 5:04:10 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
+juin 20, 2016 5:04:20 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
+juin 20, 2016 5:04:30 PM clientmonitoring.jobs.JobVerificationDisk fontionDeTraitementDeLAlerte
 GRAVE:  espace restant du disque <<c:>>de la machine<<172.16.4.2>> es faible 
-juin 17, 2016 5:12:01 PM clientmonitoring.jobs.JobPrincipale execute
+juin 20, 2016 5:04:40 PM clientmonitoring.jobs.JobVerificationDisk fontionDeTraitementDeLAlerte
+GRAVE:  espace restant du disque <<c:>>de la machine<<172.16.4.2>> es faible 
+juin 20, 2016 5:04:48 PM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.1
+juin 20, 2016 5:05:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
 INFOS: le job principale c'est bien exécuté
-juin 17, 2016 5:13:01 PM clientmonitoring.jobs.JobPrincipale execute
+juin 20, 2016 5:06:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
 INFOS: le job principale c'est bien exécuté
-juin 17, 2016 5:13:43 PM clientmonitoring.BeanClient arreterLeScheduler
-INFOS: SCHEDULER Arreté 
+juin 20, 2016 5:07:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+juin 20, 2016 5:08:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+juin 20, 2016 5:08:43 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.1
+juin 20, 2016 5:09:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+juin 20, 2016 5:09:01 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%

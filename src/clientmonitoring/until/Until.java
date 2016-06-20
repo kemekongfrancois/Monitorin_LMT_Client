@@ -82,7 +82,7 @@ public class Until {
                 logger.log(Level.SEVERE, null, ex);
             }
         }else{
-            logger.log(Level.SEVERE, "nomFichier + \": ce fichier n'existe pas\"");
+            logger.log(Level.SEVERE, nomFichier + ": ce fichier n'existe pas");
         }
         return null;//
     }
