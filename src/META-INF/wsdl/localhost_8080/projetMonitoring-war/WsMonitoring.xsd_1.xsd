@@ -12,7 +12,15 @@
 
 <xs:element name="helloResponse" type="tns:helloResponse"/>
 
+<xs:element name="initialisation" type="tns:initialisation"/>
+
+<xs:element name="initialisationResponse" type="tns:initialisationResponse"/>
+
 <xs:element name="machine" type="tns:machine"/>
+
+<xs:element name="redemarerTache" type="tns:redemarerTache"/>
+
+<xs:element name="redemarerTacheResponse" type="tns:redemarerTacheResponse"/>
 
 <xs:element name="tache" type="tns:tache"/>
 
@@ -103,6 +111,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="initialisation">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="initialisationResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="verifiOuCreerMachine">
 <xs:sequence>
 <xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
@@ -126,6 +144,18 @@
 </xs:complexType>
 
 <xs:complexType name="traitementAlerteMachineResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="redemarerTache">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="redemarerTacheResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
 </xs:sequence>

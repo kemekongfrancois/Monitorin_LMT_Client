@@ -1,34 +1,40 @@
-juin 20, 2016 5:04:03 PM clientmonitoring.BeanClient demarerLeScheduler
+juin 21, 2016 4:50:18 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-juin 20, 2016 5:04:03 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+juin 21, 2016 4:50:18 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
 INFOS: tache démaré. cle=1.1
-juin 20, 2016 5:04:03 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+juin 21, 2016 4:50:18 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
 INFOS: Toutes les taches ont été démarer: nombre de tache=1
-juin 20, 2016 5:04:03 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+juin 21, 2016 4:50:18 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
 INFOS: la tache principale à bien été lancé. cle=172.16.4.2.1
-juin 20, 2016 5:04:04 PM clientmonitoring.ClientMonitoring demarerWSClient
+juin 21, 2016 4:50:19 PM clientmonitoring.ClientMonitoring demarerWSClient
 INFOS: Web Service démarer: http://172.16.4.2:8088/
-juin 20, 2016 5:04:10 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
-juin 20, 2016 5:04:20 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
-juin 20, 2016 5:04:30 PM clientmonitoring.jobs.JobVerificationDisk fontionDeTraitementDeLAlerte
+juin 21, 2016 4:50:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+juin 21, 2016 4:51:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+juin 21, 2016 4:51:01 PM clientmonitoring.jobs.JobVerificationDisk fontionDeTraitementDeLAlerte
 GRAVE:  espace restant du disque <<c:>>de la machine<<172.16.4.2>> es faible 
-juin 20, 2016 5:04:40 PM clientmonitoring.jobs.JobVerificationDisk fontionDeTraitementDeLAlerte
-GRAVE:  espace restant du disque <<c:>>de la machine<<172.16.4.2>> es faible 
-juin 20, 2016 5:04:48 PM clientmonitoring.BeanClient arreterJob
+juin 21, 2016 4:51:29 PM clientmonitoring.BeanClient arreterJob
 INFOS: tache stoppé. cle=1.1
-juin 20, 2016 5:05:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+juin 21, 2016 4:52:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
 INFOS: le job principale c'est bien exécuté
-juin 20, 2016 5:06:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+juin 21, 2016 4:53:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
 INFOS: le job principale c'est bien exécuté
-juin 20, 2016 5:07:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+juin 21, 2016 4:54:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
 INFOS: le job principale c'est bien exécuté
-juin 20, 2016 5:08:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+juin 21, 2016 4:55:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
 INFOS: le job principale c'est bien exécuté
-juin 20, 2016 5:08:43 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.1
-juin 20, 2016 5:09:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+juin 21, 2016 4:56:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
 INFOS: le job principale c'est bien exécuté
-juin 20, 2016 5:09:01 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
+juin 21, 2016 4:57:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+juin 21, 2016 4:58:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+juin 21, 2016 4:59:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+juin 21, 2016 5:00:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+juin 21, 2016 5:01:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+juin 21, 2016 5:02:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
