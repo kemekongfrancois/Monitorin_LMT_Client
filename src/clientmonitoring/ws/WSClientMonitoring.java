@@ -43,4 +43,8 @@ public class WSClientMonitoring {
     public boolean demarerLeScheduler(){
         return beanClient.demarerLeScheduler();
     }
+    
+    public String processusWindowsEnFonctionnement(@WebParam(name = "nomProcessus")String nomProcessus) {
+        return beanClient.processusWindowsEnFonctionnement(nomProcessus);
+    }
 }

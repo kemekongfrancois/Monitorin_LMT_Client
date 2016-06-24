@@ -27,12 +27,18 @@ public class ClientMonitoring {
 
     public static final String OSWINDOWS = "Windows";
     public static final String OSLinux = "Linux";
-    public static final String ficfierConfig = "parametre.txt";
     public static final String TACHE_DD = "surveiller_dd";
     public static final String ALERTE = "ALERTE";
     public static final String START = "START";
     public static final String STOP = "STOP";
+    public static final String PB = "PB";
+    public static final String KO = "KO";
+    public static final String OK = "OK";
+    public static final String TACHE_PROCESSUS = "surveiller_processus";
+    public static final String TACHE_SERVICE = "surveiller_service";
+    
     public static final int NB_LIGNE_FICHIER_CONF = 4;
+    public static final String ficfierConfig = "parametre.txt";
     
     
     
