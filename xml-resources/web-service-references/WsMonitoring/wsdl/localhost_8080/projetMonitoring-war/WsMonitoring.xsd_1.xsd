@@ -1,5 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
 
+<xs:element name="activerDesactiveAlertMail" type="tns:activerDesactiveAlertMail"/>
+
+<xs:element name="activerDesactiveAlertMailResponse" type="tns:activerDesactiveAlertMailResponse"/>
+
+<xs:element name="activerDesactiveAlertSMS" type="tns:activerDesactiveAlertSMS"/>
+
+<xs:element name="activerDesactiveAlertSMSResponse" type="tns:activerDesactiveAlertSMSResponse"/>
+
 <xs:element name="getListTacheMachine" type="tns:getListTacheMachine"/>
 
 <xs:element name="getListTacheMachineResponse" type="tns:getListTacheMachineResponse"/>
@@ -35,6 +43,18 @@
 <xs:element name="verifiOuCreerMachine" type="tns:verifiOuCreerMachine"/>
 
 <xs:element name="verifiOuCreerMachineResponse" type="tns:verifiOuCreerMachineResponse"/>
+
+<xs:complexType name="activerDesactiveAlertMail">
+<xs:sequence>
+<xs:element name="statut" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="activerDesactiveAlertMailResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="hello">
 <xs:sequence>
@@ -99,12 +119,13 @@
 
 <xs:complexType name="tache">
 <xs:sequence>
-<xs:element name="descriptionFichier" type="xs:string" minOccurs="0"/>
+<xs:element name="descriptionTache" type="xs:string" minOccurs="0"/>
+<xs:element name="envoiyerMsgDAlerte" type="xs:boolean" minOccurs="0"/>
 <xs:element name="idMachine" type="tns:machine" minOccurs="0"/>
 <xs:element name="idTache" type="xs:int" minOccurs="0"/>
-<xs:element name="listeAdresse" type="xs:string" minOccurs="0"/>
 <xs:element name="nom" type="xs:string" minOccurs="0"/>
 <xs:element name="periodeVerrification" type="xs:string" minOccurs="0"/>
+<xs:element name="redemarerAutoService" type="xs:boolean" minOccurs="0"/>
 <xs:element name="seuilAlerte" type="xs:int" minOccurs="0"/>
 <xs:element name="statue" type="xs:string" minOccurs="0"/>
 <xs:element name="typeTache" type="xs:string" minOccurs="0"/>
@@ -151,11 +172,23 @@
 
 <xs:complexType name="redemarerTache">
 <xs:sequence>
-<xs:element name="arg0" type="xs:int"/>
+<xs:element name="idTache" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="redemarerTacheResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="activerDesactiveAlertSMS">
+<xs:sequence>
+<xs:element name="statut" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="activerDesactiveAlertSMSResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
 </xs:sequence>

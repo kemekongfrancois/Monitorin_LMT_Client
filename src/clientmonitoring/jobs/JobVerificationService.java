@@ -30,22 +30,40 @@ public class JobVerificationService implements Job {
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
         String nomService = dataMap.getString("nomService");
         String ipAdresse = dataMap.getString("ipAdresse");
+        boolean redemarerAuto = dataMap.getBoolean("redemarerAuto");
         JobKey cle = context.getJobDetail().getKey();
 
         BeanClient beanClient = new BeanClient();
         String resultat = beanClient.serviceWindowsEnFonctionnement(nomService);
 
+            int code ;//
         if (resultat.equals(ClientMonitoring.OK)) {//le service es en fonction
             logger.log(Level.INFO, "le service <<" + nomService + ">> es en cour de fonctionnement");
+            code = -1;
         } else {//le processus n'es pas en cour de fonctionnement ou il ya un pb
-            int code ;//
             if (resultat.equals(ClientMonitoring.KO)) {
-                logger.log(Level.WARNING, "le service <<" + nomService + ">> n'es pas en cour de fonctionnement");
-                code = 0;
+                logger.log(Level.SEVERE, "le service <<" + nomService + ">> n'es pas en cour de fonctionnement");
+                
+                if (redemarerAuto) {//le redemarage automatique es activé sur cette tache
+                    if (beanClient.demarerServiceWindows(nomService)) {//on redemarer le service
+                        logger.log(Level.INFO, "le service <<" + nomService + ">> a été redémarer");
+                        code = -1;
+                    } else {//le service n'a pas pus être redémarer
+                        logger.log(Level.SEVERE, "le service <<" + nomService + ">> n'a pas pus être redémarer");
+                        code = 0;
+                    }
+                }else{//le redemarage automatique es désactivé
+                    logger.log(Level.INFO, "le redémarage automatique n'es pas activé pour le service <<" + nomService +">");
+                    code = 0;
+                }
+                
             } else {//il ya eu un pb
                 logger.log(Level.SEVERE, "le service <<" + nomService + ">> n'es pas valide");
                 code = 1;
             }
+            
+        }
+        if(code!=-1){//il ya eu un pb
             try {
                 if (!ClientMonitoring.wsServeur.traitementAlerteTache(new Integer(cle.getName()), code)) {
                     logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
@@ -56,6 +74,7 @@ public class JobVerificationService implements Job {
                 logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
             }
         }
+        
 
     }
 }

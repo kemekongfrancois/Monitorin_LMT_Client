@@ -1,106 +1,76 @@
-juin 24, 2016 5:01:02 PM clientmonitoring.BeanClient demarerLeScheduler
+juin 27, 2016 5:16:39 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-juin 24, 2016 5:01:02 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
 INFOS: tache démaré. cle=1.1
-juin 24, 2016 5:01:02 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
 INFOS: tache démaré. cle=1.2
-juin 24, 2016 5:01:02 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
 INFOS: tache démaré. cle=1.3
-juin 24, 2016 5:01:02 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: Toutes les taches ont été démarer: nombre de tache=3
-juin 24, 2016 5:01:02 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.4
+juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.5
+juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: Toutes les taches ont été démarer: nombre de tache=5
+juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
 INFOS: la tache principale à bien été lancé. cle=172.16.4.2.1
-juin 24, 2016 5:01:03 PM clientmonitoring.ClientMonitoring demarerWSClient
+juin 27, 2016 5:16:40 PM clientmonitoring.ClientMonitoring demarerWSClient
 INFOS: Web Service démarer: http://172.16.4.2:8088/
-juin 24, 2016 5:01:10 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: le resultat de l'éxécution de la commande <<tasklist /fi  "ImageName eq  vlc.exe">> est:
-
-Nom de l'image                 PID Nom de la sessio Num�ro de s Utilisation 
-========================= ======== ================ =========== ============
-vlc.exe                      16388 Console                   12    28�328 Ko
-
-juin 24, 2016 5:01:10 PM clientmonitoring.jobs.JobVerificationProcessus execute
+juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient executeCommandWindows
+INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
+juin 27, 2016 5:16:40 PM clientmonitoring.jobs.JobVerificationProcessus execute
 INFOS: le processus <<vlc.exe>> es en cour de fonctionnement
-juin 24, 2016 5:01:15 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: le resultat de l'éxécution de la commande <<sc query Connectify>> est:
-
-SERVICE_NAME: Connectify 
-        TYPE               : 10  WIN32_OWN_PROCESS  
-        STATE              : 4  RUNNING 
-                                (STOPPABLE, NOT_PAUSABLE, IGNORES_SHUTDOWN)
-        WIN32_EXIT_CODE    : 0  (0x0)
-        SERVICE_EXIT_CODE  : 0  (0x0)
-        CHECKPOINT         : 0x0
-        WAIT_HINT          : 0x0
-
-juin 24, 2016 5:01:15 PM clientmonitoring.jobs.JobVerificationService execute
+juin 27, 2016 5:16:45 PM clientmonitoring.BeanClient executeCommandWindows
+INFOS: la commande <<net start >> c'es bien exécuté
+juin 27, 2016 5:16:45 PM clientmonitoring.jobs.JobVerificationService execute
 INFOS: le service <<Connectify>> es en cour de fonctionnement
-juin 24, 2016 5:01:30 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
-juin 24, 2016 5:01:40 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: le resultat de l'éxécution de la commande <<tasklist /fi  "ImageName eq  vlc.exe">> est:
-
-Nom de l'image                 PID Nom de la sessio Num�ro de s Utilisation 
-========================= ======== ================ =========== ============
-vlc.exe                      16388 Console                   12    28�328 Ko
-
-juin 24, 2016 5:01:40 PM clientmonitoring.jobs.JobVerificationProcessus execute
+juin 27, 2016 5:16:51 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.google.com>> es OK
+juin 27, 2016 5:16:56 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.yahoo.com>> es OK
+juin 27, 2016 5:17:01 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 86%
+juin 27, 2016 5:17:10 PM clientmonitoring.BeanClient executeCommandWindows
+INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
+juin 27, 2016 5:17:10 PM clientmonitoring.jobs.JobVerificationProcessus execute
 INFOS: le processus <<vlc.exe>> es en cour de fonctionnement
-juin 24, 2016 5:01:45 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: le resultat de l'éxécution de la commande <<sc query Connectify>> est:
-
-SERVICE_NAME: Connectify 
-        TYPE               : 10  WIN32_OWN_PROCESS  
-        STATE              : 4  RUNNING 
-                                (STOPPABLE, NOT_PAUSABLE, IGNORES_SHUTDOWN)
-        WIN32_EXIT_CODE    : 0  (0x0)
-        SERVICE_EXIT_CODE  : 0  (0x0)
-        CHECKPOINT         : 0x0
-        WAIT_HINT          : 0x0
-
-juin 24, 2016 5:01:45 PM clientmonitoring.jobs.JobVerificationService execute
+juin 27, 2016 5:17:15 PM clientmonitoring.BeanClient executeCommandWindows
+INFOS: la commande <<net start >> c'es bien exécuté
+juin 27, 2016 5:17:15 PM clientmonitoring.jobs.JobVerificationService execute
 INFOS: le service <<Connectify>> es en cour de fonctionnement
-juin 24, 2016 5:02:01 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
-juin 24, 2016 5:02:10 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: le resultat de l'éxécution de la commande <<tasklist /fi  "ImageName eq  vlc.exe">> est:
-
-Nom de l'image                 PID Nom de la sessio Num�ro de s Utilisation 
-========================= ======== ================ =========== ============
-vlc.exe                      16388 Console                   12    28�328 Ko
-
-juin 24, 2016 5:02:10 PM clientmonitoring.jobs.JobVerificationProcessus execute
+juin 27, 2016 5:17:25 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.yahoo.com>> es OK
+juin 27, 2016 5:17:28 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.google.com>> es OK
+juin 27, 2016 5:17:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 86%
+juin 27, 2016 5:17:40 PM clientmonitoring.BeanClient executeCommandWindows
+INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
+juin 27, 2016 5:17:40 PM clientmonitoring.jobs.JobVerificationProcessus execute
 INFOS: le processus <<vlc.exe>> es en cour de fonctionnement
-juin 24, 2016 5:02:15 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: le resultat de l'éxécution de la commande <<sc query Connectify>> est:
-
-SERVICE_NAME: Connectify 
-        TYPE               : 10  WIN32_OWN_PROCESS  
-        STATE              : 1  STOPPED 
-        WIN32_EXIT_CODE    : 0  (0x0)
-        SERVICE_EXIT_CODE  : 0  (0x0)
-        CHECKPOINT         : 0x0
-        WAIT_HINT          : 0x0
-
-juin 24, 2016 5:02:15 PM clientmonitoring.jobs.JobVerificationService execute
-AVERTISSEMENT: le service <<Connectify>> n'es pas en cour de fonctionnement
-juin 24, 2016 5:02:15 PM clientmonitoring.BeanClient arreterJob
-INFOS: tache stoppé. cle=1.3
-juin 24, 2016 5:02:30 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
-juin 24, 2016 5:02:40 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: le resultat de l'éxécution de la commande <<tasklist /fi  "ImageName eq  vlc.exe">> est:
-Information�: aucune t�che en service ne correspond aux crit�res sp�cifi�s.
-
-juin 24, 2016 5:02:40 PM clientmonitoring.jobs.JobVerificationProcessus execute
+juin 27, 2016 5:17:45 PM clientmonitoring.BeanClient executeCommandWindows
+INFOS: la commande <<net start >> c'es bien exécuté
+juin 27, 2016 5:17:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service <<Connectify>> es en cour de fonctionnement
+juin 27, 2016 5:17:55 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.yahoo.com>> es OK
+juin 27, 2016 5:17:59 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.google.com>> es OK
+juin 27, 2016 5:18:01 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 86%
+juin 27, 2016 5:18:10 PM clientmonitoring.BeanClient executeCommandWindows
+INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
+juin 27, 2016 5:18:10 PM clientmonitoring.jobs.JobVerificationProcessus execute
 AVERTISSEMENT: le processus <<vlc.exe>> n'es pas en cour de fonctionnement
-juin 24, 2016 5:02:40 PM clientmonitoring.BeanClient arreterJob
+juin 27, 2016 5:18:10 PM clientmonitoring.BeanClient arreterJob
 INFOS: tache stoppé. cle=1.2
-juin 24, 2016 5:03:01 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
-juin 24, 2016 5:03:30 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
-juin 24, 2016 5:04:01 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
-juin 24, 2016 5:04:30 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
+juin 27, 2016 5:18:15 PM clientmonitoring.BeanClient executeCommandWindows
+INFOS: la commande <<net start >> c'es bien exécuté
+juin 27, 2016 5:18:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service <<Connectify>> es en cour de fonctionnement
+juin 27, 2016 5:18:21 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.yahoo.com>> es OK
+juin 27, 2016 5:18:25 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.google.com>> es OK
+juin 27, 2016 5:18:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 86%

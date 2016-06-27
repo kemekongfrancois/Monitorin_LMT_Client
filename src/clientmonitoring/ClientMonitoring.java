@@ -36,12 +36,10 @@ public class ClientMonitoring {
     public static final String OK = "OK";
     public static final String TACHE_PROCESSUS = "surveiller_processus";
     public static final String TACHE_SERVICE = "surveiller_service";
-    
+    public static final String TACHE_PING = "ping";
+
     public static final int NB_LIGNE_FICHIER_CONF = 4;
     public static final String ficfierConfig = "parametre.txt";
-    
-    
-    
 
     //public Scheduler SCHEDULER;
     public static WsMonitoring wsServeur;
@@ -61,10 +59,11 @@ public class ClientMonitoring {
     }
 
     /**
-     * cette fonction permet d'initialisé le client et certain paramètre 
-     * il démarer le Scheduler
+     * cette fonction permet d'initialisé le client et certain paramètre il
+     * démarer le Scheduler
      */
     public boolean initialisation() {
+        try {
         //---------on recupere le type d'OS du système------
         typeOS = System.getProperty("os.name");
         if (typeOS.contains(OSWINDOWS)) {
@@ -85,29 +84,33 @@ public class ClientMonitoring {
             PORT_SERVEUR = parmettre.get(i++);
             ADRESSE_MACHINE = parmettre.get(i++);
             PORT_MACHINE = parmettre.get(i++);
-        }else{
+        } else {
             LOGGER.log(Level.SEVERE, "le fichier de configuration es incorect");
             return false;
         }
-
+        BeanClient beanClient = new BeanClient();
+        //------on verifie que l'adresse de la machine es valide---------
+        if (!beanClient.verrifieAdresseMachine(ADRESSE_MACHINE)) {
+            LOGGER.log(Level.SEVERE, "l'adresse de la machine ne correspond à aucune interface réseau: "+ADRESSE_MACHINE);
+            return false;
+        }
         
-        try {
             //------------on initialise le webService qui vas envoyer des requette au serveur----------
             URL url = new URL("http://" + ADRESSE_SERVEUR + ":" + PORT_SERVEUR + "/projetMonitoring-war/WsMonitoring?wsdl");
             WsMonitoring_Service service = new WsMonitoring_Service(url);
             wsServeur = service.getWsMonitoringPort();
-            
+
             //------------on démarer le Scheduler----------
-            BeanClient fonction = new BeanClient();
-            if(!fonction.demarerLeScheduler()) return false;
-            
+            if (!beanClient.demarerLeScheduler()) {
+                return false;
+            }
+
             return true;
             //--------- on recupere les paramettre de la machine---------
         } catch (Exception ex) {
-            LOGGER.log(Level.SEVERE, "Adresse du serveur ou port invalide", ex);
+            LOGGER.log(Level.SEVERE, "Adresse du serveur ou port invalide ou un autre PB\n", ex);
             return false;
         }
-        
 
     }
 

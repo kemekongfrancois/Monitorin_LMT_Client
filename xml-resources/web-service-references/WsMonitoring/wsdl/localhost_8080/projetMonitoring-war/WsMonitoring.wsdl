@@ -4,47 +4,11 @@
 <xsd:import namespace="http://ws/" schemaLocation="http://localhost:8080/projetMonitoring-war/WsMonitoring?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="initialisation">
-<part name="parameters" element="tns:initialisation"/>
+<message name="activerDesactiveAlertMail">
+<part name="parameters" element="tns:activerDesactiveAlertMail"/>
 </message>
-<message name="initialisationResponse">
-<part name="parameters" element="tns:initialisationResponse"/>
-</message>
-<message name="getMachine">
-<part name="parameters" element="tns:getMachine"/>
-</message>
-<message name="getMachineResponse">
-<part name="parameters" element="tns:getMachineResponse"/>
-</message>
-<message name="verifiOuCreerMachine">
-<part name="parameters" element="tns:verifiOuCreerMachine"/>
-</message>
-<message name="verifiOuCreerMachineResponse">
-<part name="parameters" element="tns:verifiOuCreerMachineResponse"/>
-</message>
-<message name="traitementAlerteTache">
-<part name="parameters" element="tns:traitementAlerteTache"/>
-</message>
-<message name="traitementAlerteTacheResponse">
-<part name="parameters" element="tns:traitementAlerteTacheResponse"/>
-</message>
-<message name="traitementAlerteMachine">
-<part name="parameters" element="tns:traitementAlerteMachine"/>
-</message>
-<message name="traitementAlerteMachineResponse">
-<part name="parameters" element="tns:traitementAlerteMachineResponse"/>
-</message>
-<message name="getListTacheMachine">
-<part name="parameters" element="tns:getListTacheMachine"/>
-</message>
-<message name="getListTacheMachineResponse">
-<part name="parameters" element="tns:getListTacheMachineResponse"/>
-</message>
-<message name="redemarerTache">
-<part name="parameters" element="tns:redemarerTache"/>
-</message>
-<message name="redemarerTacheResponse">
-<part name="parameters" element="tns:redemarerTacheResponse"/>
+<message name="activerDesactiveAlertMailResponse">
+<part name="parameters" element="tns:activerDesactiveAlertMailResponse"/>
 </message>
 <message name="hello">
 <part name="parameters" element="tns:hello"/>
@@ -52,88 +16,117 @@
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
 </message>
+<message name="initialisation">
+<part name="parameters" element="tns:initialisation"/>
+</message>
+<message name="initialisationResponse">
+<part name="parameters" element="tns:initialisationResponse"/>
+</message>
+<message name="redemarerTache">
+<part name="parameters" element="tns:redemarerTache"/>
+</message>
+<message name="redemarerTacheResponse">
+<part name="parameters" element="tns:redemarerTacheResponse"/>
+</message>
+<message name="traitementAlerteMachine">
+<part name="parameters" element="tns:traitementAlerteMachine"/>
+</message>
+<message name="traitementAlerteMachineResponse">
+<part name="parameters" element="tns:traitementAlerteMachineResponse"/>
+</message>
+<message name="getMachine">
+<part name="parameters" element="tns:getMachine"/>
+</message>
+<message name="getMachineResponse">
+<part name="parameters" element="tns:getMachineResponse"/>
+</message>
+<message name="traitementAlerteTache">
+<part name="parameters" element="tns:traitementAlerteTache"/>
+</message>
+<message name="traitementAlerteTacheResponse">
+<part name="parameters" element="tns:traitementAlerteTacheResponse"/>
+</message>
+<message name="getListTacheMachine">
+<part name="parameters" element="tns:getListTacheMachine"/>
+</message>
+<message name="getListTacheMachineResponse">
+<part name="parameters" element="tns:getListTacheMachineResponse"/>
+</message>
+<message name="activerDesactiveAlertSMS">
+<part name="parameters" element="tns:activerDesactiveAlertSMS"/>
+</message>
+<message name="activerDesactiveAlertSMSResponse">
+<part name="parameters" element="tns:activerDesactiveAlertSMSResponse"/>
+</message>
+<message name="verifiOuCreerMachine">
+<part name="parameters" element="tns:verifiOuCreerMachine"/>
+</message>
+<message name="verifiOuCreerMachineResponse">
+<part name="parameters" element="tns:verifiOuCreerMachineResponse"/>
+</message>
 <portType name="WsMonitoring">
-<operation name="initialisation">
-<input wsam:Action="http://ws/WsMonitoring/initialisationRequest" message="tns:initialisation"/>
-<output wsam:Action="http://ws/WsMonitoring/initialisationResponse" message="tns:initialisationResponse"/>
-</operation>
-<operation name="getMachine">
-<input wsam:Action="http://ws/WsMonitoring/getMachineRequest" message="tns:getMachine"/>
-<output wsam:Action="http://ws/WsMonitoring/getMachineResponse" message="tns:getMachineResponse"/>
-</operation>
-<operation name="verifiOuCreerMachine">
-<input wsam:Action="http://ws/WsMonitoring/verifiOuCreerMachineRequest" message="tns:verifiOuCreerMachine"/>
-<output wsam:Action="http://ws/WsMonitoring/verifiOuCreerMachineResponse" message="tns:verifiOuCreerMachineResponse"/>
-</operation>
-<operation name="traitementAlerteTache">
-<input wsam:Action="http://ws/WsMonitoring/traitementAlerteTacheRequest" message="tns:traitementAlerteTache"/>
-<output wsam:Action="http://ws/WsMonitoring/traitementAlerteTacheResponse" message="tns:traitementAlerteTacheResponse"/>
-</operation>
-<operation name="traitementAlerteMachine">
-<input wsam:Action="http://ws/WsMonitoring/traitementAlerteMachineRequest" message="tns:traitementAlerteMachine"/>
-<output wsam:Action="http://ws/WsMonitoring/traitementAlerteMachineResponse" message="tns:traitementAlerteMachineResponse"/>
-</operation>
-<operation name="getListTacheMachine">
-<input wsam:Action="http://ws/WsMonitoring/getListTacheMachineRequest" message="tns:getListTacheMachine"/>
-<output wsam:Action="http://ws/WsMonitoring/getListTacheMachineResponse" message="tns:getListTacheMachineResponse"/>
-</operation>
-<operation name="redemarerTache">
-<input wsam:Action="http://ws/WsMonitoring/redemarerTacheRequest" message="tns:redemarerTache"/>
-<output wsam:Action="http://ws/WsMonitoring/redemarerTacheResponse" message="tns:redemarerTacheResponse"/>
+<operation name="activerDesactiveAlertMail">
+<input wsam:Action="http://ws/WsMonitoring/activerDesactiveAlertMailRequest" message="tns:activerDesactiveAlertMail"/>
+<output wsam:Action="http://ws/WsMonitoring/activerDesactiveAlertMailResponse" message="tns:activerDesactiveAlertMailResponse"/>
 </operation>
 <operation name="hello">
 <input wsam:Action="http://ws/WsMonitoring/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://ws/WsMonitoring/helloResponse" message="tns:helloResponse"/>
 </operation>
+<operation name="initialisation">
+<input wsam:Action="http://ws/WsMonitoring/initialisationRequest" message="tns:initialisation"/>
+<output wsam:Action="http://ws/WsMonitoring/initialisationResponse" message="tns:initialisationResponse"/>
+</operation>
+<operation name="redemarerTache">
+<input wsam:Action="http://ws/WsMonitoring/redemarerTacheRequest" message="tns:redemarerTache"/>
+<output wsam:Action="http://ws/WsMonitoring/redemarerTacheResponse" message="tns:redemarerTacheResponse"/>
+</operation>
+<operation name="traitementAlerteMachine">
+<input wsam:Action="http://ws/WsMonitoring/traitementAlerteMachineRequest" message="tns:traitementAlerteMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/traitementAlerteMachineResponse" message="tns:traitementAlerteMachineResponse"/>
+</operation>
+<operation name="getMachine">
+<input wsam:Action="http://ws/WsMonitoring/getMachineRequest" message="tns:getMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/getMachineResponse" message="tns:getMachineResponse"/>
+</operation>
+<operation name="traitementAlerteTache">
+<input wsam:Action="http://ws/WsMonitoring/traitementAlerteTacheRequest" message="tns:traitementAlerteTache"/>
+<output wsam:Action="http://ws/WsMonitoring/traitementAlerteTacheResponse" message="tns:traitementAlerteTacheResponse"/>
+</operation>
+<operation name="getListTacheMachine">
+<input wsam:Action="http://ws/WsMonitoring/getListTacheMachineRequest" message="tns:getListTacheMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/getListTacheMachineResponse" message="tns:getListTacheMachineResponse"/>
+</operation>
+<operation name="activerDesactiveAlertSMS">
+<input wsam:Action="http://ws/WsMonitoring/activerDesactiveAlertSMSRequest" message="tns:activerDesactiveAlertSMS"/>
+<output wsam:Action="http://ws/WsMonitoring/activerDesactiveAlertSMSResponse" message="tns:activerDesactiveAlertSMSResponse"/>
+</operation>
+<operation name="verifiOuCreerMachine">
+<input wsam:Action="http://ws/WsMonitoring/verifiOuCreerMachineRequest" message="tns:verifiOuCreerMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/verifiOuCreerMachineResponse" message="tns:verifiOuCreerMachineResponse"/>
+</operation>
 </portType>
 <binding name="WsMonitoringPortBinding" type="tns:WsMonitoring">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="activerDesactiveAlertMail">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="hello">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="initialisation">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getMachine">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="verifiOuCreerMachine">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="traitementAlerteTache">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="traitementAlerteMachine">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getListTacheMachine">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -151,7 +144,52 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="hello">
+<operation name="traitementAlerteMachine">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getMachine">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="traitementAlerteTache">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getListTacheMachine">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="activerDesactiveAlertSMS">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="verifiOuCreerMachine">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

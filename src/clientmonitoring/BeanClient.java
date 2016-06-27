@@ -10,8 +10,10 @@ import classeServeur.Tache;
 import static clientmonitoring.ClientMonitoring.PB;
 import static clientmonitoring.ClientMonitoring.START;
 import static clientmonitoring.ClientMonitoring.TACHE_DD;
+import static clientmonitoring.ClientMonitoring.TACHE_PING;
 import static clientmonitoring.ClientMonitoring.TACHE_PROCESSUS;
 import static clientmonitoring.ClientMonitoring.TACHE_SERVICE;
+import clientmonitoring.jobs.JobPing;
 import clientmonitoring.jobs.JobPrincipale;
 import clientmonitoring.jobs.JobVerificationDisk;
 import clientmonitoring.jobs.JobVerificationProcessus;
@@ -19,7 +21,10 @@ import clientmonitoring.jobs.JobVerificationService;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -115,13 +120,26 @@ public class BeanClient {
 
         return jobDetaille;
     }
-    
+
     private JobDetail initialiseVerificationService(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerificationService.class)
                 .withIdentity(cle)
                 .usingJobData("nomService", tache.getNom())
+                .usingJobData("redemarerAuto", tache.isRedemarerAutoService())
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
+                .build();
+
+        return jobDetaille;
+    }
+    
+    private JobDetail initialisePing(Tache tache) {
+        JobKey cle = getJobKeyTache(tache);
+        JobDetail jobDetaille = newJob(JobPing.class)
+                .withIdentity(cle)
+                .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
+                .usingJobData("nbTentative", tache.getSeuilAlerte())
+                .usingJobData("adresseAPinger", tache.getNom())
                 .build();
 
         return jobDetaille;
@@ -166,6 +184,9 @@ public class BeanClient {
                     break;
                 case TACHE_SERVICE://cas de la tache de vérification de Service
                     jobDetaille = initialiseVerificationService(tache);
+                    break;
+                case TACHE_PING://cas de la tache de ping
+                    jobDetaille = initialisePing(tache);
                     break;
                 default:
                     logger.log(Level.WARNING, TypeDeTache + ": ce type n'es pas reconnue ");
@@ -300,31 +321,66 @@ public class BeanClient {
             return ClientMonitoring.KO;
         }
     }
+
     /**
-     * 
+     *
      * @param nomService
      * @return OK s'il es en cour de fonctionnement, KO s'il n'es pas en cour de
      * fonctionnement , PB s'il ya une exception ou si service n'existe pas
      */
-    public String serviceWindowsEnFonctionnement(String nomService){
+    public String serviceWindowsEnFonctionnement(String nomService) {
+        /* ce qui es en commentaire es meilleur mais n'es pas fonctionnel sous windows server 200
         String commande = "sc query "+nomService;
+        List<String> resultatCommande = executeCommandWindows(commande);
+        if (resultatCommande == null) {
+        return ClientMonitoring.PB;
+        }
+        for (String ligne : resultatCommande) {
+        if(ligne.contains("STATE")){
+        if(ligne.contains("RUNNING")){
+        return ClientMonitoring.OK;
+        }else{
+        return ClientMonitoring.KO;
+        }
+        }
+        }
+        //on retourn PB car la ligne qui contiend "STATE" n'existe pas
+        //ce qui veux dire que le service n'es pas reconnue
+        return ClientMonitoring.PB;
+         */
+        //cette version es moin optimisé mais marche sur toute les vertion de windows
+        String commande = "net start ";
         List<String> resultatCommande = executeCommandWindows(commande);
         if (resultatCommande == null) {
             return ClientMonitoring.PB;
         }
         for (String ligne : resultatCommande) {
-            if(ligne.contains("STATE")){
-                if(ligne.contains("RUNNING")){
-                    return ClientMonitoring.OK;
-                }else{
-                    return ClientMonitoring.KO;
-                }
+            if (ligne.contains(nomService)) {
+                return ClientMonitoring.OK;
             }
         }
-        //on retourn PB car la ligne qui contiend "STATE" n'existe pas 
-        //ce qui veux dire que le service n'es pas reconnue
-        return ClientMonitoring.PB;
-        
+        return ClientMonitoring.KO;
+
+    }
+
+    /**
+     * cette fonction permet de démarer le service donc le nom es pris en
+     * paramettre
+     *
+     * @param nomService
+     * @return
+     */
+    public boolean demarerServiceWindows(String nomService) {
+        String commande = "net start \"" + nomService + "\"";
+        executeCommandWindows(commande);//on relance le service
+
+        String etatService = serviceWindowsEnFonctionnement(nomService);
+        if (etatService.equals(ClientMonitoring.OK)) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     private List<String> executeCommandWindows(String commande) {
@@ -335,17 +391,78 @@ public class BeanClient {
             BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
             while ((line = input.readLine()) != null) {
                 processes.add(line);
+                //  System.out.println(line);
             }
             input.close();
+            /*
             String resultatCommande = "";
             for (String ligne : processes) {
                 resultatCommande += ligne + "\n";
             }
             logger.log(Level.INFO, "le resultat de l'éxécution de la commande <<" + commande + ">> est:\n" + resultatCommande);
+             */
+            logger.log(Level.INFO, "la commande <<" + commande + ">> c'es bien exécuté");
             return processes;
         } catch (Exception e) {
             logger.log(Level.SEVERE, "impossible d'exécuter la command <<" + commande + ">>\n", e);
             return null;
+        }
+    }
+/**
+ * cette fonction permet d'effectué un ping à l'adresse passé en paramettre
+ * @param adres
+ * @param nbTentative represente le nb de fois qu'on vas refaire le ping en cas d'échec
+ * @return 
+ */
+    public boolean pinger(String adres, int nbTentative) {
+        try {
+            int i = 0;
+            boolean pingOK = false;
+            while (i < nbTentative && !pingOK) {
+                System.out.println(i + ": ping à l'adresse " + adres);
+                Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 " + adres);
+                int valeurDeRetour = p.waitFor();
+                pingOK = (valeurDeRetour == 0);
+                i++;
+            }
+
+            //System.out.println("le nombre es: " + valeurDeRetour);
+            return pingOK;
+
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "problème avec le ping vers l'adresse "+adres+"\n", e);
+            return false;
+        }
+    }
+    /**
+     * cette fonction permet de vérifiè si l'adresse pris en paramettre fait partie des adresses d'une des interface réseau
+     * @param adresse
+     * @return true si une des interfaces réseaux à l'adresse pris en paramettre
+     */
+    public boolean verrifieAdresseMachine(String adresse) {
+        try {
+            // Énumération de toutes les cartes réseau. 
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            boolean trouve = false;
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface interfaceN = (NetworkInterface) interfaces.nextElement();
+                //System.out.println("----> " + interfaceN.getDisplayName()); 
+                Enumeration<InetAddress> iEnum = interfaceN.getInetAddresses();
+                while (iEnum.hasMoreElements()) {
+                    InetAddress inetAddress = iEnum.nextElement();
+                    String adresseCourante = inetAddress.getHostAddress();
+                    //System.out.println(adresseCourante);
+                    if (adresseCourante.equals(adresse)) {
+                        trouve = true;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            System.out.println("pas de carte réseau.");
+            logger.log(Level.SEVERE, null, e);
+            return false;
         }
     }
 }
