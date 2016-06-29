@@ -6,7 +6,6 @@
 package clientmonitoring.jobs;
 
 import clientmonitoring.BeanClient;
-import clientmonitoring.ClientMonitoring;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.quartz.Job;
@@ -19,22 +18,21 @@ import org.quartz.JobKey;
  *
  * @author KEF10
  */
-public class JobPing implements Job{
+public class JobExistanceFichier implements Job{
      Logger logger = clientmonitoring.ClientMonitoring.LOGGER;
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        System.out.println("------effectué ping: ");
+        System.out.println("------verrifie existance fichier: ");
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
-        int nbTentative = dataMap.getInt("nbTentative");
-        String adresseAPinger = dataMap.getString("adresseAPinger");
+        String nomFichier = dataMap.getString("nomFichier");
         JobKey cle = context.getJobDetail().getKey();
 
         BeanClient beanClient = new BeanClient();
-        if(beanClient.pinger(adresseAPinger, nbTentative)){
-            logger.log(Level.INFO, "le ping vers <<" + adresseAPinger + ">> es OK");
+        if(beanClient.verifiExistanceFichier(nomFichier)){
+            logger.log(Level.INFO, "le fichier <<" + nomFichier + ">> es OK");
         }else{
-            logger.log(Level.SEVERE, "impossible de contacter :<<" + adresseAPinger + ">>");
+            logger.log(Level.SEVERE, "le fichier <<" + nomFichier + ">> n'existe pas");
             beanClient.envoiAlerteAuServeur(cle, 0);
             /*try {
             if (!ClientMonitoring.wsServeur.traitementAlerteTache(new Integer(cle.getName()), 0)) {
@@ -50,4 +48,5 @@ public class JobPing implements Job{
         
 
     }
+    
 }

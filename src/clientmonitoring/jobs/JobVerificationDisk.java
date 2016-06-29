@@ -57,23 +57,16 @@ public class JobVerificationDisk implements Job {
         } else {
             logger.log(Level.SEVERE, " espace restant du disque <<" + lettrePartition + ">>" + "de la machine<<" + ipAdresse + ">> es faible ");
         }
-
-        try {
-            if (!ClientMonitoring.wsServeur.traitementAlerteTache(new Integer(cle.getName()),pourcentage)) {
-                logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
-            } else {//on stope la tache dans le cas où le serveur à bien traité le pb
-                (new BeanClient()).arreterJob(cle);
-            }
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
-            /*
-            try {
-                scheduler.deleteJob(cle);//on supprime le job affin que je job principale puisse le redémarer car il fait tjr partir de la liste des jobs en cours d'éxécution
-            } catch (SchedulerException ex) {
-                logger.log(Level.SEVERE, null, ex);
-            }
-            */
+        (new BeanClient()).envoiAlerteAuServeur(cle, pourcentage);
+        /*try {
+        if (!ClientMonitoring.wsServeur.traitementAlerteTache(new Integer(cle.getName()),pourcentage)) {
+        logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
+        } else {//on stope la tache dans le cas où le serveur à bien traité le pb
+        (new BeanClient()).arreterJob(cle);
         }
+        } catch (Exception e) {
+        logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
+        }*/
 
     }
 

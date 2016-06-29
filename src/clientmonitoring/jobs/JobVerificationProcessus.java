@@ -41,21 +41,22 @@ public class JobVerificationProcessus implements Job {
         } else {//le processus n'es pas en cour de fonctionnement ou il ya un pb
             int code ;//
             if (resultat.equals(ClientMonitoring.KO)) {
-                logger.log(Level.WARNING, "le processus <<" + nomProcessus + ">> n'es pas en cour de fonctionnement");
+                logger.log(Level.SEVERE, "le processus <<" + nomProcessus + ">> n'es pas en cour de fonctionnement");
                 code = 0;
             } else {//il ya eu un pb
                 logger.log(Level.SEVERE, "le processus <<" + nomProcessus + ">> n'es pas valide");
                 code = 1;
             }
-            try {
-                if (!ClientMonitoring.wsServeur.traitementAlerteTache(new Integer(cle.getName()), code)) {
-                    logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
-                } else {//on stope la tache dans le cas où le serveur à bien traité le pb
-                    (new BeanClient()).arreterJob(cle);
-                }
-            } catch (Exception e) {
-                logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
+            beanClient.envoiAlerteAuServeur(cle, code);
+            /*try {
+            if (!ClientMonitoring.wsServeur.traitementAlerteTache(new Integer(cle.getName()), code)) {
+            logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
+            } else {//on stope la tache dans le cas où le serveur à bien traité le pb
+            (new BeanClient()).arreterJob(cle);
             }
+            } catch (Exception e) {
+            logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
+            }*/
         }
 
     }

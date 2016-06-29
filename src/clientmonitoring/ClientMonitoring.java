@@ -6,15 +6,12 @@
 package clientmonitoring;
 
 import classeServeur.Machine;
-import classeServeur.Tache;
 import classeServeur.WsMonitoring;
 import classeServeur.WsMonitoring_Service;
 import clientmonitoring.until.Until;
 import clientmonitoring.ws.WSClientMonitoring;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.ws.Endpoint;
@@ -37,19 +34,20 @@ public class ClientMonitoring {
     public static final String TACHE_PROCESSUS = "surveiller_processus";
     public static final String TACHE_SERVICE = "surveiller_service";
     public static final String TACHE_PING = "ping";
+    public static final String TACHE_FICHIER_EXISTE = "surveille fichier existe";
+    public static final String TACHE_TAILLE_FICHIER = "surveille taille fichier";
+    public static final String TACHE_TELNET = "telnet";
 
     public static final int NB_LIGNE_FICHIER_CONF = 4;
     public static final String ficfierConfig = "parametre.txt";
 
-    //public Scheduler SCHEDULER;
     public static WsMonitoring wsServeur;
-    //public static Machine machine;
-    public static String ADRESSE_SERVEUR = "";
-    public static String PORT_SERVEUR;
-    public static String ADRESSE_MACHINE = "";
-    public static String PORT_MACHINE;
+    private String ADRESSE_SERVEUR = "";
+    private String PORT_SERVEUR;
+    private String ADRESSE_MACHINE = "";
+    private String PORT_MACHINE;
 
-    private String typeOS;
+    public static String OS_MACHINE;
     private String nomMachine;
 
     public static Logger LOGGER = Logger.getLogger(Class.class.getName());
@@ -65,11 +63,11 @@ public class ClientMonitoring {
     public boolean initialisation() {
         try {
         //---------on recupere le type d'OS du système------
-        typeOS = System.getProperty("os.name");
-        if (typeOS.contains(OSWINDOWS)) {
-            typeOS = OSWINDOWS;
+        OS_MACHINE = System.getProperty("os.name");
+        if (OS_MACHINE.contains(OSWINDOWS)) {
+            OS_MACHINE = OSWINDOWS;
         } else {
-            typeOS = OSLinux;
+            OS_MACHINE = OSLinux;
         }
 
         //----- on recuper le nom de la machine------------
@@ -115,7 +113,7 @@ public class ClientMonitoring {
     }
 
     public void demarerTachePrincipaleEtSOusTache() {
-        Machine machine = wsServeur.verifiOuCreerMachine(ADRESSE_MACHINE, PORT_MACHINE, typeOS, nomMachine);
+        Machine machine = wsServeur.verifiOuCreerMachine(ADRESSE_MACHINE, PORT_MACHINE, OS_MACHINE, nomMachine);
         BeanClient lesfonction = new BeanClient();
         lesfonction.redemarerTachePrincipaleEtSousTache(machine, wsServeur.getListTacheMachine(machine.getAdresseIP()));
     }

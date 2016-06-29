@@ -64,15 +64,16 @@ public class JobVerificationService implements Job {
             
         }
         if(code!=-1){//il ya eu un pb
-            try {
-                if (!ClientMonitoring.wsServeur.traitementAlerteTache(new Integer(cle.getName()), code)) {
-                    logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
-                } else {//on stope la tache dans le cas où le serveur à bien traité le pb
-                    (new BeanClient()).arreterJob(cle);
-                }
-            } catch (Exception e) {
-                logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
+            beanClient.envoiAlerteAuServeur(cle, code);
+            /*try {
+            if (!ClientMonitoring.wsServeur.traitementAlerteTache(new Integer(cle.getName()), code)) {
+            logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
+            } else {//on stope la tache dans le cas où le serveur à bien traité le pb
+            (new BeanClient()).arreterJob(cle);
             }
+            } catch (Exception e) {
+            logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
+            }*/
         }
         
 

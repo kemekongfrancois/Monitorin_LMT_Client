@@ -44,18 +44,6 @@
 
 <xs:element name="verifiOuCreerMachineResponse" type="tns:verifiOuCreerMachineResponse"/>
 
-<xs:complexType name="activerDesactiveAlertMail">
-<xs:sequence>
-<xs:element name="statut" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="activerDesactiveAlertMailResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="hello">
 <xs:sequence>
 <xs:element name="name" type="xs:string" minOccurs="0"/>
@@ -65,6 +53,18 @@
 <xs:complexType name="helloResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="activerDesactiveAlertMail">
+<xs:sequence>
+<xs:element name="statut" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="activerDesactiveAlertMailResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -78,30 +78,6 @@
 <xs:complexType name="traitementAlerteTacheResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getMachine">
-<xs:sequence>
-<xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getMachineResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:machine" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="machine">
-<xs:sequence>
-<xs:element name="adresseIP" type="xs:string" minOccurs="0"/>
-<xs:element name="idMachine" type="xs:int" minOccurs="0"/>
-<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
-<xs:element name="periodeDeCheck" type="xs:string" minOccurs="0"/>
-<xs:element name="portEcoute" type="xs:string" minOccurs="0"/>
-<xs:element name="statue" type="xs:string" minOccurs="0"/>
-<xs:element name="typeOS" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -132,13 +108,27 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="initialisation">
-<xs:sequence/>
+<xs:complexType name="machine">
+<xs:sequence>
+<xs:element name="adresseIP" type="xs:string" minOccurs="0"/>
+<xs:element name="idMachine" type="xs:int" minOccurs="0"/>
+<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
+<xs:element name="periodeDeCheck" type="xs:string" minOccurs="0"/>
+<xs:element name="portEcoute" type="xs:string" minOccurs="0"/>
+<xs:element name="statue" type="xs:string" minOccurs="0"/>
+<xs:element name="typeOS" type="xs:string" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="initialisationResponse">
+<xs:complexType name="getMachine">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMachineResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:machine" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -157,6 +147,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="initialisation">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="initialisationResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="traitementAlerteMachine">
 <xs:sequence>
 <xs:element name="idMachine" type="xs:int"/>
@@ -170,18 +170,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="redemarerTache">
-<xs:sequence>
-<xs:element name="idTache" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="redemarerTacheResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="activerDesactiveAlertSMS">
 <xs:sequence>
 <xs:element name="statut" type="xs:boolean"/>
@@ -189,6 +177,18 @@
 </xs:complexType>
 
 <xs:complexType name="activerDesactiveAlertSMSResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="redemarerTache">
+<xs:sequence>
+<xs:element name="idTache" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="redemarerTacheResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
 </xs:sequence>

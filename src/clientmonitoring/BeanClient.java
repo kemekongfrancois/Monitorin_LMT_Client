@@ -7,17 +7,25 @@ package clientmonitoring;
 
 import classeServeur.Machine;
 import classeServeur.Tache;
+import static clientmonitoring.ClientMonitoring.OSWINDOWS;
+import static clientmonitoring.ClientMonitoring.OS_MACHINE;
 import static clientmonitoring.ClientMonitoring.PB;
 import static clientmonitoring.ClientMonitoring.START;
 import static clientmonitoring.ClientMonitoring.TACHE_DD;
+import static clientmonitoring.ClientMonitoring.TACHE_FICHIER_EXISTE;
 import static clientmonitoring.ClientMonitoring.TACHE_PING;
 import static clientmonitoring.ClientMonitoring.TACHE_PROCESSUS;
 import static clientmonitoring.ClientMonitoring.TACHE_SERVICE;
+import static clientmonitoring.ClientMonitoring.TACHE_TAILLE_FICHIER;
+import static clientmonitoring.ClientMonitoring.TACHE_TELNET;
+import clientmonitoring.jobs.JobExistanceFichier;
 import clientmonitoring.jobs.JobPing;
 import clientmonitoring.jobs.JobPrincipale;
+import clientmonitoring.jobs.JobTelnet;
 import clientmonitoring.jobs.JobVerificationDisk;
 import clientmonitoring.jobs.JobVerificationProcessus;
 import clientmonitoring.jobs.JobVerificationService;
+import clientmonitoring.jobs.JobVerrifieTailleFIchier;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -30,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.net.telnet.TelnetClient;
 import org.quartz.JobDetail;
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
@@ -38,6 +47,8 @@ import org.quartz.Trigger;
 import static org.quartz.TriggerBuilder.newTrigger;
 import org.quartz.JobDataMap;
 import org.quartz.impl.StdSchedulerFactory;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 
@@ -132,12 +143,11 @@ public class BeanClient {
 
         return jobDetaille;
     }
-    
+
     private JobDetail initialisePing(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobPing.class)
                 .withIdentity(cle)
-                .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
                 .usingJobData("nbTentative", tache.getSeuilAlerte())
                 .usingJobData("adresseAPinger", tache.getNom())
                 .build();
@@ -145,6 +155,37 @@ public class BeanClient {
         return jobDetaille;
     }
 
+    private JobDetail initialiseExistanceFichier(Tache tache) {
+        JobKey cle = getJobKeyTache(tache);
+        JobDetail jobDetaille = newJob(JobExistanceFichier.class)
+                .withIdentity(cle)
+                .usingJobData("nomFichier", tache.getNom())
+                .build();
+
+        return jobDetaille;
+    }
+
+    private JobDetail initialiseVerrifieTailleFIchier(Tache tache) {
+        JobKey cle = getJobKeyTache(tache);
+        JobDetail jobDetaille = newJob(JobVerrifieTailleFIchier.class)
+                .withIdentity(cle)
+                .usingJobData("nomFichier", tache.getNom())
+                .usingJobData("seuil", tache.getSeuilAlerte())
+                .build();
+
+        return jobDetaille;
+    }
+
+    private JobDetail initialiseTelnet(Tache tache) {
+        JobKey cle = getJobKeyTache(tache);
+        JobDetail jobDetaille = newJob(JobTelnet.class)
+                .withIdentity(cle)
+                .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
+                .usingJobData("adresseAEtPort", tache.getNom())
+                .build();
+
+        return jobDetaille;
+    }
     /**
      * cette fonction permet de démarrer ou de mette à jour n'importe quelle
      * tache
@@ -187,6 +228,15 @@ public class BeanClient {
                     break;
                 case TACHE_PING://cas de la tache de ping
                     jobDetaille = initialisePing(tache);
+                    break;
+                case TACHE_FICHIER_EXISTE://cas de la tache qui verrifie l'existance de fichier
+                    jobDetaille = initialiseExistanceFichier(tache);
+                    break;
+                case TACHE_TAILLE_FICHIER://cas de la tache qui verrifie la taille des fichiers
+                    jobDetaille = initialiseVerrifieTailleFIchier(tache);
+                    break;
+                case TACHE_TELNET://cas de la tache Telnet
+                    jobDetaille = initialiseTelnet(tache);
                     break;
                 default:
                     logger.log(Level.WARNING, TypeDeTache + ": ce type n'es pas reconnue ");
@@ -237,17 +287,13 @@ public class BeanClient {
             String groupe = machine.getAdresseIP();//le groupe sera l'adresse IP
             JobKey cle = JobKey.jobKey(identifiant, groupe);
 
-            if (SCHEDULER.checkExists(cle)) {//si le job existe déja on le stoppe
-                arreterJob(cle);
-            }
-
-            //ajouter les données
-            JobDataMap data = new JobDataMap();
+            //on redemarer le Scheduler
+            arreterLeScheduler();
+            demarerLeScheduler();
 
             // on définie le job
             JobDetail jobDetaille = newJob(JobPrincipale.class)
                     .withIdentity(cle)
-                    .usingJobData(data)
                     .build();
 
             //on défini la périodicité
@@ -383,6 +429,45 @@ public class BeanClient {
 
     }
 
+    /**
+     * cette fonction verrifie si le fichier pris en paramettre existe
+     *
+     * @param nomFichier
+     * @return
+     */
+    public boolean verifiExistanceFichier(String nomFichier) {
+        try {
+            File f = new File(nomFichier);
+            if (f.exists()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, null, e);
+            return false;
+        }
+    }
+/**
+ * retourne la taille d'un fichier
+ * @param nomFichier
+ * @return "-1" s'il ya eu un pb: le fichier n'existe pas
+ */
+    public long tailleFichier(String nomFichier) {
+        try {
+            File f = new File(nomFichier);
+            if (f.exists()) {
+                return f.length();
+            } else {
+                return -1;
+            }
+            
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, null, e);
+            return -1;
+        }
+    }
+
     private List<String> executeCommandWindows(String commande) {
         List<String> processes = new ArrayList<String>();
         try {
@@ -408,19 +493,27 @@ public class BeanClient {
             return null;
         }
     }
-/**
- * cette fonction permet d'effectué un ping à l'adresse passé en paramettre
- * @param adres
- * @param nbTentative represente le nb de fois qu'on vas refaire le ping en cas d'échec
- * @return 
- */
+
+    /**
+     * cette fonction permet d'effectué un ping à l'adresse passé en paramettre
+     *
+     * @param adres
+     * @param nbTentative represente le nb de fois qu'on vas faire le ping
+     * @return
+     */
     public boolean pinger(String adres, int nbTentative) {
         try {
             int i = 0;
             boolean pingOK = false;
             while (i < nbTentative && !pingOK) {
                 System.out.println(i + ": ping à l'adresse " + adres);
-                Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 " + adres);
+                char param;
+                if (OS_MACHINE.equals(OSWINDOWS)) {//on es sur une machine windows
+                    param = 'n';
+                } else {//on es sur une machine linux
+                    param = 'c';
+                }
+                Process p = java.lang.Runtime.getRuntime().exec("ping -" + param + " 1 " + adres);
                 int valeurDeRetour = p.waitFor();
                 pingOK = (valeurDeRetour == 0);
                 i++;
@@ -430,12 +523,15 @@ public class BeanClient {
             return pingOK;
 
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "problème avec le ping vers l'adresse "+adres+"\n", e);
+            logger.log(Level.SEVERE, "problème avec le ping vers l'adresse " + adres + "\n", e);
             return false;
         }
     }
+
     /**
-     * cette fonction permet de vérifiè si l'adresse pris en paramettre fait partie des adresses d'une des interface réseau
+     * cette fonction permet de vérifiè si l'adresse pris en paramettre fait
+     * partie des adresses d'une des interface réseau
+     *
      * @param adresse
      * @return true si une des interfaces réseaux à l'adresse pris en paramettre
      */
@@ -443,7 +539,6 @@ public class BeanClient {
         try {
             // Énumération de toutes les cartes réseau. 
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
-            boolean trouve = false;
             while (interfaces.hasMoreElements()) {
                 NetworkInterface interfaceN = (NetworkInterface) interfaces.nextElement();
                 //System.out.println("----> " + interfaceN.getDisplayName()); 
@@ -453,7 +548,6 @@ public class BeanClient {
                     String adresseCourante = inetAddress.getHostAddress();
                     //System.out.println(adresseCourante);
                     if (adresseCourante.equals(adresse)) {
-                        trouve = true;
                         return true;
                     }
                 }
@@ -465,4 +559,46 @@ public class BeanClient {
             return false;
         }
     }
+
+    /**
+     * cette fonction permet d'envoyer une alerte au serveur et de stopper la
+     * tache si le serveur à repondu
+     *
+     * @param cle
+     * @param code
+     */
+    public void envoiAlerteAuServeur(JobKey cle, int code) {
+        try {
+            if (!ClientMonitoring.wsServeur.traitementAlerteTache(new Integer(cle.getName()), code)) {
+                logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
+            } else {//on stope la tache dans le cas où le serveur à bien traité le pb
+                arreterJob(cle);
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
+        }
+    }
+    /**
+     * permet de faire le telnet
+     * @param adresseEtPort contiend l'adresse et le port séparé par une virgule "," exemple: "41.204.94.29,8282"
+     * @return 
+     */
+    public boolean telnet(String adresseEtPort) {
+        try {
+            TelnetClient telnet = new TelnetClient();
+            String tab[] = adresseEtPort.split(",");
+            String adresse = tab[0];
+            int port = new Integer(tab[1]);
+            logger.log(Level.INFO, "Telne à l'adresse <<" + adresse + ">> et au port <<" + port + ">>");
+            telnet.connect(adresse, port);
+            if (telnet.isConnected()) {
+                telnet.disconnect();
+            }
+            return true;
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "impossible de faire le telnet à l'adresse <<" + adresseEtPort + ">>\n", e);
+            return false;
+        }
+    }
+    
 }

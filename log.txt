@@ -1,76 +1,58 @@
-juin 27, 2016 5:16:39 PM clientmonitoring.BeanClient demarerLeScheduler
+juin 29, 2016 6:04:29 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.1
-juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.2
-juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.3
-juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.4
-juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.5
-juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: Toutes les taches ont été démarer: nombre de tache=5
-juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: la tache principale à bien été lancé. cle=172.16.4.2.1
-juin 27, 2016 5:16:40 PM clientmonitoring.ClientMonitoring demarerWSClient
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient arreterLeScheduler
+INFOS: SCHEDULER Arreté 
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerLeScheduler
+INFOS: SCHEDULER démarer 
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=2.1
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=2.2
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=2.3
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=2.4
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=2.5
+juin 29, 2016 6:04:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=2.6
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=2.7
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=2.8
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=2.21
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: Toutes les taches ont été démarer: nombre de tache=9
+juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: la tache principale à bien été lancé. cle=172.16.4.2.2
+juin 29, 2016 6:04:30 PM clientmonitoring.ClientMonitoring demarerWSClient
 INFOS: Web Service démarer: http://172.16.4.2:8088/
-juin 27, 2016 5:16:40 PM clientmonitoring.BeanClient executeCommandWindows
+juin 29, 2016 6:04:40 PM clientmonitoring.BeanClient executeCommandWindows
 INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
-juin 27, 2016 5:16:40 PM clientmonitoring.jobs.JobVerificationProcessus execute
-INFOS: le processus <<vlc.exe>> es en cour de fonctionnement
-juin 27, 2016 5:16:45 PM clientmonitoring.BeanClient executeCommandWindows
+juin 29, 2016 6:04:40 PM clientmonitoring.jobs.JobVerificationProcessus execute
+GRAVE: le processus <<vlc.exe>> n'es pas en cour de fonctionnement
+juin 29, 2016 6:04:40 PM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=2.2
+juin 29, 2016 6:04:45 PM clientmonitoring.BeanClient executeCommandWindows
 INFOS: la commande <<net start >> c'es bien exécuté
-juin 27, 2016 5:16:45 PM clientmonitoring.jobs.JobVerificationService execute
+juin 29, 2016 6:04:45 PM clientmonitoring.jobs.JobVerificationService execute
 INFOS: le service <<Connectify>> es en cour de fonctionnement
-juin 27, 2016 5:16:51 PM clientmonitoring.jobs.JobPing execute
+juin 29, 2016 6:04:48 PM clientmonitoring.jobs.JobPing execute
 INFOS: le ping vers <<www.google.com>> es OK
-juin 27, 2016 5:16:56 PM clientmonitoring.jobs.JobPing execute
+juin 29, 2016 6:04:48 PM clientmonitoring.jobs.JobPing execute
 INFOS: le ping vers <<www.yahoo.com>> es OK
-juin 27, 2016 5:17:01 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 86%
-juin 27, 2016 5:17:10 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
-juin 27, 2016 5:17:10 PM clientmonitoring.jobs.JobVerificationProcessus execute
-INFOS: le processus <<vlc.exe>> es en cour de fonctionnement
-juin 27, 2016 5:17:15 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: la commande <<net start >> c'es bien exécuté
-juin 27, 2016 5:17:15 PM clientmonitoring.jobs.JobVerificationService execute
-INFOS: le service <<Connectify>> es en cour de fonctionnement
-juin 27, 2016 5:17:25 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.yahoo.com>> es OK
-juin 27, 2016 5:17:28 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.google.com>> es OK
-juin 27, 2016 5:17:30 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 86%
-juin 27, 2016 5:17:40 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
-juin 27, 2016 5:17:40 PM clientmonitoring.jobs.JobVerificationProcessus execute
-INFOS: le processus <<vlc.exe>> es en cour de fonctionnement
-juin 27, 2016 5:17:45 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: la commande <<net start >> c'es bien exécuté
-juin 27, 2016 5:17:45 PM clientmonitoring.jobs.JobVerificationService execute
-INFOS: le service <<Connectify>> es en cour de fonctionnement
-juin 27, 2016 5:17:55 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.yahoo.com>> es OK
-juin 27, 2016 5:17:59 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.google.com>> es OK
-juin 27, 2016 5:18:01 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 86%
-juin 27, 2016 5:18:10 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
-juin 27, 2016 5:18:10 PM clientmonitoring.jobs.JobVerificationProcessus execute
-AVERTISSEMENT: le processus <<vlc.exe>> n'es pas en cour de fonctionnement
-juin 27, 2016 5:18:10 PM clientmonitoring.BeanClient arreterJob
-INFOS: tache stoppé. cle=1.2
-juin 27, 2016 5:18:15 PM clientmonitoring.BeanClient executeCommandWindows
-INFOS: la commande <<net start >> c'es bien exécuté
-juin 27, 2016 5:18:15 PM clientmonitoring.jobs.JobVerificationService execute
-INFOS: le service <<Connectify>> es en cour de fonctionnement
-juin 27, 2016 5:18:21 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.yahoo.com>> es OK
-juin 27, 2016 5:18:25 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.google.com>> es OK
-juin 27, 2016 5:18:30 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 86%
+juin 29, 2016 6:04:51 PM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
+juin 29, 2016 6:04:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
+juin 29, 2016 6:04:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
+juin 29, 2016 6:04:59 PM clientmonitoring.BeanClient telnet
+INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
+juin 29, 2016 6:04:59 PM clientmonitoring.jobs.JobTelnet execute
+INFOS: le telnet vers <<41.204.94.29,8282>> es OK
+juin 29, 2016 6:05:01 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%

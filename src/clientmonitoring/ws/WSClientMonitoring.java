@@ -47,4 +47,20 @@ public class WSClientMonitoring {
     public String processusWindowsEnFonctionnement(@WebParam(name = "nomProcessus")String nomProcessus) {
         return beanClient.processusWindowsEnFonctionnement(nomProcessus);
     }
+    
+    public long tailleFichier(@WebParam(name = "cheminFichier")String nomFichier) {
+        return beanClient.tailleFichier(nomFichier);
+    }
+    
+    public int pourcentageOccupationDD(@WebParam(name = "partition")String lettreDD) {
+        return beanClient.pourcentageOccupationDD(lettreDD);
+    }
+    
+    public boolean pinger(@WebParam(name = "adresse")String adres, @WebParam(name = "nbTentative")int nbTentative) {
+        return beanClient.pinger(adres, nbTentative);
+    }
+    
+    public boolean telnet(@WebParam(name = "adresseEtPort")String adresseEtPort) {
+        return beanClient.telnet(adresseEtPort);
+    }
 }
