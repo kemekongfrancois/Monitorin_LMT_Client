@@ -34,7 +34,7 @@ public class JobVerificationService implements Job {
         JobKey cle = context.getJobDetail().getKey();
 
         BeanClient beanClient = new BeanClient();
-        String resultat = beanClient.serviceWindowsEnFonctionnement(nomService);
+        String resultat = beanClient.verifiService(nomService);
 
             int code ;//
         if (resultat.equals(ClientMonitoring.OK)) {//le service es en fonction
@@ -45,7 +45,7 @@ public class JobVerificationService implements Job {
                 logger.log(Level.SEVERE, "le service <<" + nomService + ">> n'es pas en cour de fonctionnement");
                 
                 if (redemarerAuto) {//le redemarage automatique es activé sur cette tache
-                    if (beanClient.demarerServiceWindows(nomService)) {//on redemarer le service
+                    if (beanClient.demarerService(nomService)) {//on redemarer le service
                         logger.log(Level.INFO, "le service <<" + nomService + ">> a été redémarer");
                         code = -1;
                     } else {//le service n'a pas pus être redémarer

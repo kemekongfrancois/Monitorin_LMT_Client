@@ -37,6 +37,7 @@ public class ClientMonitoring {
     public static final String TACHE_FICHIER_EXISTE = "surveille fichier existe";
     public static final String TACHE_TAILLE_FICHIER = "surveille taille fichier";
     public static final String TACHE_TELNET = "telnet";
+    public static final String TACHE_DATE_MODIFICATION_DERNIER_FICHIER = "date modification du dernier fichier";
 
     public static final int NB_LIGNE_FICHIER_CONF = 4;
     public static final String ficfierConfig = "parametre.txt";
@@ -44,11 +45,11 @@ public class ClientMonitoring {
     public static WsMonitoring wsServeur;
     private String ADRESSE_SERVEUR = "";
     private String PORT_SERVEUR;
-    private String ADRESSE_MACHINE = "";
-    private String PORT_MACHINE;
+    public static String ADRESSE_MACHINE = "";
+    public static String PORT_MACHINE;
 
     public static String OS_MACHINE;
-    private String nomMachine;
+    public static String NOM_MACHINE;
 
     public static Logger LOGGER = Logger.getLogger(Class.class.getName());
 
@@ -71,7 +72,7 @@ public class ClientMonitoring {
         }
 
         //----- on recuper le nom de la machine------------
-        nomMachine = System.getProperty("user.name");
+        NOM_MACHINE = System.getProperty("user.name");
 
         //------------on recuper les paramettre contenue dans le fichie de paramettre-------------
         List<String> parmettre = Until.lectureFichier(ficfierConfig);//lecture du fichier de paramettre
@@ -98,13 +99,9 @@ public class ClientMonitoring {
             WsMonitoring_Service service = new WsMonitoring_Service(url);
             wsServeur = service.getWsMonitoringPort();
 
-            //------------on démarer le Scheduler----------
-            if (!beanClient.demarerLeScheduler()) {
-                return false;
-            }
+            
 
             return true;
-            //--------- on recupere les paramettre de la machine---------
         } catch (Exception ex) {
             LOGGER.log(Level.SEVERE, "Adresse du serveur ou port invalide ou un autre PB\n", ex);
             return false;
@@ -113,16 +110,27 @@ public class ClientMonitoring {
     }
 
     public void demarerTachePrincipaleEtSOusTache() {
-        Machine machine = wsServeur.verifiOuCreerMachine(ADRESSE_MACHINE, PORT_MACHINE, OS_MACHINE, nomMachine);
+        Machine machine = wsServeur.verifiOuCreerMachine(ADRESSE_MACHINE, PORT_MACHINE, OS_MACHINE, NOM_MACHINE);
         BeanClient lesfonction = new BeanClient();
         lesfonction.redemarerTachePrincipaleEtSousTache(machine, wsServeur.getListTacheMachine(machine.getAdresseIP()));
     }
 
-    public void demarerWSClient() {
-        //String URL = "http://"+ADRESSE_MACHINE+":8080/";
-        String URL = "http://" + ADRESSE_MACHINE + ":" + PORT_MACHINE + "/";
-        Endpoint.publish(URL, new WSClientMonitoring());
-        LOGGER.log(Level.INFO, "Web Service démarer: " + URL);
+    public boolean demarerWSClientEtScheduler() {
+        //------------on démarer le Scheduler----------
+            if (!(new BeanClient()).demarerLeScheduler()) {
+                return false;
+            }
+        String URL = null ;
+        try {
+//String URL = "http://"+ADRESSE_MACHINE+":8080/";
+            URL = "http://" + ADRESSE_MACHINE + ":" + PORT_MACHINE + "/";
+            Endpoint.publish(URL, new WSClientMonitoring());
+            LOGGER.log(Level.INFO, "Web Service démarer: " + URL);
+            return true;
+        } catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "impossible de demarer le web service client à l'adresse " + URL+"\n",e);
+            return false;
+        }
     }
 
     /**
@@ -131,9 +139,9 @@ public class ClientMonitoring {
     public static void main(String[] args) {
         ClientMonitoring client = new ClientMonitoring();
 
-        if (client.initialisation()) {
+        if (client.initialisation()&&client.demarerWSClientEtScheduler()) {
             client.demarerTachePrincipaleEtSOusTache();
-            client.demarerWSClient();
+            
         }
 
     }

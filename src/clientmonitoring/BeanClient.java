@@ -9,8 +9,8 @@ import classeServeur.Machine;
 import classeServeur.Tache;
 import static clientmonitoring.ClientMonitoring.OSWINDOWS;
 import static clientmonitoring.ClientMonitoring.OS_MACHINE;
-import static clientmonitoring.ClientMonitoring.PB;
 import static clientmonitoring.ClientMonitoring.START;
+import static clientmonitoring.ClientMonitoring.TACHE_DATE_MODIFICATION_DERNIER_FICHIER;
 import static clientmonitoring.ClientMonitoring.TACHE_DD;
 import static clientmonitoring.ClientMonitoring.TACHE_FICHIER_EXISTE;
 import static clientmonitoring.ClientMonitoring.TACHE_PING;
@@ -18,6 +18,7 @@ import static clientmonitoring.ClientMonitoring.TACHE_PROCESSUS;
 import static clientmonitoring.ClientMonitoring.TACHE_SERVICE;
 import static clientmonitoring.ClientMonitoring.TACHE_TAILLE_FICHIER;
 import static clientmonitoring.ClientMonitoring.TACHE_TELNET;
+import clientmonitoring.jobs.JobDateModificationDernierFichier;
 import clientmonitoring.jobs.JobExistanceFichier;
 import clientmonitoring.jobs.JobPing;
 import clientmonitoring.jobs.JobPrincipale;
@@ -32,6 +33,7 @@ import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -45,7 +47,6 @@ import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import static org.quartz.TriggerBuilder.newTrigger;
-import org.quartz.JobDataMap;
 import org.quartz.impl.StdSchedulerFactory;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
@@ -175,6 +176,17 @@ public class BeanClient {
 
         return jobDetaille;
     }
+    
+    private JobDetail initialiseDateModificationDernierFichier(Tache tache) {
+        JobKey cle = getJobKeyTache(tache);
+        JobDetail jobDetaille = newJob(JobDateModificationDernierFichier.class)
+                .withIdentity(cle)
+                .usingJobData("nomRepertoire", tache.getNom())
+                .usingJobData("seuil", tache.getSeuilAlerte())
+                .build();
+
+        return jobDetaille;
+    }
 
     private JobDetail initialiseTelnet(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
@@ -186,6 +198,7 @@ public class BeanClient {
 
         return jobDetaille;
     }
+
     /**
      * cette fonction permet de démarrer ou de mette à jour n'importe quelle
      * tache
@@ -237,6 +250,9 @@ public class BeanClient {
                     break;
                 case TACHE_TELNET://cas de la tache Telnet
                     jobDetaille = initialiseTelnet(tache);
+                    break;
+                case TACHE_DATE_MODIFICATION_DERNIER_FICHIER://cas de la tache qui vérrifier que la date de derniere modification du dernier fichier es correct
+                    jobDetaille = initialiseDateModificationDernierFichier(tache);
                     break;
                 default:
                     logger.log(Level.WARNING, TypeDeTache + ": ce type n'es pas reconnue ");
@@ -355,9 +371,9 @@ public class BeanClient {
      * @return OK s'il es en cour de fonctionnement, KO s'il n'es pas en cour de
      * fonctionnement , PB s'il ya une exception
      */
-    public String processusWindowsEnFonctionnement(String nomProcessus) {
+    public String verifiProcessusWindows(String nomProcessus) {
         String commande = "tasklist /fi  \"ImageName eq  " + nomProcessus + "\"";
-        List<String> resultatCommande = executeCommandWindows(commande);
+        List<String> resultatCommande = executeCommand(commande);
         if (resultatCommande == null) {
             return ClientMonitoring.PB;
         }
@@ -374,8 +390,22 @@ public class BeanClient {
      * @return OK s'il es en cour de fonctionnement, KO s'il n'es pas en cour de
      * fonctionnement , PB s'il ya une exception ou si service n'existe pas
      */
-    public String serviceWindowsEnFonctionnement(String nomService) {
-        /* ce qui es en commentaire es meilleur mais n'es pas fonctionnel sous windows server 200
+    public String verifiService(String nomService) {
+        if (OS_MACHINE.equals(OSWINDOWS)) {
+            return verifiServiceWindows(nomService);
+        } else {
+            return verifiServiceLinux(nomService);
+        }
+    }
+
+    /**
+     * verifie si un service es en fonctionnement dans une machine Windows
+     *
+     * @param nomService
+     * @return "OK" , "KO" et "PB"
+     */
+    private String verifiServiceWindows(String nomService) {
+        /* ce qui es en commentaire es meilleur mais n'es pas fonctionnel sous windows server 2000
         String commande = "sc query "+nomService;
         List<String> resultatCommande = executeCommandWindows(commande);
         if (resultatCommande == null) {
@@ -396,12 +426,33 @@ public class BeanClient {
          */
         //cette version es moin optimisé mais marche sur toute les vertion de windows
         String commande = "net start ";
-        List<String> resultatCommande = executeCommandWindows(commande);
+        List<String> resultatCommande = executeCommand(commande);
         if (resultatCommande == null) {
             return ClientMonitoring.PB;
         }
         for (String ligne : resultatCommande) {
             if (ligne.contains(nomService)) {
+                return ClientMonitoring.OK;
+            }
+        }
+        return ClientMonitoring.KO;
+    }
+
+    /**
+     * verifie si un service es en fonctionnement dans une machine linux
+     *
+     * @param nomService
+     * @return "OK" , "KO" et "PB"
+     */
+    private String verifiServiceLinux(String nomService) {
+
+        List<String> resultatCommande = executeCommand("service " + nomService + " status");
+        if (resultatCommande == null) {
+            return ClientMonitoring.PB;
+        }
+        for (String ligne : resultatCommande) {
+            //System.out.println(ligne);
+            if (ligne.contains("running")) {
                 return ClientMonitoring.OK;
             }
         }
@@ -412,21 +463,52 @@ public class BeanClient {
     /**
      * cette fonction permet de démarer le service donc le nom es pris en
      * paramettre
+     *cette fonction demande une autorisation Super admin pour fonctionné
+     * @param nomService
+     * @return
+     */
+    public boolean demarerService(String nomService) {
+        if (OS_MACHINE.equals(OSWINDOWS)) {
+            return demarerServiceWindows(nomService);
+        } else {
+            return demarerServiceLinux(nomService);
+        }
+    }
+
+    /**
+     * cette fonction permet de démarer un service windows
      *
      * @param nomService
      * @return
      */
-    public boolean demarerServiceWindows(String nomService) {
+    private boolean demarerServiceWindows(String nomService) {
         String commande = "net start \"" + nomService + "\"";
-        executeCommandWindows(commande);//on relance le service
-
-        String etatService = serviceWindowsEnFonctionnement(nomService);
+        executeCommand(commande);//on relance le service
+        String etatService = verifiService(nomService);
         if (etatService.equals(ClientMonitoring.OK)) {
             return true;
         } else {
             return false;
         }
+    }
 
+    /**
+     * cette fonction permet de démarer un service linux
+     *
+     * @param nomService
+     * @return
+     */
+    private boolean demarerServiceLinux(String nomService) {
+        List<String> resul = executeCommand("service " + nomService + " start");
+        //System.out.println(resul.size());
+        for (String ligne : resul) {
+            System.out.println(ligne);
+        }
+        if (verifiServiceLinux(nomService).equals("OK")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -448,11 +530,13 @@ public class BeanClient {
             return false;
         }
     }
-/**
- * retourne la taille d'un fichier
- * @param nomFichier
- * @return "-1" s'il ya eu un pb: le fichier n'existe pas
- */
+
+    /**
+     * retourne la taille d'un fichier
+     *
+     * @param nomFichier
+     * @return "-1" s'il ya eu un pb: le fichier n'existe pas
+     */
     public long tailleFichier(String nomFichier) {
         try {
             File f = new File(nomFichier);
@@ -461,14 +545,14 @@ public class BeanClient {
             } else {
                 return -1;
             }
-            
+
         } catch (Exception e) {
             logger.log(Level.SEVERE, null, e);
             return -1;
         }
     }
 
-    private List<String> executeCommandWindows(String commande) {
+    public List<String> executeCommand(String commande) {
         List<String> processes = new ArrayList<String>();
         try {
             String line;
@@ -578,10 +662,13 @@ public class BeanClient {
             logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
         }
     }
+
     /**
      * permet de faire le telnet
-     * @param adresseEtPort contiend l'adresse et le port séparé par une virgule "," exemple: "41.204.94.29,8282"
-     * @return 
+     *
+     * @param adresseEtPort contiend l'adresse et le port séparé par une virgule
+     * "," exemple: "41.204.94.29,8282"
+     * @return
      */
     public boolean telnet(String adresseEtPort) {
         try {
@@ -600,5 +687,34 @@ public class BeanClient {
             return false;
         }
     }
-    
+
+    public Date dateDernierFichier(String repertoire) {
+        try {
+            File file = new File(repertoire);
+            if (!file.exists() || file.isFile()) {
+                logger.log(Level.SEVERE,"repertoire <<" + repertoire + ">> invalide");
+                return null;
+            }
+            File[] listFichier = file.listFiles();
+            int nbFichierDuRepertoire = listFichier.length;
+            if (nbFichierDuRepertoire > 0) {//il y'a au moins un fichier dans le repertoire
+                File lePlusRescent = listFichier[0];
+                for (int i = 1; i < nbFichierDuRepertoire; i++) {
+                    File fichierCourant = listFichier[i];
+                    if (fichierCourant.lastModified() > lePlusRescent.lastModified()) {
+                        lePlusRescent = fichierCourant;
+                    }
+                    //System.out.println(fichierCourant.getName() + " -->" + fichierCourant.lastModified());
+                }
+                System.out.println("le plus rescent des fichiers est: " + lePlusRescent.getName());
+                return new Date(lePlusRescent.lastModified());
+            } else {
+                logger.log(Level.SEVERE,"repertoire <<" + repertoire + ">> es vide");
+                return null;
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, null,e);
+            return null;
+        }
+    }
 }

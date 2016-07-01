@@ -1,58 +1,162 @@
-juin 29, 2016 6:04:29 PM clientmonitoring.BeanClient demarerLeScheduler
+juil. 01, 2016 3:08:37 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient arreterLeScheduler
-INFOS: SCHEDULER Arreté 
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerLeScheduler
-INFOS: SCHEDULER démarer 
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=2.1
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=2.2
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=2.3
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=2.4
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=2.5
-juin 29, 2016 6:04:30 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=2.6
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=2.7
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=2.8
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=2.21
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: Toutes les taches ont été démarer: nombre de tache=9
-juin 29, 2016 6:04:30 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: la tache principale à bien été lancé. cle=172.16.4.2.2
-juin 29, 2016 6:04:30 PM clientmonitoring.ClientMonitoring demarerWSClient
+juil. 01, 2016 3:08:38 PM clientmonitoring.ClientMonitoring demarerWSClientEtScheduler
 INFOS: Web Service démarer: http://172.16.4.2:8088/
-juin 29, 2016 6:04:40 PM clientmonitoring.BeanClient executeCommandWindows
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient arreterLeScheduler
+INFOS: SCHEDULER Arreté 
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient demarerLeScheduler
+INFOS: SCHEDULER démarer 
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.1
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.2
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.3
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.4
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.5
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.6
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.7
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.8
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.9
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.10
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: Toutes les taches ont été démarer: nombre de tache=10
+juil. 01, 2016 3:08:38 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: la tache principale à bien été lancé. cle=172.16.4.2.1
+juil. 01, 2016 3:08:40 PM clientmonitoring.BeanClient executeCommand
 INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
-juin 29, 2016 6:04:40 PM clientmonitoring.jobs.JobVerificationProcessus execute
+juil. 01, 2016 3:08:40 PM clientmonitoring.jobs.JobVerificationProcessus execute
 GRAVE: le processus <<vlc.exe>> n'es pas en cour de fonctionnement
-juin 29, 2016 6:04:40 PM clientmonitoring.BeanClient arreterJob
-INFOS: tache stoppé. cle=2.2
-juin 29, 2016 6:04:45 PM clientmonitoring.BeanClient executeCommandWindows
+juil. 01, 2016 3:08:40 PM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.2
+juil. 01, 2016 3:08:45 PM clientmonitoring.BeanClient executeCommand
 INFOS: la commande <<net start >> c'es bien exécuté
-juin 29, 2016 6:04:45 PM clientmonitoring.jobs.JobVerificationService execute
+juil. 01, 2016 3:08:45 PM clientmonitoring.jobs.JobVerificationService execute
 INFOS: le service <<Connectify>> es en cour de fonctionnement
-juin 29, 2016 6:04:48 PM clientmonitoring.jobs.JobPing execute
+juil. 01, 2016 3:08:48 PM clientmonitoring.jobs.JobPing execute
 INFOS: le ping vers <<www.google.com>> es OK
-juin 29, 2016 6:04:48 PM clientmonitoring.jobs.JobPing execute
+juil. 01, 2016 3:08:48 PM clientmonitoring.jobs.JobPing execute
 INFOS: le ping vers <<www.yahoo.com>> es OK
-juin 29, 2016 6:04:51 PM clientmonitoring.jobs.JobExistanceFichier execute
+juil. 01, 2016 3:08:51 PM clientmonitoring.jobs.JobExistanceFichier execute
 INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
-juin 29, 2016 6:04:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+juil. 01, 2016 3:08:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
 INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
-juin 29, 2016 6:04:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+juil. 01, 2016 3:08:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
 INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
-juin 29, 2016 6:04:59 PM clientmonitoring.BeanClient telnet
+juil. 01, 2016 3:08:59 PM clientmonitoring.BeanClient telnet
 INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
-juin 29, 2016 6:04:59 PM clientmonitoring.jobs.JobTelnet execute
+juil. 01, 2016 3:08:59 PM clientmonitoring.jobs.JobTelnet execute
 INFOS: le telnet vers <<41.204.94.29,8282>> es OK
-juin 29, 2016 6:05:01 PM clientmonitoring.jobs.JobVerificationDisk execute
-INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+juil. 01, 2016 3:09:01 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
+juil. 01, 2016 3:09:05 PM clientmonitoring.jobs.JobDateModificationDernierFichier execute
+GRAVE: la date de derniere modification (Fri Jul 01 14:19:57 WAT 2016) es antérieur à la date autorisé pour le repertoire <<C:/testMonitoring/test date modification>> 
+juil. 01, 2016 3:09:12 PM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.10
+juil. 01, 2016 3:09:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande <<net start >> c'es bien exécuté
+juil. 01, 2016 3:09:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service <<Connectify>> es en cour de fonctionnement
+juil. 01, 2016 3:09:18 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.google.com>> es OK
+juil. 01, 2016 3:09:18 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.yahoo.com>> es OK
+juil. 01, 2016 3:09:21 PM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
+juil. 01, 2016 3:09:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
+juil. 01, 2016 3:09:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
+juil. 01, 2016 3:09:29 PM clientmonitoring.BeanClient telnet
+INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
+juil. 01, 2016 3:09:29 PM clientmonitoring.jobs.JobTelnet execute
+INFOS: le telnet vers <<41.204.94.29,8282>> es OK
+juil. 01, 2016 3:09:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
+juil. 01, 2016 3:09:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande <<net start >> c'es bien exécuté
+juil. 01, 2016 3:09:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service <<Connectify>> es en cour de fonctionnement
+juil. 01, 2016 3:09:48 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.google.com>> es OK
+juil. 01, 2016 3:09:48 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.yahoo.com>> es OK
+juil. 01, 2016 3:09:51 PM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
+juil. 01, 2016 3:09:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
+juil. 01, 2016 3:09:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
+juil. 01, 2016 3:09:59 PM clientmonitoring.BeanClient telnet
+INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
+juil. 01, 2016 3:09:59 PM clientmonitoring.jobs.JobTelnet execute
+INFOS: le telnet vers <<41.204.94.29,8282>> es OK
+juil. 01, 2016 3:10:01 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
+juil. 01, 2016 3:10:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande <<net start >> c'es bien exécuté
+juil. 01, 2016 3:10:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service <<Connectify>> es en cour de fonctionnement
+juil. 01, 2016 3:10:18 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.google.com>> es OK
+juil. 01, 2016 3:10:18 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.yahoo.com>> es OK
+juil. 01, 2016 3:10:21 PM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
+juil. 01, 2016 3:10:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
+juil. 01, 2016 3:10:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
+juil. 01, 2016 3:10:29 PM clientmonitoring.BeanClient telnet
+INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
+juil. 01, 2016 3:10:29 PM clientmonitoring.jobs.JobTelnet execute
+INFOS: le telnet vers <<41.204.94.29,8282>> es OK
+juil. 01, 2016 3:10:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
+juil. 01, 2016 3:10:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande <<net start >> c'es bien exécuté
+juil. 01, 2016 3:10:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service <<Connectify>> es en cour de fonctionnement
+juil. 01, 2016 3:10:48 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.google.com>> es OK
+juil. 01, 2016 3:10:48 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.yahoo.com>> es OK
+juil. 01, 2016 3:10:51 PM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
+juil. 01, 2016 3:10:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
+juil. 01, 2016 3:10:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
+juil. 01, 2016 3:10:59 PM clientmonitoring.BeanClient telnet
+INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
+juil. 01, 2016 3:10:59 PM clientmonitoring.jobs.JobTelnet execute
+INFOS: le telnet vers <<41.204.94.29,8282>> es OK
+juil. 01, 2016 3:11:01 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%
+juil. 01, 2016 3:11:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande <<net start >> c'es bien exécuté
+juil. 01, 2016 3:11:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service <<Connectify>> es en cour de fonctionnement
+juil. 01, 2016 3:11:18 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.google.com>> es OK
+juil. 01, 2016 3:11:18 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers <<www.yahoo.com>> es OK
+juil. 01, 2016 3:11:21 PM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
+juil. 01, 2016 3:11:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
+juil. 01, 2016 3:11:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
+juil. 01, 2016 3:11:29 PM clientmonitoring.BeanClient telnet
+INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
+juil. 01, 2016 3:11:29 PM clientmonitoring.jobs.JobTelnet execute
+INFOS: le telnet vers <<41.204.94.29,8282>> es OK
+juil. 01, 2016 3:11:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 90%

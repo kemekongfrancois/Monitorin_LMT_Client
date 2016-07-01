@@ -7,6 +7,12 @@ package clientmonitoring.ws;
 
 import classeServeur.Tache;
 import clientmonitoring.BeanClient;
+import static clientmonitoring.ClientMonitoring.ADRESSE_MACHINE;
+import static clientmonitoring.ClientMonitoring.NOM_MACHINE;
+import static clientmonitoring.ClientMonitoring.OS_MACHINE;
+import static clientmonitoring.ClientMonitoring.PORT_MACHINE;
+import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebMethod;
@@ -26,7 +32,7 @@ public class WSClientMonitoring {
     public String hello(@WebParam(name = "name") String txt) {
         //logger.log(Level.SEVERE, "le message de test");
         //arreterLeScheduler();
-        return "Hello je suis le WSClient " + txt + " !";
+        return "Hello je suis le WSClient " + txt + " ! \n IP="+ADRESSE_MACHINE+" Port:"+PORT_MACHINE+" Nom:"+NOM_MACHINE+" OS:"+OS_MACHINE;
     }
 
     @WebMethod
@@ -45,7 +51,7 @@ public class WSClientMonitoring {
     }
     
     public String processusWindowsEnFonctionnement(@WebParam(name = "nomProcessus")String nomProcessus) {
-        return beanClient.processusWindowsEnFonctionnement(nomProcessus);
+        return beanClient.verifiProcessusWindows(nomProcessus);
     }
     
     public long tailleFichier(@WebParam(name = "cheminFichier")String nomFichier) {
@@ -62,5 +68,21 @@ public class WSClientMonitoring {
     
     public boolean telnet(@WebParam(name = "adresseEtPort")String adresseEtPort) {
         return beanClient.telnet(adresseEtPort);
+    }
+    
+    public String verifiService(@WebParam(name = "nomService")String nomService) {
+        return beanClient.verifiService(nomService);
+    }
+    
+    public boolean demarerService(@WebParam(name = "nomService")String nomService) {
+        return beanClient.demarerService(nomService);
+    }
+    
+    public List<String> executeCommand(@WebParam(name = "commande")String commande) {
+        return beanClient.executeCommand(commande);
+    }
+    
+    public Date dateDernierFichier(@WebParam(name = "repertoire")String repertoire) {
+        return beanClient.dateDernierFichier(repertoire);
     }
 }
