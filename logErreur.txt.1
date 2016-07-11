@@ -1,6 +1,24 @@
-juil. 01, 2016 2:42:05 PM clientmonitoring.jobs.JobDateModificationDernierFichier execute
-GRAVE: la date de derniere modification (Fri Jul 01 14:19:57 WAT 2016) es antérieur à la date autorisé pour le repertoire <<C:/testMonitoring/test date modification>> 
-juil. 01, 2016 2:42:10 PM clientmonitoring.jobs.JobVerificationProcessus execute
-GRAVE: le processus <<vlc.exe>> n'es pas en cour de fonctionnement
-juil. 01, 2016 2:42:12 PM clientmonitoring.BeanClient envoiAlerteAuServeur
-GRAVE:  le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail
+juil. 01, 2016 5:05:11 PM clientmonitoring.ClientMonitoring demarerWSClientEtScheduler
+GRAVE: impossible de demarer le web service client à l'adresse http://172.16.4.2:8088/
+
+com.sun.xml.internal.ws.server.ServerRtException: Erreur d'exécution du serveur : java.net.BindException: Address already in use: bind
+	at com.sun.xml.internal.ws.transport.http.server.ServerMgr.createContext(ServerMgr.java:117)
+	at com.sun.xml.internal.ws.transport.http.server.HttpEndpoint.publish(HttpEndpoint.java:64)
+	at com.sun.xml.internal.ws.transport.http.server.EndpointImpl.publish(EndpointImpl.java:232)
+	at com.sun.xml.internal.ws.spi.ProviderImpl.createAndPublishEndpoint(ProviderImpl.java:126)
+	at javax.xml.ws.Endpoint.publish(Endpoint.java:240)
+	at clientmonitoring.ClientMonitoring.demarerWSClientEtScheduler(ClientMonitoring.java:124)
+	at clientmonitoring.ClientMonitoring.main(ClientMonitoring.java:144)
+Caused by: java.net.BindException: Address already in use: bind
+	at sun.nio.ch.Net.bind0(Native Method)
+	at sun.nio.ch.Net.bind(Net.java:437)
+	at sun.nio.ch.Net.bind(Net.java:429)
+	at sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:223)
+	at sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:74)
+	at sun.net.httpserver.ServerImpl.<init>(ServerImpl.java:100)
+	at sun.net.httpserver.HttpServerImpl.<init>(HttpServerImpl.java:50)
+	at sun.net.httpserver.DefaultHttpServerProvider.createHttpServer(DefaultHttpServerProvider.java:35)
+	at com.sun.net.httpserver.HttpServer.create(HttpServer.java:130)
+	at com.sun.xml.internal.ws.transport.http.server.ServerMgr.createContext(ServerMgr.java:86)
+	... 6 more
+

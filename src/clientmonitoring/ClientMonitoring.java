@@ -116,16 +116,19 @@ public class ClientMonitoring {
     }
 
     public boolean demarerWSClientEtScheduler() {
-        //------------on démarer le Scheduler----------
-            if (!(new BeanClient()).demarerLeScheduler()) {
-                return false;
-            }
+        
         String URL = null ;
         try {
 //String URL = "http://"+ADRESSE_MACHINE+":8080/";
             URL = "http://" + ADRESSE_MACHINE + ":" + PORT_MACHINE + "/";
             Endpoint.publish(URL, new WSClientMonitoring());
             LOGGER.log(Level.INFO, "Web Service démarer: " + URL);
+            
+            //------------on démarer le Scheduler----------
+            if (!(new BeanClient()).demarerLeScheduler()) {
+                return false;
+            }
+            
             return true;
         } catch (Exception e) {
             LOGGER.log(Level.SEVERE, "impossible de demarer le web service client à l'adresse " + URL+"\n",e);
