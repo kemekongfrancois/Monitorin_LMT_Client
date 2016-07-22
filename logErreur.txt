@@ -1,0 +1,54 @@
+juil. 22, 2016 7:06:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+GRAVE: impossible de contacter le serveur 
+com.sun.xml.internal.ws.client.ClientTransportException: Le serveur a envoyé le code de statut HTTP 404 : Not Found
+juil. 22, 2016 7:08:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+GRAVE: impossible de contacter le serveur 
+com.sun.xml.internal.ws.client.ClientTransportException: Le serveur a envoyé le code de statut HTTP 404 : Not Found
+juil. 22, 2016 7:09:01 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+GRAVE: impossible de contacter le serveur 
+com.sun.xml.internal.ws.client.ClientTransportException: Le serveur a envoyé le code de statut HTTP 404 : Not Found
+juil. 22, 2016 7:11:15 PM clientmonitoring.BeanClient jobExiste
+GRAVE: null
+org.quartz.SchedulerException: The Scheduler has been shutdown.
+	at org.quartz.core.QuartzScheduler.validateState(QuartzScheduler.java:795)
+	at org.quartz.core.QuartzScheduler.checkExists(QuartzScheduler.java:1542)
+	at org.quartz.impl.StdScheduler.checkExists(StdScheduler.java:564)
+	at clientmonitoring.BeanClient.jobExiste(BeanClient.java:727)
+	at clientmonitoring.ws.WSClientMonitoring.jobExiste(WSClientMonitoring.java:101)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:497)
+	at com.sun.xml.internal.ws.api.server.MethodUtil.invoke(MethodUtil.java:68)
+	at com.sun.xml.internal.ws.api.server.InstanceResolver$1.invoke(InstanceResolver.java:235)
+	at com.sun.xml.internal.ws.server.InvokerTube$2.invoke(InvokerTube.java:134)
+	at com.sun.xml.internal.ws.server.sei.SEIInvokerTube.processRequest(SEIInvokerTube.java:73)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
+	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
+	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
+	at com.sun.xml.internal.ws.server.WSEndpointImpl$2.process(WSEndpointImpl.java:404)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter$HttpToolkit.handle(HttpAdapter.java:706)
+	at com.sun.xml.internal.ws.transport.http.HttpAdapter.handle(HttpAdapter.java:260)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handleExchange(WSHttpHandler.java:98)
+	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handle(WSHttpHandler.java:82)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82)
+	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675)
+	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
+	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+

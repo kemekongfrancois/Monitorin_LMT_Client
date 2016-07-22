@@ -29,6 +29,7 @@ public class WSClientMonitoring {
     
     BeanClient beanClient = new BeanClient();
 
+    @WebMethod
     public String hello(@WebParam(name = "name") String txt) {
         //logger.log(Level.SEVERE, "le message de test");
         //arreterLeScheduler();
@@ -50,39 +51,55 @@ public class WSClientMonitoring {
         return beanClient.demarerLeScheduler();
     }
     
+    @WebMethod
     public String processusWindowsEnFonctionnement(@WebParam(name = "nomProcessus")String nomProcessus) {
         return beanClient.verifiProcessusWindows(nomProcessus);
     }
     
+    @WebMethod
     public long tailleFichier(@WebParam(name = "cheminFichier")String nomFichier) {
         return beanClient.tailleFichier(nomFichier);
     }
     
+    @WebMethod
     public int pourcentageOccupationDD(@WebParam(name = "partition")String lettreDD) {
         return beanClient.pourcentageOccupationDD(lettreDD);
     }
     
+    @WebMethod
     public boolean pinger(@WebParam(name = "adresse")String adres, @WebParam(name = "nbTentative")int nbTentative) {
         return beanClient.pinger(adres, nbTentative);
     }
     
+    @WebMethod
     public boolean telnet(@WebParam(name = "adresseEtPort")String adresseEtPort) {
         return beanClient.telnet(adresseEtPort);
     }
     
+    @WebMethod
     public String verifiService(@WebParam(name = "nomService")String nomService) {
         return beanClient.verifiService(nomService);
     }
     
+    @WebMethod
     public boolean demarerService(@WebParam(name = "nomService")String nomService) {
         return beanClient.demarerService(nomService);
     }
     
+    @WebMethod
     public List<String> executeCommand(@WebParam(name = "commande")String commande) {
         return beanClient.executeCommand(commande);
     }
     
+    @WebMethod
     public Date dateDernierFichier(@WebParam(name = "repertoire")String repertoire) {
         return beanClient.dateDernierFichier(repertoire);
     }
+    
+    @WebMethod
+    public boolean jobExiste(@WebParam(name = "name")String name, @WebParam(name = "group")String group){
+        return beanClient.jobExiste(name, group);
+    }
+    
+    
 }

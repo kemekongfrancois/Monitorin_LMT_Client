@@ -4,157 +4,22 @@
  */
 package clientmonitoring.jobs;
 
-import classeServeur.Machine;
 import classeServeur.Tache;
 import clientmonitoring.BeanClient;
 import static clientmonitoring.BeanClient.TACHE_EN_COUR_D_EXECUTION;
 import clientmonitoring.ClientMonitoring;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
-import org.quartz.JobDetail;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
-import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
-import org.quartz.Trigger;
-import static org.quartz.TriggerBuilder.newTrigger;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
-import static org.quartz.JobBuilder.newJob;
 
 /**
  *
@@ -179,20 +44,15 @@ public class JobPrincipale implements Job {
 
         //on verrifie que les taches sont en cour de fonctionnement
         List<Tache> listTachePB = new ArrayList<>();
+        BeanClient beanClient = new BeanClient();
         for (Entry<JobKey, Tache> e : TACHE_EN_COUR_D_EXECUTION.entrySet()) {
-            try {
-                //Entry<JobKey, Tache> e = it.next();
-                if (!scheduler.checkExists(e.getKey())) {//si une tache n'es pas en cour de fonctionnement on l'ajoute dans la liste des taches à pb
-                    listTachePB.add(e.getValue());
-                    (new BeanClient()).demarerMetAJourOUStopperTache(e.getValue());//on redémarer la taches
-                    logger.log(Level.WARNING, "la tache " + e.getKey() + " n'es pas en cour de fonctionnement bien vouloir verrifier les log, elle vien d'être redémarer");
-                } else {//la tache es bien en marche
-                    System.out.println(e.getKey() + ": est bien en cour de fonctionnement");
-                    // logger.log(Level.INFO, e.getKey() + ": est bien en cour de fonctionnement");
-                }
-
-            } catch (SchedulerException ex) {
-                logger.log(Level.SEVERE, null, ex);
+            if (!beanClient.jobExiste(e.getKey().getName(),e.getKey().getGroup())) {
+                listTachePB.add(e.getValue());
+                (new BeanClient()).demarerMetAJourOUStopperTache(e.getValue());//on redémarer la taches
+                logger.log(Level.WARNING, "la tache " + e.getKey() + " n'es pas en cour de fonctionnement bien vouloir verrifier les log, elle vien d'être redémarer");
+            } else {//la tache es bien en marche
+                System.out.println(e.getKey() + ": est bien en cour de fonctionnement");
+                // logger.log(Level.INFO, e.getKey() + ": est bien en cour de fonctionnement");
             }
         }
         traitementDesTachesAProbleme(listTachePB, key);

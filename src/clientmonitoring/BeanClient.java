@@ -717,4 +717,17 @@ public class BeanClient {
             return null;
         }
     }
+    
+    /**
+     * cette fonction verrifie qu'il existe un job qui à le nom et le groupe passé en paramettre
+     * @return true si le job existe sur la machine
+     */
+    public boolean jobExiste(String name, String group){
+        try {
+            return SCHEDULER.checkExists(new JobKey(name, group));
+        } catch (SchedulerException ex) {
+            logger.log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 }
