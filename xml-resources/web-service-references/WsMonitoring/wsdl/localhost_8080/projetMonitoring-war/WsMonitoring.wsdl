@@ -10,23 +10,11 @@
 <message name="getMachineResponse">
 <part name="parameters" element="tns:getMachineResponse"/>
 </message>
-<message name="traitementAlerteMachine">
-<part name="parameters" element="tns:traitementAlerteMachine"/>
-</message>
-<message name="traitementAlerteMachineResponse">
-<part name="parameters" element="tns:traitementAlerteMachineResponse"/>
-</message>
 <message name="verifiOuCreerMachine">
 <part name="parameters" element="tns:verifiOuCreerMachine"/>
 </message>
 <message name="verifiOuCreerMachineResponse">
 <part name="parameters" element="tns:verifiOuCreerMachineResponse"/>
-</message>
-<message name="getListTacheMachine">
-<part name="parameters" element="tns:getListTacheMachine"/>
-</message>
-<message name="getListTacheMachineResponse">
-<part name="parameters" element="tns:getListTacheMachineResponse"/>
 </message>
 <message name="traitementAlerteTache">
 <part name="parameters" element="tns:traitementAlerteTache"/>
@@ -34,11 +22,23 @@
 <message name="traitementAlerteTacheResponse">
 <part name="parameters" element="tns:traitementAlerteTacheResponse"/>
 </message>
-<message name="initialisation">
-<part name="parameters" element="tns:initialisation"/>
+<message name="getListTacheMachine">
+<part name="parameters" element="tns:getListTacheMachine"/>
 </message>
-<message name="initialisationResponse">
-<part name="parameters" element="tns:initialisationResponse"/>
+<message name="getListTacheMachineResponse">
+<part name="parameters" element="tns:getListTacheMachineResponse"/>
+</message>
+<message name="traitementAlerteMachine">
+<part name="parameters" element="tns:traitementAlerteMachine"/>
+</message>
+<message name="traitementAlerteMachineResponse">
+<part name="parameters" element="tns:traitementAlerteMachineResponse"/>
+</message>
+<message name="verifiNomTacheSurMachine">
+<part name="parameters" element="tns:verifiNomTacheSurMachine"/>
+</message>
+<message name="verifiNomTacheSurMachineResponse">
+<part name="parameters" element="tns:verifiNomTacheSurMachineResponse"/>
 </message>
 <message name="getTache">
 <part name="parameters" element="tns:getTache"/>
@@ -57,25 +57,25 @@
 <input wsam:Action="http://ws/WsMonitoring/getMachineRequest" message="tns:getMachine"/>
 <output wsam:Action="http://ws/WsMonitoring/getMachineResponse" message="tns:getMachineResponse"/>
 </operation>
-<operation name="traitementAlerteMachine">
-<input wsam:Action="http://ws/WsMonitoring/traitementAlerteMachineRequest" message="tns:traitementAlerteMachine"/>
-<output wsam:Action="http://ws/WsMonitoring/traitementAlerteMachineResponse" message="tns:traitementAlerteMachineResponse"/>
-</operation>
 <operation name="verifiOuCreerMachine">
 <input wsam:Action="http://ws/WsMonitoring/verifiOuCreerMachineRequest" message="tns:verifiOuCreerMachine"/>
 <output wsam:Action="http://ws/WsMonitoring/verifiOuCreerMachineResponse" message="tns:verifiOuCreerMachineResponse"/>
-</operation>
-<operation name="getListTacheMachine">
-<input wsam:Action="http://ws/WsMonitoring/getListTacheMachineRequest" message="tns:getListTacheMachine"/>
-<output wsam:Action="http://ws/WsMonitoring/getListTacheMachineResponse" message="tns:getListTacheMachineResponse"/>
 </operation>
 <operation name="traitementAlerteTache">
 <input wsam:Action="http://ws/WsMonitoring/traitementAlerteTacheRequest" message="tns:traitementAlerteTache"/>
 <output wsam:Action="http://ws/WsMonitoring/traitementAlerteTacheResponse" message="tns:traitementAlerteTacheResponse"/>
 </operation>
-<operation name="initialisation">
-<input wsam:Action="http://ws/WsMonitoring/initialisationRequest" message="tns:initialisation"/>
-<output wsam:Action="http://ws/WsMonitoring/initialisationResponse" message="tns:initialisationResponse"/>
+<operation name="getListTacheMachine">
+<input wsam:Action="http://ws/WsMonitoring/getListTacheMachineRequest" message="tns:getListTacheMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/getListTacheMachineResponse" message="tns:getListTacheMachineResponse"/>
+</operation>
+<operation name="traitementAlerteMachine">
+<input wsam:Action="http://ws/WsMonitoring/traitementAlerteMachineRequest" message="tns:traitementAlerteMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/traitementAlerteMachineResponse" message="tns:traitementAlerteMachineResponse"/>
+</operation>
+<operation name="verifiNomTacheSurMachine">
+<input wsam:Action="http://ws/WsMonitoring/verifiNomTacheSurMachineRequest" message="tns:verifiNomTacheSurMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/verifiNomTacheSurMachineResponse" message="tns:verifiNomTacheSurMachineResponse"/>
 </operation>
 <operation name="getTache">
 <input wsam:Action="http://ws/WsMonitoring/getTacheRequest" message="tns:getTache"/>
@@ -97,25 +97,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="traitementAlerteMachine">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="verifiOuCreerMachine">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getListTacheMachine">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -133,7 +115,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="initialisation">
+<operation name="getListTacheMachine">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="traitementAlerteMachine">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="verifiNomTacheSurMachine">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
