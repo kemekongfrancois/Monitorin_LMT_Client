@@ -74,7 +74,7 @@ public class JobPrincipale implements Job {
             
         }
         try {
-            if (!ClientMonitoring.wsServeur.traitementAlerteMachine(new Integer(key.getName()), listTachePB)) {//on envoie un msg au serveur pour signalé les taches qui on eu un pb si pb il ya sinon on dis au serveur qu'on es là
+            if (!BeanClient.wsServeur.traitementAlerteMachine(new Integer(key.getName()), listTachePB)) {//on envoie un msg au serveur pour signalé les taches qui on eu un pb si pb il ya sinon on dis au serveur qu'on es là
                 logger.log(Level.WARNING, " le serveur n'a pas pus traiter la requete");
             }
         } catch (Exception e) {

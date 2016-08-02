@@ -1,13 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
 
-<xs:element name="activerDesactiveAlertMail" type="tns:activerDesactiveAlertMail"/>
-
-<xs:element name="activerDesactiveAlertMailResponse" type="tns:activerDesactiveAlertMailResponse"/>
-
-<xs:element name="activerDesactiveAlertSMS" type="tns:activerDesactiveAlertSMS"/>
-
-<xs:element name="activerDesactiveAlertSMSResponse" type="tns:activerDesactiveAlertSMSResponse"/>
-
 <xs:element name="getListTacheMachine" type="tns:getListTacheMachine"/>
 
 <xs:element name="getListTacheMachineResponse" type="tns:getListTacheMachineResponse"/>
@@ -15,6 +7,10 @@
 <xs:element name="getMachine" type="tns:getMachine"/>
 
 <xs:element name="getMachineResponse" type="tns:getMachineResponse"/>
+
+<xs:element name="getTache" type="tns:getTache"/>
+
+<xs:element name="getTacheResponse" type="tns:getTacheResponse"/>
 
 <xs:element name="hello" type="tns:hello"/>
 
@@ -25,10 +21,6 @@
 <xs:element name="initialisationResponse" type="tns:initialisationResponse"/>
 
 <xs:element name="machine" type="tns:machine"/>
-
-<xs:element name="redemarerTache" type="tns:redemarerTache"/>
-
-<xs:element name="redemarerTacheResponse" type="tns:redemarerTacheResponse"/>
 
 <xs:element name="tache" type="tns:tache"/>
 
@@ -56,18 +48,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="activerDesactiveAlertMail">
-<xs:sequence>
-<xs:element name="statut" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="activerDesactiveAlertMailResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="traitementAlerteTache">
 <xs:sequence>
 <xs:element name="idTache" type="xs:int"/>
@@ -78,6 +58,30 @@
 <xs:complexType name="traitementAlerteTacheResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMachine">
+<xs:sequence>
+<xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMachineResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:machine" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="machine">
+<xs:sequence>
+<xs:element name="adresseIP" type="xs:string" minOccurs="0"/>
+<xs:element name="idMachine" type="xs:int" minOccurs="0"/>
+<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
+<xs:element name="periodeDeCheck" type="xs:string" minOccurs="0"/>
+<xs:element name="portEcoute" type="xs:string" minOccurs="0"/>
+<xs:element name="statue" type="xs:string" minOccurs="0"/>
+<xs:element name="typeOS" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -96,7 +100,8 @@
 <xs:complexType name="tache">
 <xs:sequence>
 <xs:element name="descriptionTache" type="xs:string" minOccurs="0"/>
-<xs:element name="envoiyerMsgDAlerte" type="xs:boolean" minOccurs="0"/>
+<xs:element name="envoiyerAlerteMail" type="xs:boolean" minOccurs="0"/>
+<xs:element name="envoyerAlerteSms" type="xs:boolean" minOccurs="0"/>
 <xs:element name="idMachine" type="tns:machine" minOccurs="0"/>
 <xs:element name="idTache" type="xs:int" minOccurs="0"/>
 <xs:element name="nom" type="xs:string" minOccurs="0"/>
@@ -105,30 +110,6 @@
 <xs:element name="seuilAlerte" type="xs:int" minOccurs="0"/>
 <xs:element name="statue" type="xs:string" minOccurs="0"/>
 <xs:element name="typeTache" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="machine">
-<xs:sequence>
-<xs:element name="adresseIP" type="xs:string" minOccurs="0"/>
-<xs:element name="idMachine" type="xs:int" minOccurs="0"/>
-<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
-<xs:element name="periodeDeCheck" type="xs:string" minOccurs="0"/>
-<xs:element name="portEcoute" type="xs:string" minOccurs="0"/>
-<xs:element name="statue" type="xs:string" minOccurs="0"/>
-<xs:element name="typeOS" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getMachine">
-<xs:sequence>
-<xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getMachineResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:machine" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -157,6 +138,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="getTache">
+<xs:sequence>
+<xs:element name="idMachine" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getTacheResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:tache" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="traitementAlerteMachine">
 <xs:sequence>
 <xs:element name="idMachine" type="xs:int"/>
@@ -165,30 +158,6 @@
 </xs:complexType>
 
 <xs:complexType name="traitementAlerteMachineResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="activerDesactiveAlertSMS">
-<xs:sequence>
-<xs:element name="statut" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="activerDesactiveAlertSMSResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="redemarerTache">
-<xs:sequence>
-<xs:element name="idTache" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="redemarerTacheResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
 </xs:sequence>

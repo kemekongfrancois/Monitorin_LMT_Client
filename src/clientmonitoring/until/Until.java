@@ -10,9 +10,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Scanner;
@@ -85,6 +88,38 @@ public class Until {
             logger.log(Level.SEVERE, nomFichier + ": ce fichier n'existe pas");
         }
         return null;//
+    }
+
+    /**
+     * cette fonction permet de vérifiè si l'adresse pris en paramettre fait
+     * partie des adresses d'une des interface réseau
+     *
+     * @param adresse
+     * @return true si une des interfaces réseaux à l'adresse pris en paramettre
+     */
+    public static boolean verrifieAdresseMachine(String adresse) {
+        try {
+            // Énumération de toutes les cartes réseau. 
+            Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
+            while (interfaces.hasMoreElements()) {
+                NetworkInterface interfaceN = (NetworkInterface) interfaces.nextElement();
+                //System.out.println("----> " + interfaceN.getDisplayName()); 
+                Enumeration<InetAddress> iEnum = interfaceN.getInetAddresses();
+                while (iEnum.hasMoreElements()) {
+                    InetAddress inetAddress = iEnum.nextElement();
+                    String adresseCourante = inetAddress.getHostAddress();
+                    //System.out.println(adresseCourante);
+                    if (adresseCourante.equals(adresse)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            System.out.println("pas de carte réseau.");
+            logger.log(Level.SEVERE, null, e);
+            return false;
+        }
     }
 
 }

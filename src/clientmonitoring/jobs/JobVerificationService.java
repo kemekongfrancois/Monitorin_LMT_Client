@@ -37,11 +37,11 @@ public class JobVerificationService implements Job {
         String resultat = beanClient.verifiService(nomService);
 
             int code ;//
-        if (resultat.equals(ClientMonitoring.OK)) {//le service es en fonction
+        if (resultat.equals(BeanClient.OK)) {//le service es en fonction
             logger.log(Level.INFO, "le service <<" + nomService + ">> es en cour de fonctionnement");
             code = -1;
         } else {//le processus n'es pas en cour de fonctionnement ou il ya un pb
-            if (resultat.equals(ClientMonitoring.KO)) {
+            if (resultat.equals(BeanClient.KO)) {
                 logger.log(Level.SEVERE, "le service <<" + nomService + ">> n'es pas en cour de fonctionnement");
                 
                 if (redemarerAuto) {//le redemarage automatique es activé sur cette tache

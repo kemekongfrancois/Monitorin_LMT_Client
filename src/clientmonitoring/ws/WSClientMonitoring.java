@@ -7,10 +7,6 @@ package clientmonitoring.ws;
 
 import classeServeur.Tache;
 import clientmonitoring.BeanClient;
-import static clientmonitoring.ClientMonitoring.ADRESSE_MACHINE;
-import static clientmonitoring.ClientMonitoring.NOM_MACHINE;
-import static clientmonitoring.ClientMonitoring.OS_MACHINE;
-import static clientmonitoring.ClientMonitoring.PORT_MACHINE;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,23 +29,18 @@ public class WSClientMonitoring {
     public String hello(@WebParam(name = "name") String txt) {
         //logger.log(Level.SEVERE, "le message de test");
         //arreterLeScheduler();
-        return "Hello je suis le WSClient " + txt + " ! \n IP="+ADRESSE_MACHINE+" Port:"+PORT_MACHINE+" Nom:"+NOM_MACHINE+" OS:"+OS_MACHINE;
+        return "Hello je suis le WSClient " + txt + " ! \n IP="+BeanClient.ADRESSE_MACHINE+" Port:"+BeanClient.PORT_MACHINE+" Nom:"+BeanClient.NOM_MACHINE+" OS:"+BeanClient.OS_MACHINE;
     }
 
-    @WebMethod
-    public boolean arreterLeScheduler() {
-        return beanClient.arreterLeScheduler();
-    }
+    
     
     @WebMethod
-    public boolean demarerMetAJourOUStopperTache(@WebParam(name = "tache")Tache tache) {
+    public boolean demarerMetAJourOUStopperTache(@WebParam(name = "idtache")int idtache) {
+        Tache tache  = beanClient.wsServeur.getTache(idtache);
         return beanClient.demarerMetAJourOUStopperTache(tache);
     }
     
-    @WebMethod
-    public boolean demarerLeScheduler(){
-        return beanClient.demarerLeScheduler();
-    }
+   
     
     @WebMethod
     public String processusWindowsEnFonctionnement(@WebParam(name = "nomProcessus")String nomProcessus) {
@@ -100,6 +91,9 @@ public class WSClientMonitoring {
     public boolean jobExiste(@WebParam(name = "name")String name, @WebParam(name = "group")String group){
         return beanClient.jobExiste(name, group);
     }
-    
+    @WebMethod
+    public boolean redemarerTachePrincipaleEtSousTache() {
+        return beanClient.redemarerTachePrincipaleEtSousTache();
+    }
     
 }

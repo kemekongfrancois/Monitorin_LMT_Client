@@ -36,11 +36,11 @@ public class JobVerificationProcessus implements Job {
         BeanClient beanClient = new BeanClient();
         String resultat = beanClient.verifiProcessusWindows(nomProcessus);
 
-        if (resultat.equals(ClientMonitoring.OK)) {//le processus es en fonction
+        if (resultat.equals(BeanClient.OK)) {//le processus es en fonction
             logger.log(Level.INFO, "le processus <<" + nomProcessus + ">> es en cour de fonctionnement");
         } else {//le processus n'es pas en cour de fonctionnement ou il ya un pb
             int code ;//
-            if (resultat.equals(ClientMonitoring.KO)) {
+            if (resultat.equals(BeanClient.KO)) {
                 logger.log(Level.SEVERE, "le processus <<" + nomProcessus + ">> n'es pas en cour de fonctionnement");
                 code = 0;
             } else {//il ya eu un pb
