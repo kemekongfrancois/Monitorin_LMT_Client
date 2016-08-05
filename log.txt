@@ -1,28 +1,38 @@
-août 02, 2016 4:36:08 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient demarerWSClientEtScheduler
 INFOS: Web Service démarer: http://172.16.4.2:9039/
-août 02, 2016 4:36:08 PM clientmonitoring.BeanClient demarerLeScheduler
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-août 02, 2016 4:36:08 PM clientmonitoring.BeanClient arreterLeScheduler
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient arreterLeScheduler
 INFOS: SCHEDULER Arreté 
-août 02, 2016 4:36:08 PM clientmonitoring.BeanClient demarerLeScheduler
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-août 02, 2016 4:36:08 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: le statue de la machine es à <<STOP>> donc aucun job n'es lancé
-août 02, 2016 4:39:29 PM clientmonitoring.BeanClient arreterLeScheduler
-INFOS: SCHEDULER Arreté 
-août 02, 2016 4:39:29 PM clientmonitoring.BeanClient demarerLeScheduler
-INFOS: SCHEDULER démarer 
-août 02, 2016 4:39:29 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.3
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.6
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.7
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.8
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.9
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.10
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
 INFOS: tache démaré. cle=1.23
-août 02, 2016 4:39:29 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: nombre de tache démaré: 1
-août 02, 2016 4:39:29 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.24
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: nombre de tache démaré: 8
+août 04, 2016 11:27:34 AM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
 INFOS: la tache principale à bien été lancé. cle=172.16.4.2.1
-août 02, 2016 4:40:03 PM clientmonitoring.BeanClient arreterJob
-INFOS: tache stoppé. cle=1.23
-août 02, 2016 4:40:03 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.23
-août 02, 2016 4:41:01 PM clientmonitoring.jobs.JobVerificationDisk fontionDeTraitementDeLAlerte
-GRAVE: la lettre de partition ne correspont a aucune partition ou elle es invalide : <<h: >>
-août 02, 2016 4:41:01 PM clientmonitoring.BeanClient arreterJob
+août 04, 2016 11:27:35 AM clientmonitoring.jobs.JobDateModificationDernierFichier execute
+GRAVE: la date de derniere modification (Fri Jul 01 14:19:57 WAT 2016) es antérieur à la date autorisé pour le repertoire <<C:/testMonitoring/test date modification>> 
+août 04, 2016 11:27:35 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.10
+août 04, 2016 11:27:40 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
+août 04, 2016 11:27:40 AM clientmonitoring.jobs.JobVerificationProcessus execute
+GRAVE: le processus <<vlc.exe>> n'es pas en cour de fonctionnement
+août 04, 2016 11:27:40 AM clientmonitoring.BeanClient arreterJob
 INFOS: tache stoppé. cle=1.23

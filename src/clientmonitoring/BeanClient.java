@@ -78,20 +78,20 @@ public class BeanClient {
 
     public static final String OSWINDOWS = "Windows";
     public static final String OSLinux = "Linux";
-    public static final String TACHE_DD = "surveiller_dd";
+    public static final String OK = "OK";
+    public static final String PB = "PB";
+    public static final String KO = "KO";
     public static final String ALERTE = "ALERTE";
     public static final String START = "START";
     public static final String STOP = "STOP";
-    public static final String PB = "PB";
-    public static final String KO = "KO";
-    public static final String OK = "OK";
-    public static final String TACHE_PROCESSUS = "surveiller_processus";
-    public static final String TACHE_SERVICE = "surveiller_service";
-    public static final String TACHE_PING = "ping";
-    public static final String TACHE_FICHIER_EXISTE = "surveille fichier existe";
-    public static final String TACHE_TAILLE_FICHIER = "surveille taille fichier";
-    public static final String TACHE_TELNET = "telnet";
-    public static final String TACHE_DATE_MODIFICATION_DERNIER_FICHIER = "date modification du dernier fichier";
+    public static final String TACHE_DD = "Disque";
+    public static final String TACHE_PROCESSUS = "Processus";
+    public static final String TACHE_SERVICE = "Service";
+    public static final String TACHE_PING = "Ping";
+    public static final String TACHE_TELNET = "Telnet";
+    public static final String TACHE_DATE_MODIFICATION_DERNIER_FICHIER = "Last Date";
+    public static final String TACHE_FICHIER_EXISTE = "Fichier existe";
+    public static final String TACHE_TAILLE_FICHIER = "Taille fichier";
 
     public static final int NB_LIGNE_FICHIER_CONF = 4;
     public static final String ficfierConfig = "parametre.txt";
