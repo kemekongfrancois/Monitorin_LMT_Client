@@ -8,45 +8,56 @@ package clientmonitoring.jobs;
 import clientmonitoring.BeanClient;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.JobKey;
+import org.quartz.PersistJobDataAfterExecution;
 
 /**
  *
  * @author KEF10
  */
-public class JobExistanceFichier implements Job{
-     Logger logger = clientmonitoring.ClientMonitoring.LOGGER;
+@PersistJobDataAfterExecution
+@DisallowConcurrentExecution//permet d'empéche les exécutions concurente, il n'exitera donc d'une instace du job
+public class JobExistanceFichier implements Job {
+
+    Logger logger = clientmonitoring.ClientMonitoring.LOGGER;
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         System.out.println("------verrifie existance fichier: ");
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
+        boolean alerteOK = dataMap.getBoolean("alerteOK");
         String nomFichier = dataMap.getString("nomFichier");
         JobKey cle = context.getJobDetail().getKey();
-
+        String msg;
         BeanClient beanClient = new BeanClient();
-        if(beanClient.verifiExistanceFichier(nomFichier)){
-            logger.log(Level.INFO, "le fichier <<" + nomFichier + ">> es OK");
-        }else{
-            logger.log(Level.SEVERE, "le fichier <<" + nomFichier + ">> n'existe pas");
-            beanClient.envoiAlerteAuServeur(cle, 0);
-            /*try {
-            if (!ClientMonitoring.wsServeur.traitementAlerteTache(new Integer(cle.getName()), 0)) {
-            logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
-            } else {//on stope la tache dans le cas où le serveur à bien traité le pb
-            (new BeanClient()).arreterJob(cle);
+        if (beanClient.verifiExistanceFichier(nomFichier)) {
+            msg = "le fichier <<" + nomFichier + ">> es OK";
+            if (alerteOK) {
+                logger.log(Level.INFO, "Problème résolue: " + msg);
+                if (BeanClient.problemeTacheResolu(cle)) {
+                    alerteOK = false;
+                    context.getJobDetail().getJobDataMap().put("alerteOK", alerteOK);
+                }
+            } else {
+                logger.log(Level.INFO, msg);
             }
-            } catch (Exception e) {
-            logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
-            }*/
+        } else {
+            msg = "le fichier <<" + nomFichier + ">> n'existe pas";
+            if (!alerteOK) {//si l'alerte n'a pas encore été envoyer, on le fait
+                logger.log(Level.SEVERE, msg);
+                alerteOK = BeanClient.envoiAlerteAuServeur(cle, 0);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur
+                context.getJobDetail().getJobDataMap().put("alerteOK", alerteOK);
+            } else {
+                logger.log(Level.WARNING, "ce problème à déja été signaler au serveur: " + msg);
+            }
+
         }
 
-        
-
     }
-    
+
 }

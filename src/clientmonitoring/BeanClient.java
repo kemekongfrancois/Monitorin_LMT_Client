@@ -69,6 +69,18 @@ import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
 
 /**
  *
@@ -225,12 +237,12 @@ public class BeanClient {
      */
     private JobDetail initialiseVerificationDD(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
-
         //ajouter les données
         //JobDataMap data = new JobDataMap();
         //data.put("tache", tache);
         JobDetail jobDetaille = newJob(JobVerificationDisk.class)
                 .withIdentity(cle)
+                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("seuil", tache.getSeuilAlerte())
                 .usingJobData("lettrePartition", tache.getNom())
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
@@ -244,6 +256,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerificationProcessus.class)
                 .withIdentity(cle)
+                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nomProcessus", tache.getNom())
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
                 .build();
@@ -255,6 +268,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerificationService.class)
                 .withIdentity(cle)
+                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nomService", tache.getNom())
                 .usingJobData("redemarerAuto", tache.isRedemarerAutoService())
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
@@ -278,6 +292,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobExistanceFichier.class)
                 .withIdentity(cle)
+                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nomFichier", tache.getNom())
                 .build();
 
@@ -288,6 +303,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerrifieTailleFIchier.class)
                 .withIdentity(cle)
+                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nomFichier", tache.getNom())
                 .usingJobData("seuil", tache.getSeuilAlerte())
                 .build();
@@ -299,6 +315,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobDateModificationDernierFichier.class)
                 .withIdentity(cle)
+                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nomRepertoire", tache.getNom())
                 .usingJobData("seuil", tache.getSeuilAlerte())
                 .build();
@@ -310,6 +327,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobTelnet.class)
                 .withIdentity(cle)
+                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
                 .usingJobData("adresseAEtPort", tache.getNom())
                 .build();
@@ -335,9 +353,9 @@ public class BeanClient {
             String groupe = tache.getIdMachine().getIdMachine() + "";
             JobKey cle = JobKey.jobKey(identifiant, groupe);
 
-            if (!tache.getStatue().equals(START) || SCHEDULER.checkExists(cle)) {//si le job existe déja on le stoppe
+            if (tache.getStatue().equals(STOP) || SCHEDULER.checkExists(cle)) {//si le job existe déja on le stoppe
                 arreterJob(cle);//suppression du job
-                if (!tache.getStatue().equals(START)) {//cas où on veux stopper la tache ou la mettre en pause
+                if (tache.getStatue().equals(STOP)) {//cas où on veux stopper la tache
                     return true;//le job a été stoppé
                 }
             }
@@ -420,7 +438,7 @@ public class BeanClient {
             arreterLeScheduler();
             demarerLeScheduler();
 
-            Machine machine = wsServeur.verifiOuCreerMachine(ADRESSE_MACHINE, PORT_MACHINE, OS_MACHINE, NOM_MACHINE);
+            Machine machine = wsServeur.creerOuVerifiMachine(ADRESSE_MACHINE, PORT_MACHINE, OS_MACHINE, NOM_MACHINE);
 
             if (machine.getStatue().equals(STOP)) {
                 logger.log(Level.INFO, "le statue de la machine es à <<STOP>> donc aucun job n'es lancé");
@@ -666,7 +684,7 @@ public class BeanClient {
      * retourne la taille d'un fichier
      *
      * @param nomFichier
-     * @return "-1" s'il ya eu un pb: le fichier n'existe pas
+     * @return "-1" s'il ya eu un pb: le fichier n'existe pas par exemple
      */
     public long tailleFichier(String nomFichier) {
         try {
@@ -751,22 +769,47 @@ public class BeanClient {
         return pingOK;
     }
 
+   
+
     /**
-     * cette fonction permet d'envoyer une alerte au serveur et de stopper la
-     * tache si le serveur à repondu
+     * cette fonction permet d'envoyer une alerte au serveur
      *
      * @param cle
      * @param code
+     * et "true" sinon
+     * @return
      */
-    public void envoiAlerteAuServeur(JobKey cle, int code) {
+    public static boolean envoiAlerteAuServeur(JobKey cle, int code) {
         try {
+            
             if (!wsServeur.traitementAlerteTache(new Integer(cle.getName()), code)) {
                 logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
-            } else {//on stope la tache dans le cas où le serveur à bien traité le pb
-                arreterJob(cle);
+                return false;
+            } else {//le serveur à bien traité le pb
+                return true;
             }
         } catch (Exception e) {
             logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
+            return false;
+        }
+    }
+    /**
+     * cette fonction permet d'informet le serveur que le probléme qui exité sur la tache à bien été résolu
+     * @param cle
+     * @return 
+     */
+    public static boolean problemeTacheResolu(JobKey cle) {
+        try {
+            
+            if (!wsServeur.problemeTacheResolu(new Integer(cle.getName()))) {
+                logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
+                return false;
+            } else {//le serveur à bien traité le pb
+                return true;
+            }
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "impossible de contacter le serveur \n" + e);
+            return false;
         }
     }
 

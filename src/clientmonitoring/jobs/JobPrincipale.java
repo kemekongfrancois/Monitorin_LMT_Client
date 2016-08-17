@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.quartz.DisallowConcurrentExecution;
 import org.quartz.Job;
 import org.quartz.JobDataMap;
 import org.quartz.JobExecutionContext;
@@ -25,6 +26,7 @@ import org.quartz.SchedulerException;
  *
  * @author KEF10
  */
+@DisallowConcurrentExecution//permet d'empéche les exécutions concurente, il n'exitera donc d'une instace du job
 public class JobPrincipale implements Job {
     //protected static Logger logger = Logger.getLogger(Class.class.getName());
 
@@ -41,6 +43,7 @@ public class JobPrincipale implements Job {
         System.out.println("------Job Principale************************* ");
         JobKey key = context.getJobDetail().getKey();
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
+        boolean alerteOK = dataMap.getBoolean("alerteOK");
 
         //on verrifie que les taches sont en cour de fonctionnement
         List<Tache> listTachePB = new ArrayList<>();

@@ -1,5 +1,5 @@
-juil. 01, 2016 5:05:11 PM clientmonitoring.ClientMonitoring demarerWSClientEtScheduler
-GRAVE: impossible de demarer le web service client à l'adresse http://172.16.4.2:8088/
+août 05, 2016 2:06:43 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
+GRAVE: impossible de demarer le web service client à l'adresse http://172.16.4.2:9039/
 
 com.sun.xml.internal.ws.server.ServerRtException: Erreur d'exécution du serveur : java.net.BindException: Address already in use: bind
 	at com.sun.xml.internal.ws.transport.http.server.ServerMgr.createContext(ServerMgr.java:117)
@@ -7,8 +7,8 @@ com.sun.xml.internal.ws.server.ServerRtException: Erreur d'exécution du serveur
 	at com.sun.xml.internal.ws.transport.http.server.EndpointImpl.publish(EndpointImpl.java:232)
 	at com.sun.xml.internal.ws.spi.ProviderImpl.createAndPublishEndpoint(ProviderImpl.java:126)
 	at javax.xml.ws.Endpoint.publish(Endpoint.java:240)
-	at clientmonitoring.ClientMonitoring.demarerWSClientEtScheduler(ClientMonitoring.java:124)
-	at clientmonitoring.ClientMonitoring.main(ClientMonitoring.java:144)
+	at clientmonitoring.BeanClient.demarerWSClientEtScheduler(BeanClient.java:124)
+	at clientmonitoring.ClientMonitoring.main(ClientMonitoring.java:40)
 Caused by: java.net.BindException: Address already in use: bind
 	at sun.nio.ch.Net.bind0(Native Method)
 	at sun.nio.ch.Net.bind(Net.java:437)
