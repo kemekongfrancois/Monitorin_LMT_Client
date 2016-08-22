@@ -65,31 +65,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getMachine">
-<xs:sequence>
-<xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="getMachineResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:machine" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="machine">
-<xs:sequence>
-<xs:element name="adresseIP" type="xs:string" minOccurs="0"/>
-<xs:element name="idMachine" type="xs:int" minOccurs="0"/>
-<xs:element name="niveauDAlerte" type="xs:int" minOccurs="0"/>
-<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
-<xs:element name="periodeDeCheck" type="xs:string" minOccurs="0"/>
-<xs:element name="portEcoute" type="xs:string" minOccurs="0"/>
-<xs:element name="statue" type="xs:string" minOccurs="0"/>
-<xs:element name="typeOS" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="getListTacheMachine">
 <xs:sequence>
 <xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
@@ -119,6 +94,19 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="machine">
+<xs:sequence>
+<xs:element name="adresseIP" type="xs:string" minOccurs="0"/>
+<xs:element name="idMachine" type="xs:int" minOccurs="0"/>
+<xs:element name="niveauDAlerte" type="xs:int" minOccurs="0"/>
+<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
+<xs:element name="periodeDeCheck" type="xs:string" minOccurs="0"/>
+<xs:element name="portEcoute" type="xs:string" minOccurs="0"/>
+<xs:element name="statue" type="xs:string" minOccurs="0"/>
+<xs:element name="typeOS" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="creerOuVerifiMachine">
 <xs:sequence>
 <xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
@@ -129,6 +117,18 @@
 </xs:complexType>
 
 <xs:complexType name="creerOuVerifiMachineResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:machine" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMachine">
+<xs:sequence>
+<xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getMachineResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:machine" minOccurs="0"/>
 </xs:sequence>
@@ -174,7 +174,7 @@
 <xs:complexType name="traitementAlerteMachine">
 <xs:sequence>
 <xs:element name="idMachine" type="xs:int"/>
-<xs:element name="listTachePB" type="tns:tache" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="listTachePB" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 

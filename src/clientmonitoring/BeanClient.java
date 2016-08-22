@@ -281,6 +281,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobPing.class)
                 .withIdentity(cle)
+                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nbTentative", tache.getSeuilAlerte())
                 .usingJobData("adresseAPinger", tache.getNom())
                 .build();
@@ -769,19 +770,16 @@ public class BeanClient {
         return pingOK;
     }
 
-   
-
     /**
      * cette fonction permet d'envoyer une alerte au serveur
      *
      * @param cle
-     * @param code
-     * et "true" sinon
+     * @param code et "true" sinon
      * @return
      */
     public static boolean envoiAlerteAuServeur(JobKey cle, int code) {
         try {
-            
+            miseAjourStatueTacheExecution(cle, ALERTE);
             if (!wsServeur.traitementAlerteTache(new Integer(cle.getName()), code)) {
                 logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
                 return false;
@@ -793,14 +791,36 @@ public class BeanClient {
             return false;
         }
     }
+
     /**
-     * cette fonction permet d'informet le serveur que le probléme qui exité sur la tache à bien été résolu
+     * cette fonction permet de mettre à jour le statu d'une des Tache en cour
+     * d'éxécution
+     *
      * @param cle
-     * @return 
+     * @param statue
+     * @return
+     */
+    private static boolean miseAjourStatueTacheExecution(JobKey cle, String statue) {
+        Tache tache = TACHE_EN_COUR_D_EXECUTION.get(cle);
+        if (tache == null) {
+            logger.log(Level.SEVERE, "la tache ayant pour cle<<"+cle+">> n'existe pas dans la liste des taches en cours d'exécution: problème trés anormal");
+            return false;
+        }
+        tache.setStatue(statue);
+        TACHE_EN_COUR_D_EXECUTION.put(cle, tache);
+        return true;
+    }
+
+    /**
+     * cette fonction permet d'informet le serveur que le probléme qui exité sur
+     * la tache à bien été résolu
+     *
+     * @param cle
+     * @return
      */
     public static boolean problemeTacheResolu(JobKey cle) {
         try {
-            
+            miseAjourStatueTacheExecution(cle, START);
             if (!wsServeur.problemeTacheResolu(new Integer(cle.getName()))) {
                 logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
                 return false;
@@ -882,4 +902,5 @@ public class BeanClient {
             return false;
         }
     }
+
 }

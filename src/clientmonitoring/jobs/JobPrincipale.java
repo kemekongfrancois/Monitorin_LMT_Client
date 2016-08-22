@@ -46,11 +46,11 @@ public class JobPrincipale implements Job {
         boolean alerteOK = dataMap.getBoolean("alerteOK");
 
         //on verrifie que les taches sont en cour de fonctionnement
-        List<Tache> listTachePB = new ArrayList<>();
+        List<Integer> listTachePB = new ArrayList<>();
         BeanClient beanClient = new BeanClient();
         for (Entry<JobKey, Tache> e : TACHE_EN_COUR_D_EXECUTION.entrySet()) {
             if (!beanClient.jobExiste(e.getKey().getName(),e.getKey().getGroup())) {
-                listTachePB.add(e.getValue());
+                listTachePB.add(e.getValue().getIdTache());
                 (new BeanClient()).demarerMetAJourOUStopperTache(e.getValue());//on redémarer la taches
                 logger.log(Level.WARNING, "la tache " + e.getKey() + " n'es pas en cour de fonctionnement bien vouloir verrifier les log, elle vien d'être redémarer");
             } else {//la tache es bien en marche
@@ -68,7 +68,7 @@ public class JobPrincipale implements Job {
      *
      * @param listTachePB
      */
-    public void traitementDesTachesAProbleme(List<Tache> listTachePB, JobKey key) {
+    public void traitementDesTachesAProbleme(List<Integer> listTachePB, JobKey key) {
         if (listTachePB.isEmpty()) {//il n'ya pas eu de problème
             logger.log(Level.INFO, "le job principale c'est bien exécuté");
 
