@@ -5,18 +5,13 @@
  */
 package clientmonitoring.until;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Enumeration;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.FileHandler;
@@ -24,6 +19,7 @@ import java.util.logging.Handler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
+import java.util.logging.XMLFormatter;
 
 /**
  *
@@ -41,11 +37,12 @@ public class Until {
     public static void initialisationGestionFichierLog(Logger logger_){
         try {
             Handler fh = new FileHandler(fichieLog,false); //Le fichier est recréé (false) ou repris tel quel (true)
-            fh.setFormatter(new SimpleFormatter());//on defini ici que les données écrit dans le fichier seront du text
+            //fh.setFormatter(new SimpleFormatter());//on defini ici que les données écrit dans le fichier seront du text
+            fh.setFormatter(new XMLFormatter());//on defini ici que les données écrit dans le fichier seront du XML
             logger_.addHandler(fh);//on ajouter le 
             
             Handler fhErreur = new FileHandler(fichieLogErreur,false);
-            fhErreur.setFormatter(new SimpleFormatter());
+            fhErreur.setFormatter(new SimpleFormatter());//on defini ici que les données écrit dans le fichier seront du text
             fhErreur.setLevel(Level.SEVERE);//cette instruction permet de dire que seul les alerte de niveau "SEVERE = Niveau le plus élevé" seront écri dans le fichier que represente ce Handler
             logger_.addHandler(fhErreur);
             

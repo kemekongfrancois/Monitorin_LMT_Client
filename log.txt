@@ -1,160 +1,762 @@
-août 26, 2016 5:59:43 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
-INFOS: Web Service démarer: http://172.16.4.2:9039/
-août 26, 2016 5:59:43 PM clientmonitoring.BeanClient demarerLeScheduler
-INFOS: SCHEDULER démarer 
-août 26, 2016 5:59:43 PM clientmonitoring.BeanClient arreterLeScheduler
-INFOS: SCHEDULER Arreté 
-août 26, 2016 5:59:43 PM clientmonitoring.BeanClient demarerLeScheduler
-INFOS: SCHEDULER démarer 
-août 26, 2016 5:59:44 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.2
-août 26, 2016 5:59:44 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.3
-août 26, 2016 5:59:44 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.4
-août 26, 2016 5:59:44 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.5
-août 26, 2016 5:59:44 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.6
-août 26, 2016 5:59:44 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.7
-août 26, 2016 5:59:44 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.8
-août 26, 2016 5:59:44 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.9
-août 26, 2016 5:59:44 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.10
-août 26, 2016 5:59:44 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: nombre de tache démaré: 9
-août 26, 2016 5:59:44 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: la tache principale à bien été lancé. cle=172.16.4.2.1
-août 26, 2016 5:59:45 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<net start >> c'es bien exécuté
-août 26, 2016 5:59:45 PM clientmonitoring.jobs.JobVerificationService execute
-INFOS: le service <<Connectify>> es en cour de fonctionnement
-août 26, 2016 5:59:51 PM clientmonitoring.jobs.JobExistanceFichier execute
-INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
-août 26, 2016 5:59:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
-INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
-août 26, 2016 5:59:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
-INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
-août 26, 2016 5:59:59 PM clientmonitoring.BeanClient telnet
-INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
-août 26, 2016 5:59:59 PM clientmonitoring.jobs.JobTelnet execute
-INFOS: le telnet vers <<41.204.94.29,8282>> es OK
-août 26, 2016 6:00:01 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<ping -n 1 www.google.com>> c'es bien exécuté
-août 26, 2016 6:00:01 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.google.com>> es OK
-août 26, 2016 6:00:01 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<ping -n 1 www.yahoo.com>> c'es bien exécuté
-août 26, 2016 6:00:01 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.yahoo.com>> es OK
-août 26, 2016 6:00:05 PM clientmonitoring.jobs.JobDateModificationDernierFichier execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: la date de derniere modification (Sat Aug 13 15:54:59 WAT 2016) es antérieur à la date autorisé pour le repertoire <<C:/testMonitoring/test date modification>> 
-août 26, 2016 6:00:10 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
-août 26, 2016 6:00:10 PM clientmonitoring.jobs.JobVerificationProcessus execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus <<vlc.exe>> n'es pas en cour de fonctionnement
-août 26, 2016 6:00:15 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<net start >> c'es bien exécuté
-août 26, 2016 6:00:15 PM clientmonitoring.jobs.JobVerificationService execute
-INFOS: le service <<Connectify>> es en cour de fonctionnement
-août 26, 2016 6:00:21 PM clientmonitoring.jobs.JobExistanceFichier execute
-INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
-août 26, 2016 6:00:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
-INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
-août 26, 2016 6:00:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
-INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
-août 26, 2016 6:00:29 PM clientmonitoring.BeanClient telnet
-INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
-août 26, 2016 6:00:29 PM clientmonitoring.jobs.JobTelnet execute
-INFOS: le telnet vers <<41.204.94.29,8282>> es OK
-août 26, 2016 6:00:35 PM clientmonitoring.jobs.JobDateModificationDernierFichier execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: la date de derniere modification (Sat Aug 13 15:54:59 WAT 2016) es antérieur à la date autorisé pour le repertoire <<C:/testMonitoring/test date modification>> 
-août 26, 2016 6:00:40 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
-août 26, 2016 6:00:40 PM clientmonitoring.jobs.JobVerificationProcessus execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus <<vlc.exe>> n'es pas en cour de fonctionnement
-août 26, 2016 6:00:45 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<net start >> c'es bien exécuté
-août 26, 2016 6:00:45 PM clientmonitoring.jobs.JobVerificationService execute
-INFOS: le service <<Connectify>> es en cour de fonctionnement
-août 26, 2016 6:00:51 PM clientmonitoring.jobs.JobExistanceFichier execute
-INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
-août 26, 2016 6:00:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
-INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
-août 26, 2016 6:00:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
-INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
-août 26, 2016 6:00:59 PM clientmonitoring.BeanClient telnet
-INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
-août 26, 2016 6:00:59 PM clientmonitoring.jobs.JobTelnet execute
-INFOS: le telnet vers <<41.204.94.29,8282>> es OK
-août 26, 2016 6:01:01 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<ping -n 1 www.google.com>> c'es bien exécuté
-août 26, 2016 6:01:01 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.google.com>> es OK
-août 26, 2016 6:01:05 PM clientmonitoring.jobs.JobDateModificationDernierFichier execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: la date de derniere modification (Sat Aug 13 15:54:59 WAT 2016) es antérieur à la date autorisé pour le repertoire <<C:/testMonitoring/test date modification>> 
-août 26, 2016 6:01:05 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<ping -n 1 www.yahoo.com>> c'es bien exécuté
-août 26, 2016 6:01:05 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<ping -n 1 www.yahoo.com>> c'es bien exécuté
-août 26, 2016 6:01:05 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.yahoo.com>> es OK
-août 26, 2016 6:01:10 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
-août 26, 2016 6:01:10 PM clientmonitoring.jobs.JobVerificationProcessus execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus <<vlc.exe>> n'es pas en cour de fonctionnement
-août 26, 2016 6:01:15 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<net start >> c'es bien exécuté
-août 26, 2016 6:01:15 PM clientmonitoring.jobs.JobVerificationService execute
-INFOS: le service <<Connectify>> es en cour de fonctionnement
-août 26, 2016 6:01:21 PM clientmonitoring.jobs.JobExistanceFichier execute
-INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
-août 26, 2016 6:01:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
-INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
-août 26, 2016 6:01:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
-INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
-août 26, 2016 6:01:29 PM clientmonitoring.BeanClient telnet
-INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
-août 26, 2016 6:01:29 PM clientmonitoring.jobs.JobTelnet execute
-INFOS: le telnet vers <<41.204.94.29,8282>> es OK
-août 26, 2016 6:01:35 PM clientmonitoring.jobs.JobDateModificationDernierFichier execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: la date de derniere modification (Sat Aug 13 15:54:59 WAT 2016) es antérieur à la date autorisé pour le repertoire <<C:/testMonitoring/test date modification>> 
-août 26, 2016 6:01:40 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
-août 26, 2016 6:01:40 PM clientmonitoring.jobs.JobVerificationProcessus execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus <<vlc.exe>> n'es pas en cour de fonctionnement
-août 26, 2016 6:01:45 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<net start >> c'es bien exécuté
-août 26, 2016 6:01:45 PM clientmonitoring.jobs.JobVerificationService execute
-INFOS: le service <<Connectify>> es en cour de fonctionnement
-août 26, 2016 6:01:51 PM clientmonitoring.jobs.JobExistanceFichier execute
-INFOS: le fichier <<c:/testMonitoring/test.txt>> es OK
-août 26, 2016 6:01:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
-INFOS: la taille du fichier <<c:/testMonitoring/Setup_Oscillo.exe>> es OK
-août 26, 2016 6:01:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
-INFOS: la taille du fichier <<c:/testMonitoring/TeamViewer_Setup_fr.exe>> es OK
-août 26, 2016 6:01:59 PM clientmonitoring.BeanClient telnet
-INFOS: Telne à l'adresse <<41.204.94.29>> et au port <<8282>>
-août 26, 2016 6:01:59 PM clientmonitoring.jobs.JobTelnet execute
-INFOS: le telnet vers <<41.204.94.29,8282>> es OK
-août 26, 2016 6:02:01 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<ping -n 1 www.google.com>> c'es bien exécuté
-août 26, 2016 6:02:01 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.google.com>> es OK
-août 26, 2016 6:02:02 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<ping -n 1 www.yahoo.com>> c'es bien exécuté
-août 26, 2016 6:02:02 PM clientmonitoring.jobs.JobPing execute
-INFOS: le ping vers <<www.yahoo.com>> es OK
-août 26, 2016 6:02:05 PM clientmonitoring.jobs.JobDateModificationDernierFichier execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: la date de derniere modification (Sat Aug 13 15:54:59 WAT 2016) es antérieur à la date autorisé pour le repertoire <<C:/testMonitoring/test date modification>> 
-août 26, 2016 6:02:10 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<tasklist /fi  "ImageName eq  vlc.exe">> c'es bien exécuté
-août 26, 2016 6:02:10 PM clientmonitoring.jobs.JobVerificationProcessus execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus <<vlc.exe>> n'es pas en cour de fonctionnement
-août 26, 2016 6:02:15 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande <<net start >> c'es bien exécuté
-août 26, 2016 6:02:15 PM clientmonitoring.jobs.JobVerificationService execute
-INFOS: le service <<Connectify>> es en cour de fonctionnement
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187508</millis>
+  <sequence>0</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerWSClientEtScheduler</method>
+  <thread>1</thread>
+  <message>Web Service démarer: http://172.16.4.2:9039/</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187645</millis>
+  <sequence>1</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerLeScheduler</method>
+  <thread>1</thread>
+  <message>SCHEDULER démarer </message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187646</millis>
+  <sequence>2</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>arreterLeScheduler</method>
+  <thread>1</thread>
+  <message>SCHEDULER Arreté </message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187649</millis>
+  <sequence>3</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerLeScheduler</method>
+  <thread>1</thread>
+  <message>SCHEDULER démarer </message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187919</millis>
+  <sequence>4</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>1</thread>
+  <message>tache démaré. cle=1.2</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187929</millis>
+  <sequence>5</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>1</thread>
+  <message>tache démaré. cle=1.3</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187934</millis>
+  <sequence>6</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>1</thread>
+  <message>tache démaré. cle=1.4</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187938</millis>
+  <sequence>7</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>1</thread>
+  <message>tache démaré. cle=1.5</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187945</millis>
+  <sequence>8</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>1</thread>
+  <message>tache démaré. cle=1.6</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187952</millis>
+  <sequence>9</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>1</thread>
+  <message>tache démaré. cle=1.7</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187958</millis>
+  <sequence>10</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>1</thread>
+  <message>tache démaré. cle=1.8</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187963</millis>
+  <sequence>11</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>1</thread>
+  <message>tache démaré. cle=1.9</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187968</millis>
+  <sequence>12</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>1</thread>
+  <message>tache démaré. cle=1.10</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187969</millis>
+  <sequence>13</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>redemarerTachePrincipaleEtSousTache</method>
+  <thread>1</thread>
+  <message>nombre de tache démaré: 9</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:47</date>
+  <millis>1472491187969</millis>
+  <sequence>14</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>redemarerTachePrincipaleEtSousTache</method>
+  <thread>1</thread>
+  <message>la tache principale à bien été lancé. cle=172.16.4.2.1</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:51</date>
+  <millis>1472491191020</millis>
+  <sequence>15</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobExistanceFichier</class>
+  <method>execute</method>
+  <thread>25</thread>
+  <message>le fichier &lt;&lt;c:/testMonitoring/test.txt&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:54</date>
+  <millis>1472491194888</millis>
+  <sequence>16</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>arreterLeScheduler</method>
+  <thread>37</thread>
+  <message>SCHEDULER Arreté </message>
+</record>
+<record>
+  <date>2016-08-29T18:19:54</date>
+  <millis>1472491194892</millis>
+  <sequence>17</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerLeScheduler</method>
+  <thread>37</thread>
+  <message>SCHEDULER démarer </message>
+</record>
+<record>
+  <date>2016-08-29T18:19:54</date>
+  <millis>1472491194906</millis>
+  <sequence>18</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>redemarerTachePrincipaleEtSousTache</method>
+  <thread>37</thread>
+  <message>le statue de la machine es à &lt;&lt;STOP&gt;&gt; donc aucun job n'es lancé</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:55</date>
+  <millis>1472491195951</millis>
+  <sequence>19</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>arreterLeScheduler</method>
+  <thread>37</thread>
+  <message>SCHEDULER Arreté </message>
+</record>
+<record>
+  <date>2016-08-29T18:19:55</date>
+  <millis>1472491195956</millis>
+  <sequence>20</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerLeScheduler</method>
+  <thread>37</thread>
+  <message>SCHEDULER démarer </message>
+</record>
+<record>
+  <date>2016-08-29T18:19:55</date>
+  <millis>1472491195997</millis>
+  <sequence>21</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>37</thread>
+  <message>tache démaré. cle=1.2</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:55</date>
+  <millis>1472491195998</millis>
+  <sequence>22</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>37</thread>
+  <message>tache démaré. cle=1.3</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:55</date>
+  <millis>1472491195999</millis>
+  <sequence>23</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>37</thread>
+  <message>tache démaré. cle=1.4</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:56</date>
+  <millis>1472491196000</millis>
+  <sequence>24</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>37</thread>
+  <message>tache démaré. cle=1.5</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:56</date>
+  <millis>1472491196000</millis>
+  <sequence>25</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>37</thread>
+  <message>tache démaré. cle=1.6</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:56</date>
+  <millis>1472491196001</millis>
+  <sequence>26</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>37</thread>
+  <message>tache démaré. cle=1.7</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:56</date>
+  <millis>1472491196002</millis>
+  <sequence>27</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>37</thread>
+  <message>tache démaré. cle=1.8</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:56</date>
+  <millis>1472491196004</millis>
+  <sequence>28</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>37</thread>
+  <message>tache démaré. cle=1.9</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:56</date>
+  <millis>1472491196005</millis>
+  <sequence>29</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>demarerMetAJourOUStopperTache</method>
+  <thread>37</thread>
+  <message>tache démaré. cle=1.10</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:56</date>
+  <millis>1472491196005</millis>
+  <sequence>30</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>redemarerTachePrincipaleEtSousTache</method>
+  <thread>37</thread>
+  <message>nombre de tache démaré: 9</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:56</date>
+  <millis>1472491196006</millis>
+  <sequence>31</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>redemarerTachePrincipaleEtSousTache</method>
+  <thread>37</thread>
+  <message>la tache principale à bien été lancé. cle=172.16.4.2.1</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:59</date>
+  <millis>1472491199018</millis>
+  <sequence>32</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>telnet</method>
+  <thread>49</thread>
+  <message>Telne à l'adresse &lt;&lt;41.204.94.29&gt;&gt; et au port &lt;&lt;8282&gt;&gt;</message>
+</record>
+<record>
+  <date>2016-08-29T18:19:59</date>
+  <millis>1472491199227</millis>
+  <sequence>33</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobTelnet</class>
+  <method>execute</method>
+  <thread>49</thread>
+  <message>Problème résolue: le telnet vers &lt;&lt;41.204.94.29,8282&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:00</date>
+  <millis>1472491200010</millis>
+  <sequence>34</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobPrincipale</class>
+  <method>traitementDesTachesAProbleme</method>
+  <thread>50</thread>
+  <message>le job principale c'est bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:02</date>
+  <millis>1472491202030</millis>
+  <sequence>35</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>executeCommand</method>
+  <thread>51</thread>
+  <message>la commande &lt;&lt;ping -n 1 www.google.com&gt;&gt; c'es bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:02</date>
+  <millis>1472491202031</millis>
+  <sequence>36</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobPing</class>
+  <method>execute</method>
+  <thread>51</thread>
+  <message>Problème résolue: le ping vers &lt;&lt;www.google.com&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:03</date>
+  <millis>1472491203111</millis>
+  <sequence>37</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>executeCommand</method>
+  <thread>52</thread>
+  <message>la commande &lt;&lt;ping -n 1 www.yahoo.com&gt;&gt; c'es bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:03</date>
+  <millis>1472491203112</millis>
+  <sequence>38</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobPing</class>
+  <method>execute</method>
+  <thread>52</thread>
+  <message>Problème résolue: le ping vers &lt;&lt;www.yahoo.com&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:05</date>
+  <millis>1472491205008</millis>
+  <sequence>39</sequence>
+  <logger>java.lang.Class</logger>
+  <level>WARNING</level>
+  <class>clientmonitoring.jobs.JobDateModificationDernierFichier</class>
+  <method>execute</method>
+  <thread>53</thread>
+  <message>ce problème à déja été signaler au serveur: la date de derniere modification (Mon Aug 29 17:13:46 WAT 2016) es antérieur à la date autorisé pour le repertoire &lt;&lt;C:/testMonitoring/test date modification&gt;&gt; </message>
+</record>
+<record>
+  <date>2016-08-29T18:20:10</date>
+  <millis>1472491210338</millis>
+  <sequence>40</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>executeCommand</method>
+  <thread>54</thread>
+  <message>la commande &lt;&lt;tasklist /fi  "ImageName eq  vlc.exe"&gt;&gt; c'es bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:10</date>
+  <millis>1472491210339</millis>
+  <sequence>41</sequence>
+  <logger>java.lang.Class</logger>
+  <level>WARNING</level>
+  <class>clientmonitoring.jobs.JobVerificationProcessus</class>
+  <method>execute</method>
+  <thread>54</thread>
+  <message>ce problème à déja été signaler au serveur: le processus &lt;&lt;vlc.exe&gt;&gt; n'es pas en cour de fonctionnement</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:15</date>
+  <millis>1472491215062</millis>
+  <sequence>42</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>executeCommand</method>
+  <thread>55</thread>
+  <message>la commande &lt;&lt;net start &gt;&gt; c'es bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:15</date>
+  <millis>1472491215063</millis>
+  <sequence>43</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobVerificationService</class>
+  <method>execute</method>
+  <thread>55</thread>
+  <message>le service &lt;&lt;Connectify&gt;&gt; es en cour de fonctionnement</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:21</date>
+  <millis>1472491221003</millis>
+  <sequence>44</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobExistanceFichier</class>
+  <method>execute</method>
+  <thread>56</thread>
+  <message>le fichier &lt;&lt;c:/testMonitoring/test.txt&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:25</date>
+  <millis>1472491225006</millis>
+  <sequence>46</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobVerrifieTailleFIchier</class>
+  <method>execute</method>
+  <thread>58</thread>
+  <message>la taille du fichier &lt;&lt;c:/testMonitoring/TeamViewer_Setup_fr.exe&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:25</date>
+  <millis>1472491225006</millis>
+  <sequence>45</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobVerrifieTailleFIchier</class>
+  <method>execute</method>
+  <thread>57</thread>
+  <message>la taille du fichier &lt;&lt;c:/testMonitoring/Setup_Oscillo.exe&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:29</date>
+  <millis>1472491229000</millis>
+  <sequence>47</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>telnet</method>
+  <thread>49</thread>
+  <message>Telne à l'adresse &lt;&lt;41.204.94.29&gt;&gt; et au port &lt;&lt;8282&gt;&gt;</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:29</date>
+  <millis>1472491229290</millis>
+  <sequence>48</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobTelnet</class>
+  <method>execute</method>
+  <thread>49</thread>
+  <message>le telnet vers &lt;&lt;41.204.94.29,8282&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:35</date>
+  <millis>1472491235003</millis>
+  <sequence>49</sequence>
+  <logger>java.lang.Class</logger>
+  <level>WARNING</level>
+  <class>clientmonitoring.jobs.JobDateModificationDernierFichier</class>
+  <method>execute</method>
+  <thread>50</thread>
+  <message>ce problème à déja été signaler au serveur: la date de derniere modification (Mon Aug 29 17:13:46 WAT 2016) es antérieur à la date autorisé pour le repertoire &lt;&lt;C:/testMonitoring/test date modification&gt;&gt; </message>
+</record>
+<record>
+  <date>2016-08-29T18:20:40</date>
+  <millis>1472491240202</millis>
+  <sequence>50</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>executeCommand</method>
+  <thread>51</thread>
+  <message>la commande &lt;&lt;tasklist /fi  "ImageName eq  vlc.exe"&gt;&gt; c'es bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:40</date>
+  <millis>1472491240202</millis>
+  <sequence>51</sequence>
+  <logger>java.lang.Class</logger>
+  <level>WARNING</level>
+  <class>clientmonitoring.jobs.JobVerificationProcessus</class>
+  <method>execute</method>
+  <thread>51</thread>
+  <message>ce problème à déja été signaler au serveur: le processus &lt;&lt;vlc.exe&gt;&gt; n'es pas en cour de fonctionnement</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:45</date>
+  <millis>1472491245086</millis>
+  <sequence>52</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>executeCommand</method>
+  <thread>52</thread>
+  <message>la commande &lt;&lt;net start &gt;&gt; c'es bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:45</date>
+  <millis>1472491245086</millis>
+  <sequence>53</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobVerificationService</class>
+  <method>execute</method>
+  <thread>52</thread>
+  <message>le service &lt;&lt;Connectify&gt;&gt; es en cour de fonctionnement</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:51</date>
+  <millis>1472491251001</millis>
+  <sequence>54</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobExistanceFichier</class>
+  <method>execute</method>
+  <thread>53</thread>
+  <message>le fichier &lt;&lt;c:/testMonitoring/test.txt&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:55</date>
+  <millis>1472491255001</millis>
+  <sequence>55</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobVerrifieTailleFIchier</class>
+  <method>execute</method>
+  <thread>54</thread>
+  <message>la taille du fichier &lt;&lt;c:/testMonitoring/Setup_Oscillo.exe&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:55</date>
+  <millis>1472491255002</millis>
+  <sequence>56</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobVerrifieTailleFIchier</class>
+  <method>execute</method>
+  <thread>55</thread>
+  <message>la taille du fichier &lt;&lt;c:/testMonitoring/TeamViewer_Setup_fr.exe&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:59</date>
+  <millis>1472491259004</millis>
+  <sequence>57</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>telnet</method>
+  <thread>56</thread>
+  <message>Telne à l'adresse &lt;&lt;41.204.94.29&gt;&gt; et au port &lt;&lt;8282&gt;&gt;</message>
+</record>
+<record>
+  <date>2016-08-29T18:20:59</date>
+  <millis>1472491259189</millis>
+  <sequence>58</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobTelnet</class>
+  <method>execute</method>
+  <thread>56</thread>
+  <message>le telnet vers &lt;&lt;41.204.94.29,8282&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:21:00</date>
+  <millis>1472491260010</millis>
+  <sequence>59</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobPrincipale</class>
+  <method>traitementDesTachesAProbleme</method>
+  <thread>58</thread>
+  <message>le job principale c'est bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:21:01</date>
+  <millis>1472491261260</millis>
+  <sequence>60</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>executeCommand</method>
+  <thread>57</thread>
+  <message>la commande &lt;&lt;ping -n 1 www.google.com&gt;&gt; c'es bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:21:01</date>
+  <millis>1472491261260</millis>
+  <sequence>61</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobPing</class>
+  <method>execute</method>
+  <thread>57</thread>
+  <message>le ping vers &lt;&lt;www.google.com&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:21:01</date>
+  <millis>1472491261638</millis>
+  <sequence>62</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>executeCommand</method>
+  <thread>49</thread>
+  <message>la commande &lt;&lt;ping -n 1 www.yahoo.com&gt;&gt; c'es bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:21:01</date>
+  <millis>1472491261638</millis>
+  <sequence>63</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobPing</class>
+  <method>execute</method>
+  <thread>49</thread>
+  <message>le ping vers &lt;&lt;www.yahoo.com&gt;&gt; es OK</message>
+</record>
+<record>
+  <date>2016-08-29T18:21:05</date>
+  <millis>1472491265002</millis>
+  <sequence>64</sequence>
+  <logger>java.lang.Class</logger>
+  <level>WARNING</level>
+  <class>clientmonitoring.jobs.JobDateModificationDernierFichier</class>
+  <method>execute</method>
+  <thread>50</thread>
+  <message>ce problème à déja été signaler au serveur: la date de derniere modification (Mon Aug 29 17:13:46 WAT 2016) es antérieur à la date autorisé pour le repertoire &lt;&lt;C:/testMonitoring/test date modification&gt;&gt; </message>
+</record>
+<record>
+  <date>2016-08-29T18:21:10</date>
+  <millis>1472491270210</millis>
+  <sequence>65</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>executeCommand</method>
+  <thread>51</thread>
+  <message>la commande &lt;&lt;tasklist /fi  "ImageName eq  vlc.exe"&gt;&gt; c'es bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:21:10</date>
+  <millis>1472491270211</millis>
+  <sequence>66</sequence>
+  <logger>java.lang.Class</logger>
+  <level>WARNING</level>
+  <class>clientmonitoring.jobs.JobVerificationProcessus</class>
+  <method>execute</method>
+  <thread>51</thread>
+  <message>ce problème à déja été signaler au serveur: le processus &lt;&lt;vlc.exe&gt;&gt; n'es pas en cour de fonctionnement</message>
+</record>
+<record>
+  <date>2016-08-29T18:21:15</date>
+  <millis>1472491275051</millis>
+  <sequence>67</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.BeanClient</class>
+  <method>executeCommand</method>
+  <thread>52</thread>
+  <message>la commande &lt;&lt;net start &gt;&gt; c'es bien exécuté</message>
+</record>
+<record>
+  <date>2016-08-29T18:21:15</date>
+  <millis>1472491275052</millis>
+  <sequence>68</sequence>
+  <logger>java.lang.Class</logger>
+  <level>INFO</level>
+  <class>clientmonitoring.jobs.JobVerificationService</class>
+  <method>execute</method>
+  <thread>52</thread>
+  <message>le service &lt;&lt;Connectify&gt;&gt; es en cour de fonctionnement</message>
+</record>
