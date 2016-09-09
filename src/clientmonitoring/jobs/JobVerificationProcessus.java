@@ -6,7 +6,6 @@
 package clientmonitoring.jobs;
 
 import clientmonitoring.BeanClient;
-import clientmonitoring.ClientMonitoring;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.quartz.DisallowConcurrentExecution;
@@ -16,7 +15,6 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.quartz.JobKey;
 import org.quartz.PersistJobDataAfterExecution;
-import org.quartz.Scheduler;
 
 /**
  *
@@ -38,11 +36,13 @@ public class JobVerificationProcessus implements Job {
         boolean alerteOK = dataMap.getBoolean("alerteOK");
         JobKey cle = context.getJobDetail().getKey();
 
-        BeanClient beanClient = new BeanClient();
-        String resultat = beanClient.verifiProcessusWindows(nomProcessus);
+        String resultat ;
+        synchronized (this) {//section critique
+            resultat = BeanClient.verifiProcessusWindows(nomProcessus);
+        }
         String msg;
         if (resultat.equals(BeanClient.OK)) {//le processus es en fonction
-            msg = "le processus <<" + nomProcessus + ">> es en cour de fonctionnement";
+            msg = "le processus \"" + nomProcessus + "\" es en cour de fonctionnement";
             if (alerteOK) {
                 logger.log(Level.INFO, "Problème résolue: " + msg);
                 if (BeanClient.problemeTacheResolu(cle)) {
@@ -55,10 +55,10 @@ public class JobVerificationProcessus implements Job {
         } else {//le processus n'es pas en cour de fonctionnement ou il ya un pb
             int code;//
             if (resultat.equals(BeanClient.KO)) {
-                msg = "le processus <<" + nomProcessus + ">> n'es pas en cour de fonctionnement";
+                msg = "le processus \"" + nomProcessus + "\" n'es pas en cour de fonctionnement";
                 code = 0;
             } else {//il ya eu un pb
-                msg = "le processus <<" + nomProcessus + ">> n'es pas valide";
+                msg = "le processus \"" + nomProcessus + "\" n'es pas valide";
                 code = 1;
             }
             if (!alerteOK) {//si l'alerte n'a pas encore été envoyer, on le fait
@@ -68,7 +68,6 @@ public class JobVerificationProcessus implements Job {
             } else {
                 logger.log(Level.WARNING, "ce problème à déja été signaler au serveur: " + msg);
             }
-
         }
 
     }

@@ -34,9 +34,12 @@ public class JobExistanceFichier implements Job {
         String nomFichier = dataMap.getString("nomFichier");
         JobKey cle = context.getJobDetail().getKey();
         String msg;
-        BeanClient beanClient = new BeanClient();
-        if (beanClient.verifiExistanceFichier(nomFichier)) {
-            msg = "le fichier <<" + nomFichier + ">> es OK";
+        boolean fichierExiste;
+        synchronized (this) {//section critique
+            fichierExiste = BeanClient.verifiExistanceFichier(nomFichier);
+        }
+        if (fichierExiste) {
+            msg = "le fichier \"" + nomFichier + "\" es OK";
             if (alerteOK) {
                 logger.log(Level.INFO, "Problème résolue: " + msg);
                 if (BeanClient.problemeTacheResolu(cle)) {
@@ -47,7 +50,7 @@ public class JobExistanceFichier implements Job {
                 logger.log(Level.INFO, msg);
             }
         } else {
-            msg = "le fichier <<" + nomFichier + ">> n'existe pas";
+            msg = "le fichier \"" + nomFichier + "\" n'existe pas";
             if (!alerteOK) {//si l'alerte n'a pas encore été envoyer, on le fait
                 logger.log(Level.SEVERE, msg);
                 alerteOK = BeanClient.envoiAlerteAuServeur(cle, 0);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur

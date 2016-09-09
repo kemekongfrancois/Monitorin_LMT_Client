@@ -44,15 +44,17 @@ public class JobVerificationDisk implements Job {
         boolean alerteOK = dataMap.getBoolean("alerteOK");
         JobKey cle = context.getJobDetail().getKey();
         //Tache tache = (Tache) dataMap.get("tache");
-        BeanClient beanClient = new BeanClient();
-        int pourcentage = beanClient.pourcentageOccupationDD(lettrePartition);
+        int pourcentage;
+        synchronized (this) {//section critique
+             pourcentage = BeanClient.pourcentageOccupationDD(lettrePartition);
+        }
         String msg;
         if (pourcentage > seuil) {//le sueil es atteind
 
             if (pourcentage == 200) {//cas où la lettre de partition n'es pa valide
-                msg = "la lettre de partition ne correspont a aucune partition ou elle es invalide : <<" + lettrePartition + " >>";
+                msg = "la lettre de partition ne correspont a aucune partition ou elle es invalide : \"" + lettrePartition + " \"";
             } else {
-                msg = " espace restant du disque <<" + lettrePartition + ">>" + "de la machine<<" + ipAdresse + ">> es faible ";
+                msg = " espace restant du disque \"" + lettrePartition + "\"" + "de la machine\"" + ipAdresse + "\" es faible ";
             }
 
             if (!alerteOK) {//si l'alerte n'a pas encore été envoyer, on le fait

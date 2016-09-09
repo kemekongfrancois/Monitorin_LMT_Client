@@ -38,11 +38,13 @@ public class JobVerificationService implements Job {
         boolean alerteOK = dataMap.getBoolean("alerteOK");
         JobKey cle = context.getJobDetail().getKey();
 
-        BeanClient beanClient = new BeanClient();
-        String resultat = beanClient.verifiService(nomService);
+        String resultat ;
+        synchronized (this) {//section critique
+            resultat = BeanClient.verifiService(nomService);
+        }
         String msg;
         if (resultat.equals(BeanClient.OK)) {//le service es en fonction
-            msg = "le service <<" + nomService + ">> es en cour de fonctionnement";
+            msg = "le service \"" + nomService + "\" es en cour de fonctionnement";
             if (alerteOK) {
                 logger.log(Level.INFO, "Problème résolue: " + msg);
                 if (BeanClient.problemeTacheResolu(cle)) {
@@ -57,23 +59,23 @@ public class JobVerificationService implements Job {
         //le processus n'es pas en cour de fonctionnement ou il ya un pb
         int code;
         if (resultat.equals(BeanClient.KO)) {
-            msg = "le service <<" + nomService + ">> n'es pas en cour de fonctionnement";
+            msg = "le service \"" + nomService + "\" n'es pas en cour de fonctionnement";
 
             if (redemarerAuto) {//le redemarage automatique es activé sur cette tache
-                if (beanClient.demarerService(nomService)) {//on redemarer le service
-                    logger.log(Level.INFO, "le service <<" + nomService + ">> a été redémarer");
+                if (BeanClient.demarerService(nomService)) {//on redemarer le service
+                    logger.log(Level.INFO, "le service \"" + nomService + "\" a été redémarer");
                     code = -1;
                 } else {//le service n'a pas pus être redémarer
-                    logger.log(Level.SEVERE, "le service <<" + nomService + ">> n'a pas pus être redémarer");
+                    logger.log(Level.SEVERE, "le service \"" + nomService + "\" n'a pas pus être redémarer");
                     code = 0;
                 }
             } else {//le redemarage automatique es désactivé
-                System.out.println("le redémarage automatique n'es pas activé pour le service <<" + nomService + ">");
+                System.out.println("le redémarage automatique n'es pas activé pour le service \"" + nomService + ">");
                 code = 0;
             }
 
         } else {//il ya eu un pb
-            msg = "le service <<" + nomService + ">> n'es pas valide";
+            msg = "le service \"" + nomService + "\" n'es pas valide";
             code = 1;
         }
             if (!alerteOK) {//si l'alerte n'a pas encore été envoyer, on le fait

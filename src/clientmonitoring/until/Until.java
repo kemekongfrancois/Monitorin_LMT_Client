@@ -37,8 +37,8 @@ public class Until {
     public static void initialisationGestionFichierLog(Logger logger_){
         try {
             Handler fh = new FileHandler(fichieLog,false); //Le fichier est recréé (false) ou repris tel quel (true)
-            //fh.setFormatter(new SimpleFormatter());//on defini ici que les données écrit dans le fichier seront du text
-            fh.setFormatter(new XMLFormatter());//on defini ici que les données écrit dans le fichier seront du XML
+            fh.setFormatter(new SimpleFormatter());//on defini ici que les données écrit dans le fichier seront du text
+            //fh.setFormatter(new XMLFormatter());//on defini ici que les données écrit dans le fichier seront du XML
             logger_.addHandler(fh);//on ajouter le 
             
             Handler fhErreur = new FileHandler(fichieLogErreur,false);

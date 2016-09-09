@@ -47,9 +47,8 @@ public class JobPrincipale implements Job {
 
         //on verrifie que les taches sont en cour de fonctionnement
         List<Integer> listTachePB = new ArrayList<>();
-        BeanClient beanClient = new BeanClient();
         for (Entry<JobKey, Tache> e : TACHE_EN_COUR_D_EXECUTION.entrySet()) {
-            if (!beanClient.jobExiste(e.getKey().getName(),e.getKey().getGroup())) {
+            if (!BeanClient.jobExiste(e.getKey().getName(),e.getKey().getGroup())) {
                 listTachePB.add(e.getValue().getIdTache());
                 (new BeanClient()).demarerMetAJourOUStopperTache(e.getValue());//on redémarer la taches
                 logger.log(Level.WARNING, "la tache " + e.getKey() + " n'es pas en cour de fonctionnement bien vouloir verrifier les log, elle vien d'être redémarer");

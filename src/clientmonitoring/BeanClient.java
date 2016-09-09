@@ -195,7 +195,7 @@ public class BeanClient {
 
     }
 
-    private boolean demarerLeScheduler() {
+    private static boolean demarerLeScheduler() {
         try {
             SCHEDULER = StdSchedulerFactory.getDefaultScheduler();
             SCHEDULER.start();
@@ -207,7 +207,7 @@ public class BeanClient {
         }
     }
 
-    private boolean arreterLeScheduler() {
+    private static boolean arreterLeScheduler() {
         try {
             SCHEDULER.shutdown();
             TACHE_EN_COUR_D_EXECUTION.clear();
@@ -225,7 +225,7 @@ public class BeanClient {
      * @param tache
      * @return
      */
-    private JobKey getJobKeyTache(Tache tache) {
+    private static JobKey getJobKeyTache(Tache tache) {
         String identifiant = tache.getIdTache() + "";
         String groupe = tache.getIdMachine().getIdMachine() + "";
         return JobKey.jobKey(identifiant, groupe);
@@ -235,7 +235,7 @@ public class BeanClient {
      * cette fonction es un complement à la fonction de démarage de tache elle
      * permet de démarer les taches de type verifie DD
      */
-    private JobDetail initialiseVerificationDD(Tache tache) {
+    private static JobDetail initialiseVerificationDD(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
         //ajouter les données
         //JobDataMap data = new JobDataMap();
@@ -252,7 +252,7 @@ public class BeanClient {
         return jobDetaille;
     }
 
-    private JobDetail initialiseVerificationProcessus(Tache tache) {
+    private static JobDetail initialiseVerificationProcessus(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerificationProcessus.class)
                 .withIdentity(cle)
@@ -264,7 +264,7 @@ public class BeanClient {
         return jobDetaille;
     }
 
-    private JobDetail initialiseVerificationService(Tache tache) {
+    private static JobDetail initialiseVerificationService(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerificationService.class)
                 .withIdentity(cle)
@@ -277,7 +277,7 @@ public class BeanClient {
         return jobDetaille;
     }
 
-    private JobDetail initialisePing(Tache tache) {
+    private static JobDetail initialisePing(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobPing.class)
                 .withIdentity(cle)
@@ -289,7 +289,7 @@ public class BeanClient {
         return jobDetaille;
     }
 
-    private JobDetail initialiseExistanceFichier(Tache tache) {
+    private static JobDetail initialiseExistanceFichier(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobExistanceFichier.class)
                 .withIdentity(cle)
@@ -300,7 +300,7 @@ public class BeanClient {
         return jobDetaille;
     }
 
-    private JobDetail initialiseVerrifieTailleFIchier(Tache tache) {
+    private static JobDetail initialiseVerrifieTailleFIchier(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerrifieTailleFIchier.class)
                 .withIdentity(cle)
@@ -312,7 +312,7 @@ public class BeanClient {
         return jobDetaille;
     }
 
-    private JobDetail initialiseDateModificationDernierFichier(Tache tache) {
+    private static JobDetail initialiseDateModificationDernierFichier(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobDateModificationDernierFichier.class)
                 .withIdentity(cle)
@@ -324,7 +324,7 @@ public class BeanClient {
         return jobDetaille;
     }
 
-    private JobDetail initialiseTelnet(Tache tache) {
+    private static JobDetail initialiseTelnet(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobTelnet.class)
                 .withIdentity(cle)
@@ -343,7 +343,7 @@ public class BeanClient {
      * @param tache
      * @return true si tous c'est bien passé
      */
-    public boolean demarerMetAJourOUStopperTache(Tache tache) {
+    public static boolean demarerMetAJourOUStopperTache(Tache tache) {
         try {
 
             if (tache == null) {
@@ -412,7 +412,7 @@ public class BeanClient {
 
     }
 
-    public boolean arreterJob(JobKey cle) {
+    public static boolean arreterJob(JobKey cle) {
         try {
             if (SCHEDULER.checkExists(cle)) {
                 SCHEDULER.deleteJob(cle);//suppression du job
@@ -433,7 +433,7 @@ public class BeanClient {
      *
      * @return
      */
-    public boolean redemarerTachePrincipaleEtSousTache() {
+    public static boolean redemarerTachePrincipaleEtSousTache() {
         try {
             //on redemarer le Scheduler
             arreterLeScheduler();
@@ -442,7 +442,7 @@ public class BeanClient {
             Machine machine = wsServeur.creerOuVerifiMachine(ADRESSE_MACHINE, PORT_MACHINE, OS_MACHINE, NOM_MACHINE);
 
             if (machine.getStatue().equals(STOP)) {
-                logger.log(Level.INFO, "le statue de la machine es à <<STOP>> donc aucun job n'es lancé");
+                logger.log(Level.INFO, "le statue de la machine es à \"STOP\" donc aucun job n'es lancé");
                 return true;
             }
 
@@ -478,7 +478,7 @@ public class BeanClient {
 
     }
 
-    private void demarerListeTAche(List<Tache> listTache) {
+    private static void demarerListeTAche(List<Tache> listTache) {
         for (Tache tache : listTache) {
             demarerMetAJourOUStopperTache(tache);
         }
@@ -489,7 +489,7 @@ public class BeanClient {
      * @param lettreDD
      * @return "200" dans le cas où lettre de partition ne corespond à aucune dd
      */
-    public int pourcentageOccupationDD(String lettreDD) {
+    public static int pourcentageOccupationDD(String lettreDD) {
         File cwd = new File(lettreDD);
         //File cwd = new File("l:");
         if (!cwd.exists()) {
@@ -520,7 +520,7 @@ public class BeanClient {
      * @return OK s'il es en cour de fonctionnement, KO s'il n'es pas en cour de
      * fonctionnement , PB s'il ya une exception
      */
-    public String verifiProcessusWindows(String nomProcessus) {
+    public static String verifiProcessusWindows(String nomProcessus) {
         String commande = "tasklist /fi  \"ImageName eq  " + nomProcessus + "\"";
         List<String> resultatCommande = executeCommand(commande);
         if (resultatCommande == null) {
@@ -539,7 +539,7 @@ public class BeanClient {
      * @return OK s'il es en cour de fonctionnement, KO s'il n'es pas en cour de
      * fonctionnement , PB s'il ya une exception ou si service n'existe pas
      */
-    public String verifiService(String nomService) {
+    public static String verifiService(String nomService) {
         if (OS_MACHINE.equals(OSWINDOWS)) {
             return verifiServiceWindows(nomService);
         } else {
@@ -553,7 +553,7 @@ public class BeanClient {
      * @param nomService
      * @return "OK" , "KO" et "PB"
      */
-    private String verifiServiceWindows(String nomService) {
+    private static String verifiServiceWindows(String nomService) {
         /* ce qui es en commentaire es meilleur mais n'es pas fonctionnel sous windows server 2000
         String commande = "sc query "+nomService;
         List<String> resultatCommande = executeCommandWindows(commande);
@@ -593,7 +593,7 @@ public class BeanClient {
      * @param nomService
      * @return "OK" , "KO" et "PB"
      */
-    private String verifiServiceLinux(String nomService) {
+    private static String verifiServiceLinux(String nomService) {
 
         List<String> resultatCommande = executeCommand("service " + nomService + " status");
         if (resultatCommande == null) {
@@ -617,7 +617,7 @@ public class BeanClient {
      * @param nomService
      * @return
      */
-    public boolean demarerService(String nomService) {
+    public static boolean demarerService(String nomService) {
         if (OS_MACHINE.equals(OSWINDOWS)) {
             return demarerServiceWindows(nomService);
         } else {
@@ -631,7 +631,7 @@ public class BeanClient {
      * @param nomService
      * @return
      */
-    private boolean demarerServiceWindows(String nomService) {
+    private static boolean demarerServiceWindows(String nomService) {
         String commande = "net start \"" + nomService + "\"";
         executeCommand(commande);//on relance le service
         String etatService = verifiService(nomService);
@@ -648,7 +648,7 @@ public class BeanClient {
      * @param nomService
      * @return
      */
-    private boolean demarerServiceLinux(String nomService) {
+    private static boolean demarerServiceLinux(String nomService) {
         List<String> resul = executeCommand("service " + nomService + " start");
         //System.out.println(resul.size());
         for (String ligne : resul) {
@@ -667,7 +667,7 @@ public class BeanClient {
      * @param nomFichier
      * @return
      */
-    public boolean verifiExistanceFichier(String nomFichier) {
+    public static boolean verifiExistanceFichier(String nomFichier) {
         try {
             File f = new File(nomFichier);
             if (f.exists()) {
@@ -687,7 +687,7 @@ public class BeanClient {
      * @param nomFichier
      * @return "-1" s'il ya eu un pb: le fichier n'existe pas par exemple
      */
-    public long tailleFichier(String nomFichier) {
+    public static long tailleFichier(String nomFichier) {
         try {
             File f = new File(nomFichier);
             if (f.exists()) {
@@ -709,7 +709,7 @@ public class BeanClient {
      * @param commande
      * @return null s'il ya eu un pb
      */
-    public List<String> executeCommand(String commande) {
+    public static List<String> executeCommand(String commande) {
         List<String> processes = new ArrayList<String>();
         try {
             String line;
@@ -725,12 +725,12 @@ public class BeanClient {
             for (String ligne : processes) {
                 resultatCommande += ligne + "\n";
             }
-            logger.log(Level.INFO, "le resultat de l'éxécution de la commande <<" + commande + ">> est:\n" + resultatCommande);
+            logger.log(Level.INFO, "le resultat de l'éxécution de la commande \"" + commande + "\" est:\n" + resultatCommande);
              */
-            logger.log(Level.INFO, "la commande <<" + commande + ">> c'es bien exécuté");
+            logger.log(Level.INFO, "la commande \"" + commande + "\" c'es bien exécuté");
             return processes;
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "impossible d'exécuter la command <<" + commande + ">>\n", e);
+            logger.log(Level.SEVERE, "impossible d'exécuter la command \"" + commande + "\"\n", e);
             return null;
         }
     }
@@ -742,7 +742,7 @@ public class BeanClient {
      * @param nbTentative represente le nb de fois qu'on vas faire le ping
      * @return
      */
-    public boolean pinger(String adres, int nbTentative) {
+    public static boolean pinger(String adres, int nbTentative) {
         int i = 0;
         boolean pingOK = false;
         while (i < nbTentative && !pingOK) {
@@ -803,7 +803,7 @@ public class BeanClient {
     private static boolean miseAjourStatueTacheExecution(JobKey cle, String statue) {
         Tache tache = TACHE_EN_COUR_D_EXECUTION.get(cle);
         if (tache == null) {
-            logger.log(Level.SEVERE, "la tache ayant pour cle<<"+cle+">> n'existe pas dans la liste des taches en cours d'exécution: problème trés anormal");
+            logger.log(Level.SEVERE, "la tache ayant pour cle\""+cle+"\" n'existe pas dans la liste des taches en cours d'exécution: problème trés anormal");
             return false;
         }
         tache.setStatue(statue);
@@ -840,29 +840,29 @@ public class BeanClient {
      * "," exemple: "41.204.94.29,8282"
      * @return
      */
-    public boolean telnet(String adresseEtPort) {
+    public static boolean telnet(String adresseEtPort) {
         try {
             TelnetClient telnet = new TelnetClient();
             String tab[] = adresseEtPort.split(",");
             String adresse = tab[0];
             int port = new Integer(tab[1]);
-            logger.log(Level.INFO, "Telne à l'adresse <<" + adresse + ">> et au port <<" + port + ">>");
+            logger.log(Level.INFO, "Telne à l'adresse \"" + adresse + "\" et au port \"" + port + "\"");
             telnet.connect(adresse, port);
             if (telnet.isConnected()) {
                 telnet.disconnect();
             }
             return true;
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "impossible de faire le telnet à l'adresse <<" + adresseEtPort + ">>\n", e);
+            logger.log(Level.SEVERE, "impossible de faire le telnet à l'adresse \"" + adresseEtPort + "\"\n", e);
             return false;
         }
     }
 
-    public Date dateDernierFichier(String repertoire) {
+    public static Date dateDernierFichier(String repertoire) {
         try {
             File file = new File(repertoire);
             if (!file.exists() || file.isFile()) {
-                logger.log(Level.SEVERE, "repertoire <<" + repertoire + ">> invalide");
+                logger.log(Level.SEVERE, "repertoire \"" + repertoire + "\" invalide");
                 return null;
             }
             File[] listFichier = file.listFiles();
@@ -879,7 +879,7 @@ public class BeanClient {
                 System.out.println("le plus rescent des fichiers est: " + lePlusRescent.getName());
                 return new Date(lePlusRescent.lastModified());
             } else {
-                logger.log(Level.SEVERE, "repertoire <<" + repertoire + ">> es vide");
+                logger.log(Level.SEVERE, "repertoire \"" + repertoire + "\" es vide");
                 return null;
             }
         } catch (Exception e) {
@@ -894,7 +894,7 @@ public class BeanClient {
      *
      * @return true si le job existe sur la machine
      */
-    public boolean jobExiste(String name, String group) {
+    public static boolean jobExiste(String name, String group) {
         try {
             return SCHEDULER.checkExists(new JobKey(name, group));
         } catch (SchedulerException ex) {

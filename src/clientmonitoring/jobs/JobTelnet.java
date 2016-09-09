@@ -34,9 +34,12 @@ public class JobTelnet implements Job {
         boolean alerteOK = dataMap.getBoolean("alerteOK");
         JobKey cle = context.getJobDetail().getKey();
         String msg;
-        BeanClient beanClient = new BeanClient();
-        if (beanClient.telnet(adresseAEtPort)) {
-            msg = "le telnet vers <<" + adresseAEtPort + ">> es OK";
+        boolean telnetOK;
+        synchronized (this) {//section critique
+             telnetOK = BeanClient.telnet(adresseAEtPort);
+        }
+        if (telnetOK) {
+            msg = "le telnet vers \"" + adresseAEtPort + "\" es OK";
             if (alerteOK) {
                 logger.log(Level.INFO, "Problème résolue: " + msg);
                 if (BeanClient.problemeTacheResolu(cle)) {
@@ -47,7 +50,7 @@ public class JobTelnet implements Job {
                 logger.log(Level.INFO, msg);
             }
         } else {
-            msg = "impossible de contacter :<<" + adresseAEtPort + ">>";
+            msg = "impossible de contacter :\"" + adresseAEtPort + "\"";
             if (!alerteOK) {//si l'alerte n'a pas encore été envoyer, on le fait
                 logger.log(Level.SEVERE, msg);
                 alerteOK = BeanClient.envoiAlerteAuServeur(cle, 0);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur

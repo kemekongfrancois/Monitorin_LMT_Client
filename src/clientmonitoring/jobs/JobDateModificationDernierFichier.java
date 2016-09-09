@@ -37,8 +37,10 @@ public class JobDateModificationDernierFichier implements Job {
         boolean alerteOK = dataMap.getBoolean("alerteOK");
         JobKey cle = context.getJobDetail().getKey();
 
-        BeanClient beanClient = new BeanClient();
-        Date dateModifDernierFichier = beanClient.dateDernierFichier(nomRepertoire);
+        Date dateModifDernierFichier;
+        synchronized (this) {//section critique
+            dateModifDernierFichier = BeanClient.dateDernierFichier(nomRepertoire);
+        }
         String msg;
         if (dateModifDernierFichier != null) {
             Calendar c = Calendar.getInstance();
@@ -47,7 +49,7 @@ public class JobDateModificationDernierFichier implements Job {
             Date dateModifDernierFichierEtseuil = c.getTime();
 
             if (dateModifDernierFichierEtseuil.after(new Date())) {//on comparer la date de dernier modification + le seuil à la date courante
-                msg = "la date de derniere modification (" + dateModifDernierFichier + ") es OK pour le repertoire <<" + nomRepertoire + ">> ";
+                msg = "la date de derniere modification (" + dateModifDernierFichier + ") es OK pour le repertoire \"" + nomRepertoire + "\" ";
                 if (alerteOK) {
                     logger.log(Level.INFO, "Problème résolue: " + msg);
                     if (BeanClient.problemeTacheResolu(cle)) {
@@ -60,7 +62,7 @@ public class JobDateModificationDernierFichier implements Job {
                 return;
             }
             //la date courante es supérieure à la date de dernière modification + le seuil
-            msg = "la date de derniere modification (" + dateModifDernierFichier + ") es antérieur à la date autorisé pour le repertoire <<" + nomRepertoire + ">> ";
+            msg = "la date de derniere modification (" + dateModifDernierFichier + ") es antérieur à la date autorisé pour le repertoire \"" + nomRepertoire + "\" ";
 
         } else {
             msg = null;

@@ -36,9 +36,12 @@ public class JobPing implements Job {
         boolean alerteOK = dataMap.getBoolean("alerteOK");
         JobKey cle = context.getJobDetail().getKey();
         String msg;
-        BeanClient beanClient = new BeanClient();
-        if (beanClient.pinger(adresseAPinger, nbTentative)) {
-            msg = "le ping vers <<" + adresseAPinger + ">> es OK";
+        boolean pingOK;
+        synchronized (this) {//section critique
+            pingOK = BeanClient.pinger(adresseAPinger, nbTentative);
+        }
+        if (pingOK) {
+            msg = "le ping vers \"" + adresseAPinger + "\" es OK";
             if (alerteOK) {
                 logger.log(Level.INFO, "Problème résolue: " + msg);
                 if (BeanClient.problemeTacheResolu(cle)) {
@@ -49,7 +52,7 @@ public class JobPing implements Job {
                 logger.log(Level.INFO, msg);
             }
         } else {
-            msg = "impossible de contacter :<<" + adresseAPinger + ">>";
+            msg = "impossible de contacter :\"" + adresseAPinger + "\"";
             if (!alerteOK) {//si l'alerte n'a pas encore été envoyer, on le fait
                 logger.log(Level.SEVERE, msg);
                 alerteOK = BeanClient.envoiAlerteAuServeur(cle, 0);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur
