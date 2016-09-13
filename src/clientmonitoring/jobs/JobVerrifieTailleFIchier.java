@@ -36,9 +36,9 @@ public class JobVerrifieTailleFIchier implements Job {
         JobKey cle = context.getJobDetail().getKey();
         String msg = null;
         long taille;
-        synchronized (this) {//section critique
+        //synchronized (this) {//section critique
             taille = BeanClient.tailleFichier(nomFichier);
-        }
+        //}
         int code = 20;
         if (taille != -1) {
             taille = taille / (1024 * 1024);//on mais la taille en Mo

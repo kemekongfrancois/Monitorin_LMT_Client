@@ -39,9 +39,9 @@ public class JobVerificationService implements Job {
         JobKey cle = context.getJobDetail().getKey();
 
         String resultat ;
-        synchronized (this) {//section critique
+        //synchronized (this) {//section critique
             resultat = BeanClient.verifiService(nomService);
-        }
+        //}
         String msg;
         if (resultat.equals(BeanClient.OK)) {//le service es en fonction
             msg = "le service \"" + nomService + "\" es en cour de fonctionnement";

@@ -54,6 +54,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.ws.Endpoint;
@@ -258,6 +259,7 @@ public class BeanClient {
                 .withIdentity(cle)
                 .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nomProcessus", tache.getNom())
+                .usingJobData("attente", tache.getSeuilAlerte())
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
                 .build();
 
@@ -517,20 +519,38 @@ public class BeanClient {
      * sur les machine windows
      *
      * @param nomProcessus exemple: "vlc.exe"
+     * @param nbTentative nbr de tentative
      * @return OK s'il es en cour de fonctionnement, KO s'il n'es pas en cour de
      * fonctionnement , PB s'il ya une exception
      */
-    public static String verifiProcessusWindows(String nomProcessus) {
-        String commande = "tasklist /fi  \"ImageName eq  " + nomProcessus + "\"";
-        List<String> resultatCommande = executeCommand(commande);
-        if (resultatCommande == null) {
-            return PB;
-        }
-        if (resultatCommande.size() > 1) {//le processus es en cour d'éxécution
-            return OK;
-        } else {
-            return KO;
-        }
+    public static String verifiProcessusWindows(String nomProcessus, int nbTentative) {
+        int nb,i=0;
+        Random random = new Random();
+        //attente = attente -1;
+        //for (int i = 0; i < attente; i++) 
+        do{
+            String commande = "tasklist /fi  \"ImageName eq  " + nomProcessus + "\"";
+            List<String> resultatCommande = executeCommand(commande);
+            if (resultatCommande == null) {
+                return PB;
+            }
+            if (resultatCommande.size() > 1) {//le processus es en cour d'éxécution
+                return OK;
+            }
+            try {//on met le tread en attente
+                nb = random.nextInt(nbTentative+1);//on génère un nombre aléatoire compris entre 0 et "attente" on fait le "+1" pour que la borne soit inclu dans la valeur générer
+                //System.out.println("le nombre générer es: "+nb);
+                Thread.sleep((nb)*1000);//on attend en seconde
+            } catch (InterruptedException ex) {
+                logger.log(Level.SEVERE, "problème avec l'attente", ex);
+                return PB;
+            }
+            i++;
+        }while (i < nbTentative);           
+            
+        
+        return KO;
+
     }
 
     /**
@@ -803,7 +823,7 @@ public class BeanClient {
     private static boolean miseAjourStatueTacheExecution(JobKey cle, String statue) {
         Tache tache = TACHE_EN_COUR_D_EXECUTION.get(cle);
         if (tache == null) {
-            logger.log(Level.SEVERE, "la tache ayant pour cle\""+cle+"\" n'existe pas dans la liste des taches en cours d'exécution: problème trés anormal");
+            logger.log(Level.SEVERE, "la tache ayant pour cle\"" + cle + "\" n'existe pas dans la liste des taches en cours d'exécution: problème trés anormal");
             return false;
         }
         tache.setStatue(statue);

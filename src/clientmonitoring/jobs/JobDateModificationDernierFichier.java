@@ -38,9 +38,9 @@ public class JobDateModificationDernierFichier implements Job {
         JobKey cle = context.getJobDetail().getKey();
 
         Date dateModifDernierFichier;
-        synchronized (this) {//section critique
+        //synchronized (this) {//section critique
             dateModifDernierFichier = BeanClient.dateDernierFichier(nomRepertoire);
-        }
+        //}
         String msg;
         if (dateModifDernierFichier != null) {
             Calendar c = Calendar.getInstance();

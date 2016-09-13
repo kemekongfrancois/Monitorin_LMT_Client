@@ -32,14 +32,15 @@ public class JobVerificationProcessus implements Job {
         System.out.println("------verification processus: ");
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
         String nomProcessus = dataMap.getString("nomProcessus");
+        int nbTentative = dataMap.getInt("attente");
         //String ipAdresse = dataMap.getString("ipAdresse");
         boolean alerteOK = dataMap.getBoolean("alerteOK");
         JobKey cle = context.getJobDetail().getKey();
 
         String resultat ;
-        synchronized (this) {//section critique
-            resultat = BeanClient.verifiProcessusWindows(nomProcessus);
-        }
+        //synchronized (this) {//section critique
+            resultat = BeanClient.verifiProcessusWindows(nomProcessus,nbTentative);
+        //}
         String msg;
         if (resultat.equals(BeanClient.OK)) {//le processus es en fonction
             msg = "le processus \"" + nomProcessus + "\" es en cour de fonctionnement";

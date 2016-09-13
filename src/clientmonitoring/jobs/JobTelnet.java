@@ -35,9 +35,9 @@ public class JobTelnet implements Job {
         JobKey cle = context.getJobDetail().getKey();
         String msg;
         boolean telnetOK;
-        synchronized (this) {//section critique
+        //synchronized (this) {//section critique
              telnetOK = BeanClient.telnet(adresseAEtPort);
-        }
+        //}
         if (telnetOK) {
             msg = "le telnet vers \"" + adresseAEtPort + "\" es OK";
             if (alerteOK) {

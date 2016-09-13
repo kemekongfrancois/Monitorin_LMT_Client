@@ -37,9 +37,9 @@ public class JobPing implements Job {
         JobKey cle = context.getJobDetail().getKey();
         String msg;
         boolean pingOK;
-        synchronized (this) {//section critique
+        //synchronized (this) {//section critique
             pingOK = BeanClient.pinger(adresseAPinger, nbTentative);
-        }
+        //}
         if (pingOK) {
             msg = "le ping vers \"" + adresseAPinger + "\" es OK";
             if (alerteOK) {

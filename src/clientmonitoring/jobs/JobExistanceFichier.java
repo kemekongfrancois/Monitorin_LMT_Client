@@ -35,9 +35,9 @@ public class JobExistanceFichier implements Job {
         JobKey cle = context.getJobDetail().getKey();
         String msg;
         boolean fichierExiste;
-        synchronized (this) {//section critique
+        //synchronized (this) {//section critique
             fichierExiste = BeanClient.verifiExistanceFichier(nomFichier);
-        }
+        //}
         if (fichierExiste) {
             msg = "le fichier \"" + nomFichier + "\" es OK";
             if (alerteOK) {

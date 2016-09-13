@@ -29,7 +29,7 @@ public class WSClientMonitoring {
     public String hello(@WebParam(name = "name") String txt) {
         //logger.log(Level.SEVERE, "le message de test");
         //arreterLeScheduler();
-        return "Hello je suis le WSClient " + txt + " ! version= 1.02 IP="+BeanClient.ADRESSE_MACHINE+" Port:"+BeanClient.PORT_MACHINE+" Nom:"+BeanClient.NOM_MACHINE+" OS:"+BeanClient.OS_MACHINE;
+        return "Hello je suis le WSClient " + txt + " ! version= 1.03 IP="+BeanClient.ADRESSE_MACHINE+" Port:"+BeanClient.PORT_MACHINE+" Nom:"+BeanClient.NOM_MACHINE+" OS:"+BeanClient.OS_MACHINE;
     }
 
     
@@ -44,7 +44,7 @@ public class WSClientMonitoring {
     
     @WebMethod
     public String processusWindowsEnFonctionnement(@WebParam(name = "nomProcessus")String nomProcessus) {
-        return BeanClient.verifiProcessusWindows(nomProcessus);
+        return BeanClient.verifiProcessusWindows(nomProcessus,0);
     }
     
     @WebMethod

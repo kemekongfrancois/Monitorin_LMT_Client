@@ -45,9 +45,9 @@ public class JobVerificationDisk implements Job {
         JobKey cle = context.getJobDetail().getKey();
         //Tache tache = (Tache) dataMap.get("tache");
         int pourcentage;
-        synchronized (this) {//section critique
+        //synchronized (this) {//section critique
              pourcentage = BeanClient.pourcentageOccupationDD(lettrePartition);
-        }
+        //}
         String msg;
         if (pourcentage > seuil) {//le sueil es atteind
 
