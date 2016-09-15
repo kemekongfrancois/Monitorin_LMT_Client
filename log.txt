@@ -1,34 +1,34 @@
-sept. 13, 2016 4:08:11 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
+sept. 15, 2016 1:01:53 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
 INFOS: Web Service démarer: http://192.168.100.182:9039/
-sept. 13, 2016 4:08:12 PM clientmonitoring.BeanClient demarerLeScheduler
+sept. 15, 2016 1:01:53 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-sept. 13, 2016 4:08:12 PM clientmonitoring.BeanClient arreterLeScheduler
+sept. 15, 2016 1:01:53 PM clientmonitoring.BeanClient arreterLeScheduler
 INFOS: SCHEDULER Arreté 
-sept. 13, 2016 4:08:12 PM clientmonitoring.BeanClient demarerLeScheduler
+sept. 15, 2016 1:01:53 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-sept. 13, 2016 4:08:12 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.2
-sept. 13, 2016 4:08:12 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.82
-sept. 13, 2016 4:08:12 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: nombre de tache démaré: 2
-sept. 13, 2016 4:08:12 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+sept. 15, 2016 1:01:53 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.10
+sept. 15, 2016 1:01:53 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: nombre de tache démaré: 1
+sept. 15, 2016 1:01:53 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
 INFOS: la tache principale à bien été lancé. cle=192.168.100.182.1
-sept. 13, 2016 4:08:40 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "tasklist /fi  "ImageName eq  vlc2.exe"" c'es bien exécuté
-sept. 13, 2016 4:08:40 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
-sept. 13, 2016 4:08:40 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "tasklist /fi  "ImageName eq  vlc2.exe"" c'es bien exécuté
-sept. 13, 2016 4:08:41 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
-sept. 13, 2016 4:08:41 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
-sept. 13, 2016 4:08:41 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "tasklist /fi  "ImageName eq  vlc2.exe"" c'es bien exécuté
-sept. 13, 2016 4:08:41 PM clientmonitoring.jobs.JobVerificationProcessus execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc2.exe" n'es pas en cour de fonctionnement
-sept. 13, 2016 4:08:46 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
-sept. 13, 2016 4:08:46 PM clientmonitoring.jobs.JobVerificationProcessus execute
-AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc.exe" n'es pas en cour de fonctionnement
+sept. 15, 2016 1:02:00 PM clientmonitoring.jobs.JobPrincipale execute
+INFOS: la tache 1.10 es de nouveau éxcuter pour verrifie si la sitution es de nouveau normal
+sept. 15, 2016 1:02:00 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+sept. 15, 2016 1:02:00 PM clientmonitoring.jobs.JobDateModificationDernierFichier execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: la date de derniere modification (Wed Sep 14 12:36:52 WAT 2016) es antérieur à la date autorisé pour le repertoire "C:/testMonitoring/test date modification" 
+sept. 15, 2016 1:03:00 PM clientmonitoring.jobs.JobPrincipale execute
+INFOS: la tache 1.10 es de nouveau éxcuter pour verrifie si la sitution es de nouveau normal
+sept. 15, 2016 1:03:00 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+sept. 15, 2016 1:03:00 PM clientmonitoring.jobs.JobDateModificationDernierFichier execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: la date de derniere modification (Wed Sep 14 12:36:52 WAT 2016) es antérieur à la date autorisé pour le repertoire "C:/testMonitoring/test date modification" 
+sept. 15, 2016 1:04:00 PM clientmonitoring.jobs.JobPrincipale execute
+INFOS: la tache 1.10 es de nouveau éxcuter pour verrifie si la sitution es de nouveau normal
+sept. 15, 2016 1:04:00 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+sept. 15, 2016 1:04:00 PM clientmonitoring.jobs.JobDateModificationDernierFichier execute
+INFOS: Problème résolue: la date de derniere modification (Thu Sep 15 13:03:27 WAT 2016) es OK pour le repertoire "C:/testMonitoring/test date modification" 
+sept. 15, 2016 1:05:00 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté

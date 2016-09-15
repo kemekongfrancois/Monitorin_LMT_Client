@@ -524,11 +524,11 @@ public class BeanClient {
      * fonctionnement , PB s'il ya une exception
      */
     public static String verifiProcessusWindows(String nomProcessus, int nbTentative) {
-        int nb,i=0;
+        int nb, i = 0;
         Random random = new Random();
         //attente = attente -1;
         //for (int i = 0; i < attente; i++) 
-        do{
+        do {
             String commande = "tasklist /fi  \"ImageName eq  " + nomProcessus + "\"";
             List<String> resultatCommande = executeCommand(commande);
             if (resultatCommande == null) {
@@ -538,17 +538,16 @@ public class BeanClient {
                 return OK;
             }
             try {//on met le tread en attente
-                nb = random.nextInt(nbTentative+1);//on génère un nombre aléatoire compris entre 0 et "attente" on fait le "+1" pour que la borne soit inclu dans la valeur générer
+                nb = random.nextInt(nbTentative + 1);//on génère un nombre aléatoire compris entre 0 et "attente" on fait le "+1" pour que la borne soit inclu dans la valeur générer
                 //System.out.println("le nombre générer es: "+nb);
-                Thread.sleep((nb)*1000);//on attend en seconde
+                Thread.sleep((nb) * 1000);//on attend en seconde
             } catch (InterruptedException ex) {
                 logger.log(Level.SEVERE, "problème avec l'attente", ex);
                 return PB;
             }
             i++;
-        }while (i < nbTentative);           
-            
-        
+        } while (i < nbTentative);
+
         return KO;
 
     }
@@ -791,6 +790,30 @@ public class BeanClient {
     }
 
     /**
+     * cette fonction permet d'éxécuter un job donc la clé est pris en
+     * paramettre. elle permet d'éxécuter le jobs sans tenir compte de l'heure à
+     * la quelle elle devais s'èxcuter
+     *
+     * @param key
+     * @return
+     */
+    public static boolean executeJob(JobKey key) {
+        try {
+            JobDetail jobDetail = SCHEDULER.getJobDetail(key);
+            Trigger trigger = newTrigger()
+                    .forJob(jobDetail)
+                    .startNow()
+                    .build();
+            SCHEDULER.scheduleJob(trigger);
+            return true;
+        } catch (SchedulerException ex) {
+            logger.log(Level.SEVERE, "impossible d'éxécuter le job "+key, ex);
+            return false;
+        }
+
+    }
+
+    /**
      * cette fonction permet d'envoyer une alerte au serveur
      *
      * @param cle
@@ -799,11 +822,11 @@ public class BeanClient {
      */
     public static boolean envoiAlerteAuServeur(JobKey cle, int code) {
         try {
-            miseAjourStatueTacheExecution(cle, ALERTE);
             if (!wsServeur.traitementAlerteTache(new Integer(cle.getName()), code)) {
                 logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
                 return false;
             } else {//le serveur à bien traité le pb
+                miseAjourStatueTacheExecution(cle, ALERTE);
                 return true;
             }
         } catch (Exception e) {
@@ -840,11 +863,11 @@ public class BeanClient {
      */
     public static boolean problemeTacheResolu(JobKey cle) {
         try {
-            miseAjourStatueTacheExecution(cle, START);
             if (!wsServeur.problemeTacheResolu(new Integer(cle.getName()))) {
                 logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
                 return false;
             } else {//le serveur à bien traité le pb
+                miseAjourStatueTacheExecution(cle, START);
                 return true;
             }
         } catch (Exception e) {
