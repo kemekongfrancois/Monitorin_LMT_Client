@@ -43,6 +43,7 @@ public class JobPrincipale implements Job {
         System.out.println("------Job Principale************************* ");
         JobKey key = context.getJobDetail().getKey();
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
+        int tempAttente = 10;//represente le nombre de seconde qu'il faut attendre après l'éxécution d'un job qui à eu un pb
 
         //on verrifie que les taches sont en cour de fonctionnement
         List<Integer> listTachePB = new ArrayList<>();
@@ -59,6 +60,11 @@ public class JobPrincipale implements Job {
             if (tache.getStatue().equals(BeanClient.ALERTE)) {//On demande la réxécution du Job dans cas où il y avait un pb ainsi si le pb es resolue on vas le signallé
                 logger.log(Level.INFO, "la tache " + jobKeyTache + " es de nouveau éxcuter pour verrifie si la sitution es de nouveau normal");
                 BeanClient.executeJob(jobKeyTache);
+                try {
+                    Thread.sleep(tempAttente*1000);//on fait patiente la tache principale le temps que le job puisse s'écuter
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(JobPrincipale.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 System.out.println(jobKeyTache + ": est bien en cour de fonctionnement");
 
