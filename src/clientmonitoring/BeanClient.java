@@ -42,6 +42,7 @@ import clientmonitoring.jobs.JobVerrifieTailleFIchier;
 import clientmonitoring.until.Until;
 import static clientmonitoring.until.Until.verrifieAdresseMachine;
 import clientmonitoring.ws.WSClientMonitoring;
+import clientmonitoring.ws.WsDesFonctionsDisponible;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
@@ -66,6 +67,22 @@ import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import static org.quartz.TriggerBuilder.newTrigger;
 import org.quartz.impl.StdSchedulerFactory;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
@@ -108,8 +125,11 @@ public class BeanClient {
 
     public static final int NB_LIGNE_FICHIER_CONF = 4;
     public static final String ficfierConfig = "parametre.txt";
+    public static final int PORT_DE_TEST_DES_FONCTIONS = 9139;
+    public static final String TYPE_COMPTE_INCONUE = "Ce type de compte n'es pas connue";
 
     public static WsMonitoring wsServeur;
+
     private String ADRESSE_SERVEUR = "";
     private String PORT_SERVEUR;
     public static String ADRESSE_MACHINE = "";
@@ -125,10 +145,10 @@ public class BeanClient {
     static Logger logger = clientmonitoring.ClientMonitoring.LOGGER;
 
     public boolean demarerWSClientEtScheduler() {
-
         String URL = null;
+
+        //------création du ws client et démarage du scheduler------
         try {
-//String URL = "http://"+ADRESSE_MACHINE+":8080/";
             URL = "http://" + ADRESSE_MACHINE + ":" + PORT_MACHINE + "/";
             Endpoint.publish(URL, new WSClientMonitoring());
             logger.log(Level.INFO, "Web Service démarer: " + URL);
@@ -138,11 +158,21 @@ public class BeanClient {
                 return false;
             }
 
-            return true;
         } catch (Exception e) {
             logger.log(Level.SEVERE, "impossible de demarer le web service client à l'adresse " + URL + "\n", e);
             return false;
         }
+
+        //----cette partie permet de crée les ws de test
+        try {
+            URL = "http://" + ADRESSE_MACHINE + ":" + PORT_DE_TEST_DES_FONCTIONS + "/";
+            Endpoint.publish(URL, new WsDesFonctionsDisponible());
+            logger.log(Level.INFO, "les web service de test sont disponible :" + URL);
+        } catch (Exception e) {
+            logger.log(Level.WARNING, "les web service de test n'ont pas pus etre créés");
+        }
+        return true;
+
     }
 
     /**
@@ -333,6 +363,7 @@ public class BeanClient {
                 .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
                 .usingJobData("adresseAEtPort", tache.getNom())
+                .usingJobData("nbDeTentative", tache.getSeuilAlerte())
                 .build();
 
         return jobDetaille;
@@ -800,14 +831,18 @@ public class BeanClient {
     public static boolean executeJob(JobKey key) {
         try {
             JobDetail jobDetail = SCHEDULER.getJobDetail(key);
+            if (jobDetail == null) {
+                logger.log(Level.WARNING, "cette tâche n'es pas en cour de fonctionnement " + key);
+                return false;
+            }
             Trigger trigger = newTrigger()
                     .forJob(jobDetail)
                     .startNow()
                     .build();
             SCHEDULER.scheduleJob(trigger);
             return true;
-        } catch (SchedulerException ex) {
-            logger.log(Level.SEVERE, "impossible d'éxécuter le job "+key, ex);
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "impossible d'éxécuter le job " + key, ex);
             return false;
         }
 
@@ -881,24 +916,33 @@ public class BeanClient {
      *
      * @param adresseEtPort contiend l'adresse et le port séparé par une virgule
      * "," exemple: "41.204.94.29,8282"
+     * @param nbDeTentative
      * @return
      */
-    public static boolean telnet(String adresseEtPort) {
-        try {
-            TelnetClient telnet = new TelnetClient();
-            String tab[] = adresseEtPort.split(",");
-            String adresse = tab[0];
-            int port = new Integer(tab[1]);
-            logger.log(Level.INFO, "Telne à l'adresse \"" + adresse + "\" et au port \"" + port + "\"");
-            telnet.connect(adresse, port);
-            if (telnet.isConnected()) {
-                telnet.disconnect();
+    public static boolean telnet(String adresseEtPort, int nbDeTentative) {
+
+        TelnetClient telnet = new TelnetClient();
+        String tab[] = adresseEtPort.split(",");
+        String adresse = tab[0];
+        int port = new Integer(tab[1]);
+        logger.log(Level.INFO, "Telne à l'adresse \"" + adresse + "\" et au port \"" + port + "\"");
+        int i = 0;
+        do {
+            try {
+                telnet.connect(adresse, port);
+                if (telnet.isConnected()) {
+                    telnet.disconnect();
+                }
+                return true;
+            } catch (Exception e) {
+                logger.log(Level.WARNING, "tentative du telnet(" + adresseEtPort + ") numero:" + i);
             }
-            return true;
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, "impossible de faire le telnet à l'adresse \"" + adresseEtPort + "\"\n", e);
-            return false;
-        }
+            i++;
+        } while (i < nbDeTentative);
+
+        logger.log(Level.SEVERE, "impossible de faire le telnet à l'adresse \"" + adresseEtPort + "\"\n");
+        return false;
+
     }
 
     public static Date dateDernierFichier(String repertoire) {
@@ -943,6 +987,30 @@ public class BeanClient {
         } catch (SchedulerException ex) {
             logger.log(Level.SEVERE, null, ex);
             return false;
+        }
+    }
+
+    /**
+     * cette fonction donne la possibilité de tester une tache
+     *
+     * @param tache
+     * @return
+     */
+    public static String testTache(Tache tache) {
+        String typeCompte = tache.getTypeTache();
+        switch (typeCompte) {
+            case TACHE_DD:
+                int pourcentage = pourcentageOccupationDD(tache.getNom());
+                if(pourcentage>100){
+                    return PB;
+                }else{
+                    return pourcentage+"";
+                }
+            default:
+                String erreur = "le type de compte \"" + typeCompte + "\" n'es pas connue sur cet agent";
+                logger.log(Level.SEVERE, erreur);
+                return TYPE_COMPTE_INCONUE;
+
         }
     }
 

@@ -4,11 +4,47 @@
 <xsd:import namespace="http://ws/" schemaLocation="http://localhost:8080/projetMonitoring-war/WsMonitoring?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="getMachine">
+<part name="parameters" element="tns:getMachine"/>
+</message>
+<message name="getMachineResponse">
+<part name="parameters" element="tns:getMachineResponse"/>
+</message>
+<message name="testConnectionMachine">
+<part name="parameters" element="tns:testConnectionMachine"/>
+</message>
+<message name="testConnectionMachineResponse">
+<part name="parameters" element="tns:testConnectionMachineResponse"/>
+</message>
+<message name="creerOuVerifiMachine">
+<part name="parameters" element="tns:creerOuVerifiMachine"/>
+</message>
+<message name="creerOuVerifiMachineResponse">
+<part name="parameters" element="tns:creerOuVerifiMachineResponse"/>
+</message>
+<message name="problemeTacheResolu">
+<part name="parameters" element="tns:problemeTacheResolu"/>
+</message>
+<message name="problemeTacheResoluResponse">
+<part name="parameters" element="tns:problemeTacheResoluResponse"/>
+</message>
 <message name="getListTacheMachine">
 <part name="parameters" element="tns:getListTacheMachine"/>
 </message>
 <message name="getListTacheMachineResponse">
 <part name="parameters" element="tns:getListTacheMachineResponse"/>
+</message>
+<message name="verifiNomTacheSurMachine">
+<part name="parameters" element="tns:verifiNomTacheSurMachine"/>
+</message>
+<message name="verifiNomTacheSurMachineResponse">
+<part name="parameters" element="tns:verifiNomTacheSurMachineResponse"/>
+</message>
+<message name="traitementAlerteTache">
+<part name="parameters" element="tns:traitementAlerteTache"/>
+</message>
+<message name="traitementAlerteTacheResponse">
+<part name="parameters" element="tns:traitementAlerteTacheResponse"/>
 </message>
 <message name="traitementAlerteMachine">
 <part name="parameters" element="tns:traitementAlerteMachine"/>
@@ -28,40 +64,34 @@
 <message name="helloResponse">
 <part name="parameters" element="tns:helloResponse"/>
 </message>
-<message name="problemeTacheResolu">
-<part name="parameters" element="tns:problemeTacheResolu"/>
-</message>
-<message name="problemeTacheResoluResponse">
-<part name="parameters" element="tns:problemeTacheResoluResponse"/>
-</message>
-<message name="traitementAlerteTache">
-<part name="parameters" element="tns:traitementAlerteTache"/>
-</message>
-<message name="traitementAlerteTacheResponse">
-<part name="parameters" element="tns:traitementAlerteTacheResponse"/>
-</message>
-<message name="creerOuVerifiMachine">
-<part name="parameters" element="tns:creerOuVerifiMachine"/>
-</message>
-<message name="creerOuVerifiMachineResponse">
-<part name="parameters" element="tns:creerOuVerifiMachineResponse"/>
-</message>
-<message name="verifiNomTacheSurMachine">
-<part name="parameters" element="tns:verifiNomTacheSurMachine"/>
-</message>
-<message name="verifiNomTacheSurMachineResponse">
-<part name="parameters" element="tns:verifiNomTacheSurMachineResponse"/>
-</message>
-<message name="getMachine">
-<part name="parameters" element="tns:getMachine"/>
-</message>
-<message name="getMachineResponse">
-<part name="parameters" element="tns:getMachineResponse"/>
-</message>
 <portType name="WsMonitoring">
+<operation name="getMachine">
+<input wsam:Action="http://ws/WsMonitoring/getMachineRequest" message="tns:getMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/getMachineResponse" message="tns:getMachineResponse"/>
+</operation>
+<operation name="testConnectionMachine">
+<input wsam:Action="http://ws/WsMonitoring/testConnectionMachineRequest" message="tns:testConnectionMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/testConnectionMachineResponse" message="tns:testConnectionMachineResponse"/>
+</operation>
+<operation name="creerOuVerifiMachine">
+<input wsam:Action="http://ws/WsMonitoring/creerOuVerifiMachineRequest" message="tns:creerOuVerifiMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/creerOuVerifiMachineResponse" message="tns:creerOuVerifiMachineResponse"/>
+</operation>
+<operation name="problemeTacheResolu">
+<input wsam:Action="http://ws/WsMonitoring/problemeTacheResoluRequest" message="tns:problemeTacheResolu"/>
+<output wsam:Action="http://ws/WsMonitoring/problemeTacheResoluResponse" message="tns:problemeTacheResoluResponse"/>
+</operation>
 <operation name="getListTacheMachine">
 <input wsam:Action="http://ws/WsMonitoring/getListTacheMachineRequest" message="tns:getListTacheMachine"/>
 <output wsam:Action="http://ws/WsMonitoring/getListTacheMachineResponse" message="tns:getListTacheMachineResponse"/>
+</operation>
+<operation name="verifiNomTacheSurMachine">
+<input wsam:Action="http://ws/WsMonitoring/verifiNomTacheSurMachineRequest" message="tns:verifiNomTacheSurMachine"/>
+<output wsam:Action="http://ws/WsMonitoring/verifiNomTacheSurMachineResponse" message="tns:verifiNomTacheSurMachineResponse"/>
+</operation>
+<operation name="traitementAlerteTache">
+<input wsam:Action="http://ws/WsMonitoring/traitementAlerteTacheRequest" message="tns:traitementAlerteTache"/>
+<output wsam:Action="http://ws/WsMonitoring/traitementAlerteTacheResponse" message="tns:traitementAlerteTacheResponse"/>
 </operation>
 <operation name="traitementAlerteMachine">
 <input wsam:Action="http://ws/WsMonitoring/traitementAlerteMachineRequest" message="tns:traitementAlerteMachine"/>
@@ -75,30 +105,64 @@
 <input wsam:Action="http://ws/WsMonitoring/helloRequest" message="tns:hello"/>
 <output wsam:Action="http://ws/WsMonitoring/helloResponse" message="tns:helloResponse"/>
 </operation>
-<operation name="problemeTacheResolu">
-<input wsam:Action="http://ws/WsMonitoring/problemeTacheResoluRequest" message="tns:problemeTacheResolu"/>
-<output wsam:Action="http://ws/WsMonitoring/problemeTacheResoluResponse" message="tns:problemeTacheResoluResponse"/>
-</operation>
-<operation name="traitementAlerteTache">
-<input wsam:Action="http://ws/WsMonitoring/traitementAlerteTacheRequest" message="tns:traitementAlerteTache"/>
-<output wsam:Action="http://ws/WsMonitoring/traitementAlerteTacheResponse" message="tns:traitementAlerteTacheResponse"/>
-</operation>
-<operation name="creerOuVerifiMachine">
-<input wsam:Action="http://ws/WsMonitoring/creerOuVerifiMachineRequest" message="tns:creerOuVerifiMachine"/>
-<output wsam:Action="http://ws/WsMonitoring/creerOuVerifiMachineResponse" message="tns:creerOuVerifiMachineResponse"/>
-</operation>
-<operation name="verifiNomTacheSurMachine">
-<input wsam:Action="http://ws/WsMonitoring/verifiNomTacheSurMachineRequest" message="tns:verifiNomTacheSurMachine"/>
-<output wsam:Action="http://ws/WsMonitoring/verifiNomTacheSurMachineResponse" message="tns:verifiNomTacheSurMachineResponse"/>
-</operation>
-<operation name="getMachine">
-<input wsam:Action="http://ws/WsMonitoring/getMachineRequest" message="tns:getMachine"/>
-<output wsam:Action="http://ws/WsMonitoring/getMachineResponse" message="tns:getMachineResponse"/>
-</operation>
 </portType>
 <binding name="WsMonitoringPortBinding" type="tns:WsMonitoring">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="getMachine">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="testConnectionMachine">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="creerOuVerifiMachine">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="problemeTacheResolu">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="getListTacheMachine">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="verifiNomTacheSurMachine">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="traitementAlerteTache">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -126,51 +190,6 @@
 </output>
 </operation>
 <operation name="hello">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="problemeTacheResolu">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="traitementAlerteTache">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="creerOuVerifiMachine">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="verifiNomTacheSurMachine">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getMachine">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

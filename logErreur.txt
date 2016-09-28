@@ -1,39 +1,6 @@
-sept. 27, 2016 9:49:44 AM clientmonitoring.jobs.JobVerificationProcessus execute
-GRAVE: le processus "vlc.exe" n'es pas en cour de fonctionnement
-sept. 27, 2016 9:50:54 AM clientmonitoring.jobs.JobPing execute
-GRAVE: impossible de contacter :"www.yahoo.com"
-sept. 27, 2016 9:51:43 AM clientmonitoring.BeanClient miseAjourStatueTacheExecution
-GRAVE: la tache ayant pour cle"1.94" n'existe pas dans la liste des taches en cours d'exécution: problème trés anormal
-sept. 27, 2016 10:39:20 AM clientmonitoring.BeanClient telnet
-GRAVE: impossible de faire le telnet à l'adresse "41.204.94.29,8282"
-
-java.net.ConnectException: Connection timed out: connect
-	at java.net.DualStackPlainSocketImpl.connect0(Native Method)
-	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:79)
-	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:345)
-	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:206)
-	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:188)
-	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
-	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
-	at java.net.Socket.connect(Socket.java:589)
-	at org.apache.commons.net.SocketClient.connect(SocketClient.java:168)
-	at org.apache.commons.net.SocketClient.connect(SocketClient.java:189)
-	at clientmonitoring.BeanClient.telnet(BeanClient.java:893)
-	at clientmonitoring.jobs.JobTelnet.execute(JobTelnet.java:39)
-	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
-	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
-
-sept. 27, 2016 10:39:20 AM clientmonitoring.jobs.JobTelnet execute
-GRAVE: impossible de contacter :"41.204.94.29,8282"
-sept. 27, 2016 10:42:19 AM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
-GRAVE: impossible de contacter le serveur 
-com.sun.xml.internal.ws.fault.ServerSOAPFaultException: Client received SOAP Fault from server: This web container has not yet been started Please see the server log to find more detail regarding exact cause of the failure.
-sept. 27, 2016 10:42:19 AM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
-GRAVE: impossible de contacter le serveur 
-com.sun.xml.internal.ws.client.ClientTransportException: Le serveur a envoyé le code de statut HTTP 404 : Not Found
-sept. 27, 2016 10:45:00 AM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
-GRAVE: impossible de contacter le serveur 
-com.sun.xml.internal.ws.fault.ServerSOAPFaultException: Client received SOAP Fault from server: javax.ejb.EJBTransactionRolledbackException Please see the server log to find more detail regarding exact cause of the failure.
-sept. 27, 2016 10:53:00 AM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
-GRAVE: impossible de contacter le serveur 
-com.sun.xml.internal.ws.fault.ServerSOAPFaultException: Client received SOAP Fault from server: javax.ejb.EJBTransactionRolledbackException Please see the server log to find more detail regarding exact cause of the failure.
+sept. 28, 2016 6:21:09 PM clientmonitoring.BeanClient testTache
+GRAVE: le type de compte "Last Date" n'es pas connue sur cet agent
+sept. 28, 2016 6:21:32 PM clientmonitoring.BeanClient testTache
+GRAVE: le type de compte "Telnet" n'es pas connue sur cet agent
+sept. 28, 2016 6:21:37 PM clientmonitoring.BeanClient testTache
+GRAVE: le type de compte "Processus" n'es pas connue sur cet agent

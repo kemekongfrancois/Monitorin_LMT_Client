@@ -32,11 +32,12 @@ public class JobTelnet implements Job {
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
         String adresseAEtPort = dataMap.getString("adresseAEtPort");
         boolean alerteOK = dataMap.getBoolean("alerteOK");
+        int nbDeTentative = dataMap.getInt("nbDeTentative");
         JobKey cle = context.getJobDetail().getKey();
         String msg;
         boolean telnetOK;
         //synchronized (this) {//section critique
-             telnetOK = BeanClient.telnet(adresseAEtPort);
+             telnetOK = BeanClient.telnet(adresseAEtPort,nbDeTentative);
         //}
         if (telnetOK) {
             msg = "le telnet vers \"" + adresseAEtPort + "\" es OK";
