@@ -273,7 +273,7 @@ public class BeanClient {
         //data.put("tache", tache);
         JobDetail jobDetaille = newJob(JobVerificationDisk.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("seuil", tache.getSeuilAlerte())
                 .usingJobData("lettrePartition", tache.getNom())
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
@@ -287,7 +287,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerificationProcessus.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nomProcessus", tache.getNom())
                 .usingJobData("attente", tache.getSeuilAlerte())
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
@@ -300,7 +300,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerificationService.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nomService", tache.getNom())
                 .usingJobData("redemarerAuto", tache.isRedemarerAutoService())
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
@@ -313,7 +313,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobPing.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nbTentative", tache.getSeuilAlerte())
                 .usingJobData("adresseAPinger", tache.getNom())
                 .build();
@@ -325,7 +325,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobExistanceFichier.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nomFichier", tache.getNom())
                 .build();
 
@@ -336,7 +336,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerrifieTailleFIchier.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nomFichier", tache.getNom())
                 .usingJobData("seuil", tache.getSeuilAlerte())
                 .build();
@@ -348,7 +348,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobDateModificationDernierFichier.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nomRepertoire", tache.getNom())
                 .usingJobData("seuil", tache.getSeuilAlerte())
                 .build();
@@ -360,7 +360,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobTelnet.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatue().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
                 .usingJobData("adresseAEtPort", tache.getNom())
                 .usingJobData("nbDeTentative", tache.getSeuilAlerte())
@@ -387,9 +387,9 @@ public class BeanClient {
             String groupe = tache.getIdMachine().getIdMachine() + "";
             JobKey cle = JobKey.jobKey(identifiant, groupe);
 
-            if (tache.getStatue().equals(STOP) || SCHEDULER.checkExists(cle)) {//si le job existe déja on le stoppe
+            if (tache.getStatut().equals(STOP) || SCHEDULER.checkExists(cle)) {//si le job existe déja on le stoppe
                 arreterJob(cle);//suppression du job
-                if (tache.getStatue().equals(STOP)) {//cas où on veux stopper la tache
+                if (tache.getStatut().equals(STOP)) {//cas où on veux stopper la tache
                     return true;//le job a été stoppé
                 }
             }
@@ -461,7 +461,7 @@ public class BeanClient {
 
     /**
      * cette fonction démare(ou redémare) la tache principale ainsi que la liste
-     * des taches associé si le statue de le machine es à STOP alors on arretera
+     * des taches associé si le statut de le machine es à STOP alors on arretera
      * toute les taches ainsi que la tache principale
      *
      * @return
@@ -474,8 +474,8 @@ public class BeanClient {
 
             Machine machine = wsServeur.creerOuVerifiMachine(ADRESSE_MACHINE, PORT_MACHINE, OS_MACHINE, NOM_MACHINE);
 
-            if (machine.getStatue().equals(STOP)) {
-                logger.log(Level.INFO, "le statue de la machine es à \"STOP\" donc aucun job n'es lancé");
+            if (machine.getStatut().equals(STOP)) {
+                logger.log(Level.INFO, "le statut de la machine es à \"STOP\" donc aucun job n'es lancé");
                 return true;
             }
 
@@ -861,7 +861,7 @@ public class BeanClient {
                 logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
                 return false;
             } else {//le serveur à bien traité le pb
-                miseAjourStatueTacheExecution(cle, ALERTE);
+                miseAjourStatutTacheExecution(cle, ALERTE);
                 return true;
             }
         } catch (Exception e) {
@@ -875,16 +875,16 @@ public class BeanClient {
      * d'éxécution
      *
      * @param cle
-     * @param statue
+     * @param statut
      * @return
      */
-    private static boolean miseAjourStatueTacheExecution(JobKey cle, String statue) {
+    private static boolean miseAjourStatutTacheExecution(JobKey cle, String statut) {
         Tache tache = TACHE_EN_COUR_D_EXECUTION.get(cle);
         if (tache == null) {
             logger.log(Level.SEVERE, "la tache ayant pour cle\"" + cle + "\" n'existe pas dans la liste des taches en cours d'exécution: problème trés anormal");
             return false;
         }
-        tache.setStatue(statue);
+        tache.setStatut(statut);
         TACHE_EN_COUR_D_EXECUTION.put(cle, tache);
         return true;
     }
@@ -902,7 +902,7 @@ public class BeanClient {
                 logger.log(Level.SEVERE, " le serveur n'a pas pus traiter le problème consulter les log serveur pour plus de détail");
                 return false;
             } else {//le serveur à bien traité le pb
-                miseAjourStatueTacheExecution(cle, START);
+                miseAjourStatutTacheExecution(cle, START);
                 return true;
             }
         } catch (Exception e) {

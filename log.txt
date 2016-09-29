@@ -1,30 +1,486 @@
-sept. 28, 2016 6:20:28 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
+sept. 29, 2016 11:13:33 AM clientmonitoring.BeanClient demarerWSClientEtScheduler
 INFOS: Web Service démarer: http://192.168.100.182:9039/
-sept. 28, 2016 6:20:28 PM clientmonitoring.BeanClient demarerLeScheduler
+sept. 29, 2016 11:13:33 AM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-sept. 28, 2016 6:20:28 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
+sept. 29, 2016 11:13:33 AM clientmonitoring.BeanClient demarerWSClientEtScheduler
 INFOS: les web service de test sont disponible :http://192.168.100.182:9139/
-sept. 28, 2016 6:20:28 PM clientmonitoring.BeanClient arreterLeScheduler
+sept. 29, 2016 11:13:33 AM clientmonitoring.BeanClient arreterLeScheduler
 INFOS: SCHEDULER Arreté 
-sept. 28, 2016 6:20:28 PM clientmonitoring.BeanClient demarerLeScheduler
+sept. 29, 2016 11:13:33 AM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-sept. 28, 2016 6:20:28 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
-INFOS: tache démaré. cle=1.90
-sept. 28, 2016 6:20:28 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: nombre de tache démaré: 1
-sept. 28, 2016 6:20:28 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+sept. 29, 2016 11:13:33 AM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: le statut de la machine es à "STOP" donc aucun job n'es lancé
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient arreterLeScheduler
+INFOS: SCHEDULER Arreté 
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerLeScheduler
+INFOS: SCHEDULER démarer 
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.1
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.2
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.3
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.4
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.5
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.6
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.7
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.8
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.9
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.10
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.11
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: nombre de tache démaré: 11
+sept. 29, 2016 11:15:09 AM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
 INFOS: la tache principale à bien été lancé. cle=192.168.100.182.1
-sept. 28, 2016 6:20:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+sept. 29, 2016 11:15:10 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:10 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc2.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:10 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc2.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:10 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc2.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:10 AM clientmonitoring.jobs.JobVerificationProcessus execute
+GRAVE: le processus "vlc2.exe" n'es pas en cour de fonctionnement
+sept. 29, 2016 11:15:12 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:15 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 11:15:15 AM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 11:15:15 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:17 AM clientmonitoring.jobs.JobVerificationProcessus execute
+GRAVE: le processus "vlc.exe" n'es pas en cour de fonctionnement
+sept. 29, 2016 11:15:21 AM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier "c:/testMonitoring/test.txt" es OK
+sept. 29, 2016 11:15:25 AM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/TeamViewer_Setup_fr.exe" es OK
+sept. 29, 2016 11:15:25 AM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/Setup_Oscillo.exe" es OK
+sept. 29, 2016 11:15:29 AM clientmonitoring.BeanClient telnet
+INFOS: Telne à l'adresse "41.204.94.29" et au port "8282"
+sept. 29, 2016 11:15:29 AM clientmonitoring.jobs.JobTelnet execute
+INFOS: le telnet vers "41.204.94.29,8282" es OK
+sept. 29, 2016 11:15:30 AM clientmonitoring.jobs.JobVerificationDisk execute
 INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
-sept. 28, 2016 6:21:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+sept. 29, 2016 11:15:35 AM clientmonitoring.jobs.JobDateModificationDernierFichier execute
+GRAVE: la date de derniere modification (Thu Sep 15 13:03:27 WAT 2016) es antérieur à la date autorisé pour le repertoire "C:/testMonitoring/test date modification" 
+sept. 29, 2016 11:15:40 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:40 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc2.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:42 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:42 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc2.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:42 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:43 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.1
+sept. 29, 2016 11:15:44 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.2
+sept. 29, 2016 11:15:44 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.3
+sept. 29, 2016 11:15:44 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc2.exe"" c'es bien exécuté
+sept. 29, 2016 11:15:45 AM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 11:15:45 AM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 11:15:45 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.4
+sept. 29, 2016 11:15:45 AM clientmonitoring.jobs.JobVerificationProcessus execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc.exe" n'es pas en cour de fonctionnement
+sept. 29, 2016 11:15:45 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.5
+sept. 29, 2016 11:15:45 AM clientmonitoring.jobs.JobVerificationProcessus execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc2.exe" n'es pas en cour de fonctionnement
+sept. 29, 2016 11:15:46 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.6
+sept. 29, 2016 11:15:46 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.7
+sept. 29, 2016 11:15:47 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.8
+sept. 29, 2016 11:15:48 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.9
+sept. 29, 2016 11:15:48 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.10
+sept. 29, 2016 11:15:49 AM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.11
+sept. 29, 2016 12:00:00 PM clientmonitoring.jobs.JobPrincipale traitementDesTachesAProbleme
+INFOS: le job principale c'est bien exécuté
+sept. 29, 2016 12:19:11 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.1
+sept. 29, 2016 12:19:18 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.4
+sept. 29, 2016 12:19:19 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.7
+sept. 29, 2016 12:19:21 PM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier "c:/testMonitoring/test.txt" es OK
+sept. 29, 2016 12:19:21 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.8
+sept. 29, 2016 12:19:23 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.9
+sept. 29, 2016 12:19:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/Setup_Oscillo.exe" es OK
+sept. 29, 2016 12:19:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/TeamViewer_Setup_fr.exe" es OK
+sept. 29, 2016 12:19:30 PM clientmonitoring.jobs.JobVerificationDisk execute
 INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
-sept. 28, 2016 6:21:09 PM clientmonitoring.BeanClient testTache
-GRAVE: le type de compte "Last Date" n'es pas connue sur cet agent
-sept. 28, 2016 6:21:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+sept. 29, 2016 12:19:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:19:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:19:51 PM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier "c:/testMonitoring/test.txt" es OK
+sept. 29, 2016 12:19:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/Setup_Oscillo.exe" es OK
+sept. 29, 2016 12:19:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/TeamViewer_Setup_fr.exe" es OK
+sept. 29, 2016 12:20:00 PM clientmonitoring.jobs.JobVerificationDisk execute
 INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
-sept. 28, 2016 6:21:32 PM clientmonitoring.BeanClient testTache
-GRAVE: le type de compte "Telnet" n'es pas connue sur cet agent
-sept. 28, 2016 6:21:37 PM clientmonitoring.BeanClient testTache
-GRAVE: le type de compte "Processus" n'es pas connue sur cet agent
-sept. 28, 2016 6:22:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+sept. 29, 2016 12:20:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:20:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:20:21 PM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier "c:/testMonitoring/test.txt" es OK
+sept. 29, 2016 12:20:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/Setup_Oscillo.exe" es OK
+sept. 29, 2016 12:20:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/TeamViewer_Setup_fr.exe" es OK
+sept. 29, 2016 12:20:30 PM clientmonitoring.jobs.JobVerificationDisk execute
 INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:20:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:20:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:20:51 PM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier "c:/testMonitoring/test.txt" es OK
+sept. 29, 2016 12:20:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/Setup_Oscillo.exe" es OK
+sept. 29, 2016 12:20:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/TeamViewer_Setup_fr.exe" es OK
+sept. 29, 2016 12:21:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:21:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:21:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:21:21 PM clientmonitoring.jobs.JobExistanceFichier execute
+INFOS: le fichier "c:/testMonitoring/test.txt" es OK
+sept. 29, 2016 12:21:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/Setup_Oscillo.exe" es OK
+sept. 29, 2016 12:21:25 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/TeamViewer_Setup_fr.exe" es OK
+sept. 29, 2016 12:21:27 PM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.7
+sept. 29, 2016 12:21:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:21:39 PM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.8
+sept. 29, 2016 12:21:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:21:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:21:55 PM clientmonitoring.jobs.JobVerrifieTailleFIchier execute
+INFOS: la taille du fichier "c:/testMonitoring/TeamViewer_Setup_fr.exe" es OK
+sept. 29, 2016 12:22:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:22:05 PM clientmonitoring.BeanClient arreterJob
+INFOS: tache stoppé. cle=1.9
+sept. 29, 2016 12:22:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:22:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:22:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:22:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:22:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:23:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:23:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:23:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:23:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:23:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:23:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:24:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:24:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:24:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:24:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:24:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:24:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:25:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:25:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:25:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:25:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:25:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:25:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:26:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:26:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:26:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:26:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:26:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:26:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:27:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:27:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:27:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:27:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:27:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:27:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:28:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:28:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:28:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:28:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:28:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:28:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:29:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:29:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:29:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:29:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:29:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:29:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:30:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:30:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:30:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:30:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:30:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:30:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:31:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:31:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:31:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:31:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:31:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:31:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:32:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:32:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:32:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:32:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:32:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:32:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:33:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:33:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:33:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:33:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:33:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:33:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:34:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:34:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:34:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:34:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:34:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:34:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:35:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:35:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:35:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:35:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:35:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:35:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:36:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:36:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:36:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:36:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:36:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:36:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:37:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:37:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:37:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:37:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:37:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:37:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:38:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:38:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:38:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:38:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:38:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:38:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:39:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:39:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:39:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:39:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:39:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:39:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:40:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:40:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:40:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:40:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:40:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:40:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:41:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:41:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:41:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:41:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:41:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:41:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:42:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:42:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:42:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:42:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:42:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:42:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:43:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:43:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:43:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:43:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:43:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:43:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:44:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:44:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:44:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:44:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:44:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:44:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:45:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:45:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:45:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+sept. 29, 2016 12:45:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 79%
+sept. 29, 2016 12:45:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "net start " c'es bien exécuté
+sept. 29, 2016 12:45:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement

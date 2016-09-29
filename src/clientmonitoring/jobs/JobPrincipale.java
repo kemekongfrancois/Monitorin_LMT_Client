@@ -51,13 +51,13 @@ public class JobPrincipale implements Job {
         for (Entry<JobKey, Tache> e : TACHE_EN_COUR_D_EXECUTION.entrySet()) {
             tache = e.getValue();
             JobKey jobKeyTache = e.getKey();
-            System.out.println("key="+jobKeyTache+" statue="+tache.getStatue());
+            System.out.println("key="+jobKeyTache+" statut="+tache.getStatut());
             if (!BeanClient.jobExiste(jobKeyTache.getName(), jobKeyTache.getGroup())) {
                 listTachePB.add(tache.getIdTache());
                 (new BeanClient()).demarerMetAJourOUStopperTache(tache);//on redémarer la taches
                 logger.log(Level.WARNING, "la tache " + jobKeyTache + " n'es pas en cour de fonctionnement bien vouloir verrifier les log, elle vien d'être redémarer");
             } else//la tache es bien en marche
-            if (tache.getStatue().equals(BeanClient.ALERTE)) {//On demande la réxécution du Job dans cas où il y avait un pb ainsi si le pb es resolue on vas le signallé
+            if (tache.getStatut().equals(BeanClient.ALERTE)) {//On demande la réxécution du Job dans cas où il y avait un pb ainsi si le pb es resolue on vas le signallé
                 logger.log(Level.INFO, "la tache " + jobKeyTache + " es de nouveau éxcuter pour verrifie si la sitution es de nouveau normal");
                 BeanClient.executeJob(jobKeyTache);
                 try {
