@@ -1,6 +1,0 @@
-sept. 29, 2016 11:15:10 AM clientmonitoring.jobs.JobVerificationProcessus execute
-GRAVE: le processus "vlc2.exe" n'es pas en cour de fonctionnement
-sept. 29, 2016 11:15:17 AM clientmonitoring.jobs.JobVerificationProcessus execute
-GRAVE: le processus "vlc.exe" n'es pas en cour de fonctionnement
-sept. 29, 2016 11:15:35 AM clientmonitoring.jobs.JobDateModificationDernierFichier execute
-GRAVE: la date de derniere modification (Thu Sep 15 13:03:27 WAT 2016) es antérieur à la date autorisé pour le repertoire "C:/testMonitoring/test date modification" 
