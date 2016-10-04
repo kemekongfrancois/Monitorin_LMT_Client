@@ -66,6 +66,11 @@ public class WsDesFonctionsDisponible {
     public Date dateDernierFichier(@WebParam(name = "repertoire") String repertoire) {
         return BeanClient.dateDernierFichier(repertoire);
     }
+    
+    @WebMethod
+    public int uptimeMachine(){
+        return BeanClient.uptimeMachine();
+    }
 
     
 }

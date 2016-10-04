@@ -53,6 +53,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.ws.Endpoint;
@@ -968,10 +969,10 @@ public class BeanClient {
         switch (typeCompte) {
             case TACHE_DD:
                 int pourcentage = pourcentageOccupationDD(tache.getNom());
-                if(pourcentage>100){
+                if (pourcentage > 100) {
                     return PB;
-                }else{
-                    return pourcentage+"";
+                } else {
+                    return pourcentage + "";
                 }
             default:
                 String erreur = "le type de compte \"" + typeCompte + "\" n'es pas connue sur cet agent";
@@ -981,4 +982,36 @@ public class BeanClient {
         }
     }
 
+    /**
+     * cette fonction retourne depuis combien de jour la machine est alumer
+     *
+     * @return "-1" si la commande ne c'est pas exécuter ceci peut arrive si le
+     * fichier "uptime.exe" ne se trouve pas dans le repertoire de l'agent .
+     * "-2" si la valeur de retour de la commande n'est pas valide
+     */
+    public static int uptimeMachine() {
+        String commande = "uptime";
+        if (OS_MACHINE.equals(OSWINDOWS)) {//on es sur une machine windows
+            commande += ".exe";
+        }
+        List<String> resultat = executeCommand(commande);
+        if (resultat == null) {
+            return -1;
+        }
+        //System.out.println(resultat + "- nombre de ligne " + resultat.size());
+        String ligne = resultat.get(0);//on recuper la ligne où se trouve les informations
+
+        if (ligne.contains("days")) {//si le mot jours existe alors sa fait au moins 1 jour que la machine est alumé
+            String[] tabDeMot = ligne.split(" ");
+            //for (int i=0;i<tabDeMot.length;i++) System.out.println(i + "- " + tabDeMot[i]);
+            try {
+                return new Integer(tabDeMot[3]);
+            } catch (Exception ex) {
+                logger.log(Level.SEVERE, "impossible de recupérer le champ des jours", ex);
+                return -2;
+            }
+        } else {//la machine est alumer depuis moins de 24h
+            return 0;
+        }
+    }
 }
