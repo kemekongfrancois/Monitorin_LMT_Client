@@ -15,13 +15,12 @@ import javax.jws.WebService;
 import org.quartz.JobKey;
 import org.quartz.Scheduler;
 
-
 @WebService
 public class WsDesFonctionsDisponible {
-    
+
     Logger logger = clientmonitoring.ClientMonitoring.LOGGER;
     Scheduler scheduler = clientmonitoring.BeanClient.SCHEDULER;
-    
+
     @WebMethod
     public String processusWindowsEnFonctionnement(@WebParam(name = "nomProcessus") String nomProcessus, @WebParam(name = "ndTentative") int ndTentative) {
         return BeanClient.verifiProcessusWindows(nomProcessus, ndTentative);
@@ -66,11 +65,15 @@ public class WsDesFonctionsDisponible {
     public Date dateDernierFichier(@WebParam(name = "repertoire") String repertoire) {
         return BeanClient.dateDernierFichier(repertoire);
     }
-    
+
     @WebMethod
-    public int uptimeMachine(){
+    public int uptimeMachine() {
         return BeanClient.uptimeMachine();
     }
 
-    
+    @WebMethod
+    public String testLien(String adresse, int nbTentative) {
+        return BeanClient.testLien(adresse, nbTentative);
+    }
+
 }

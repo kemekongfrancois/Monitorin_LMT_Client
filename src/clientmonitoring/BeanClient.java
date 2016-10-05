@@ -35,9 +35,11 @@ import clientmonitoring.jobs.JobExistanceFichier;
 import clientmonitoring.jobs.JobPing;
 import clientmonitoring.jobs.JobPrincipale;
 import clientmonitoring.jobs.JobTelnet;
+import clientmonitoring.jobs.JobUptimeMachine;
 import clientmonitoring.jobs.JobVerificationDisk;
 import clientmonitoring.jobs.JobVerificationProcessus;
 import clientmonitoring.jobs.JobVerificationService;
+import clientmonitoring.jobs.JobVerrifieLien;
 import clientmonitoring.jobs.JobVerrifieTailleFIchier;
 import clientmonitoring.until.Until;
 import static clientmonitoring.until.Until.verrifieAdresseMachine;
@@ -45,8 +47,11 @@ import clientmonitoring.ws.WSClientMonitoring;
 import clientmonitoring.ws.WsDesFonctionsDisponible;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -65,6 +70,8 @@ import org.quartz.SchedulerException;
 import org.quartz.Trigger;
 import static org.quartz.TriggerBuilder.newTrigger;
 import org.quartz.impl.StdSchedulerFactory;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 
@@ -90,6 +97,8 @@ public class BeanClient {
     public static final String TACHE_DATE_MODIFICATION_DERNIER_FICHIER = "Last Date";
     public static final String TACHE_FICHIER_EXISTE = "Fichier existe";
     public static final String TACHE_TAILLE_FICHIER = "Taille fichier";
+    public static final String TACHE_UPTIME_MACHINE = "Uptime machine";
+    public static final String TACHE_TEST_LIEN = "Tester lien";
 
     public static final int NB_LIGNE_FICHIER_CONF = 4;
     public static final String ficfierConfig = "parametre.txt";
@@ -337,6 +346,28 @@ public class BeanClient {
         return jobDetaille;
     }
 
+    private static JobDetail initialiseUptimeMachine(Tache tache) {
+        JobKey cle = getJobKeyTache(tache);
+        JobDetail jobDetaille = newJob(JobUptimeMachine.class)
+                .withIdentity(cle)
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("nbDeJourPourAlerte", tache.getSeuilAlerte())
+                .build();
+
+        return jobDetaille;
+    }
+
+    private static JobDetail initialiseTestLien(Tache tache) {
+        JobKey cle = getJobKeyTache(tache);
+        JobDetail jobDetaille = newJob(JobVerrifieLien.class)
+                .withIdentity(cle)
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("nbTentative", tache.getSeuilAlerte())
+                .usingJobData("lien", tache.getNom())
+                .build();
+
+        return jobDetaille;
+    }
     /**
      * cette fonction permet de démarrer ou de mette à jour n'importe quelle
      * tache
@@ -396,6 +427,12 @@ public class BeanClient {
                     break;
                 case TACHE_DATE_MODIFICATION_DERNIER_FICHIER://cas de la tache qui vérrifier que la date de derniere modification du dernier fichier es correct
                     jobDetaille = initialiseDateModificationDernierFichier(tache);
+                    break;
+                case TACHE_UPTIME_MACHINE://cas de la tache qui vérrifier depuis combien de temps la machine est en marche
+                    jobDetaille = initialiseUptimeMachine(tache);
+                    break;
+                    case TACHE_TEST_LIEN://cas de la tache qui vérrifier depuis combien de temps la machine est en marche
+                    jobDetaille = initialiseTestLien(tache);
                     break;
                 default:
                     logger.log(Level.WARNING, TypeDeTache + ": ce type n'es pas reconnue ");
@@ -700,7 +737,7 @@ public class BeanClient {
     }
 
     /**
-     * retourne la taille d'un fichier
+     * retourne la taille d'un fichier en octet
      *
      * @param nomFichier
      * @return "-1" s'il ya eu un pb: le fichier n'existe pas par exemple
@@ -990,28 +1027,60 @@ public class BeanClient {
      * "-2" si la valeur de retour de la commande n'est pas valide
      */
     public static int uptimeMachine() {
-        String commande = "uptime";
-        if (OS_MACHINE.equals(OSWINDOWS)) {//on es sur une machine windows
-            commande += ".exe";
-        }
-        List<String> resultat = executeCommand(commande);
-        if (resultat == null) {
-            return -1;
-        }
-        //System.out.println(resultat + "- nombre de ligne " + resultat.size());
-        String ligne = resultat.get(0);//on recuper la ligne où se trouve les informations
-
-        if (ligne.contains("days")) {//si le mot jours existe alors sa fait au moins 1 jour que la machine est alumé
-            String[] tabDeMot = ligne.split(" ");
-            //for (int i=0;i<tabDeMot.length;i++) System.out.println(i + "- " + tabDeMot[i]);
-            try {
-                return new Integer(tabDeMot[3]);
-            } catch (Exception ex) {
-                logger.log(Level.SEVERE, "impossible de recupérer le champ des jours", ex);
-                return -2;
+        try {
+            String commande = "uptime";
+            if (OS_MACHINE.equals(OSWINDOWS)) {//on es sur une machine windows
+                commande += ".exe";
             }
-        } else {//la machine est alumer depuis moins de 24h
-            return 0;
+            List<String> resultat = executeCommand(commande);
+            if (resultat == null) {
+                return -1;
+            }
+            //System.out.println(resultat + "- nombre de ligne " + resultat.size());
+            String ligne = resultat.get(0);//on recuper la ligne où se trouve les informations
+
+            if (ligne.contains("days")) {//si le mot jours existe alors sa fait au moins 1 jour que la machine est alumé
+                String[] tabDeMot = ligne.split(" ");
+                //for (int i=0;i<tabDeMot.length;i++) System.out.println(i + "- " + tabDeMot[i]);
+                return new Integer(tabDeMot[3]);
+            } else {//la machine est alumer depuis moins de 24h
+                return 0;
+            }
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "impossible de recupérer le champ des jours", ex);
+            return -2;
         }
+    }
+
+    /**
+     * cette fonction d'effectué le test d'un lien
+     *
+     * @param adresse
+     * @param nbTentative
+     * @return
+     */
+    public static String testLien(String adresse, int nbTentative) {
+        String resultat = KO;
+        int i = 0;
+        do {
+            i++;
+            try {
+                URL obj = new URL(adresse);
+                URLConnection conn = obj.openConnection();
+                String entete = conn.getHeaderField(null);
+                if (entete.contains("200 OK")) {
+                    return OK;
+                } 
+
+            } catch (Exception ex) {
+                if (i >= nbTentative) {//cette instruction évite d'écrire plusieur fois dans le fichier des logs
+                    logger.log(Level.SEVERE, "le lien est injoignable. ", ex);
+                    resultat = PB;
+                }
+            }
+        } while (i < nbTentative);
+
+        return resultat;
+
     }
 }
