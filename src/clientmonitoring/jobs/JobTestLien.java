@@ -22,7 +22,7 @@ import org.quartz.PersistJobDataAfterExecution;
  */
 @PersistJobDataAfterExecution
 @DisallowConcurrentExecution//permet d'empéche les exécutions concurente, il n'exitera donc d'une instace du job
-public class JobVerrifieLien implements Job {
+public class JobTestLien implements Job {
 
     Logger logger = clientmonitoring.ClientMonitoring.LOGGER;
 

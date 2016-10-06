@@ -40,10 +40,6 @@
 
 <xs:element name="traitementAlerteTacheResponse" type="tns:traitementAlerteTacheResponse"/>
 
-<xs:element name="verifiNomTacheSurMachine" type="tns:verifiNomTacheSurMachine"/>
-
-<xs:element name="verifiNomTacheSurMachineResponse" type="tns:verifiNomTacheSurMachineResponse"/>
-
 <xs:complexType name="hello">
 <xs:sequence>
 <xs:element name="name" type="xs:string" minOccurs="0"/>
@@ -69,16 +65,13 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="creerOuVerifiMachine">
+<xs:complexType name="getMachine">
 <xs:sequence>
 <xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
-<xs:element name="Port" type="xs:string" minOccurs="0"/>
-<xs:element name="nonOS" type="xs:string" minOccurs="0"/>
-<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="creerOuVerifiMachineResponse">
+<xs:complexType name="getMachineResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:machine" minOccurs="0"/>
 </xs:sequence>
@@ -126,13 +119,16 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getMachine">
+<xs:complexType name="creerOuVerifiMachine">
 <xs:sequence>
 <xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
+<xs:element name="Port" type="xs:string" minOccurs="0"/>
+<xs:element name="nonOS" type="xs:string" minOccurs="0"/>
+<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getMachineResponse">
+<xs:complexType name="creerOuVerifiMachineResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:machine" minOccurs="0"/>
 </xs:sequence>
@@ -145,19 +141,6 @@
 </xs:complexType>
 
 <xs:complexType name="problemeTacheResoluResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="verifiNomTacheSurMachine">
-<xs:sequence>
-<xs:element name="arg0" type="xs:string" minOccurs="0"/>
-<xs:element name="arg1" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="verifiNomTacheSurMachineResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
 </xs:sequence>

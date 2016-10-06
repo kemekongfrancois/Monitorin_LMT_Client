@@ -39,7 +39,7 @@ import clientmonitoring.jobs.JobUptimeMachine;
 import clientmonitoring.jobs.JobVerificationDisk;
 import clientmonitoring.jobs.JobVerificationProcessus;
 import clientmonitoring.jobs.JobVerificationService;
-import clientmonitoring.jobs.JobVerrifieLien;
+import clientmonitoring.jobs.JobTestLien;
 import clientmonitoring.jobs.JobVerrifieTailleFIchier;
 import clientmonitoring.until.Until;
 import static clientmonitoring.until.Until.verrifieAdresseMachine;
@@ -74,6 +74,10 @@ import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
+import static org.quartz.CronScheduleBuilder.cronSchedule;
+import static org.quartz.JobBuilder.newJob;
 
 /**
  *
@@ -97,7 +101,7 @@ public class BeanClient {
     public static final String TACHE_DATE_MODIFICATION_DERNIER_FICHIER = "Last Date";
     public static final String TACHE_FICHIER_EXISTE = "Fichier existe";
     public static final String TACHE_TAILLE_FICHIER = "Taille fichier";
-    public static final String TACHE_UPTIME_MACHINE = "Uptime machine";
+    public static final String TACHE_UPTIME_MACHINE = "Redémarrage machine";
     public static final String TACHE_TEST_LIEN = "Tester lien";
 
     public static final int NB_LIGNE_FICHIER_CONF = 4;
@@ -359,7 +363,7 @@ public class BeanClient {
 
     private static JobDetail initialiseTestLien(Tache tache) {
         JobKey cle = getJobKeyTache(tache);
-        JobDetail jobDetaille = newJob(JobVerrifieLien.class)
+        JobDetail jobDetaille = newJob(JobTestLien.class)
                 .withIdentity(cle)
                 .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
                 .usingJobData("nbTentative", tache.getSeuilAlerte())
@@ -368,6 +372,7 @@ public class BeanClient {
 
         return jobDetaille;
     }
+
     /**
      * cette fonction permet de démarrer ou de mette à jour n'importe quelle
      * tache
@@ -431,7 +436,7 @@ public class BeanClient {
                 case TACHE_UPTIME_MACHINE://cas de la tache qui vérrifier depuis combien de temps la machine est en marche
                     jobDetaille = initialiseUptimeMachine(tache);
                     break;
-                    case TACHE_TEST_LIEN://cas de la tache qui vérrifier depuis combien de temps la machine est en marche
+                case TACHE_TEST_LIEN://cas de la tache qui vérrifier depuis combien de temps la machine est en marche
                     jobDetaille = initialiseTestLien(tache);
                     break;
                 default:
@@ -528,6 +533,7 @@ public class BeanClient {
      * @return "200" dans le cas où lettre de partition ne corespond à aucune dd
      */
     public static int pourcentageOccupationDD(String lettreDD) {
+        System.out.println("Exécution de la commande de vérification de disque");
         File cwd = new File(lettreDD);
         //File cwd = new File("l:");
         if (!cwd.exists()) {
@@ -609,37 +615,36 @@ public class BeanClient {
      * @return "OK" , "KO" et "PB"
      */
     private static String verifiServiceWindows(String nomService) {
-        /* ce qui es en commentaire es meilleur mais n'es pas fonctionnel sous windows server 2000
-        String commande = "sc query "+nomService;
-        List<String> resultatCommande = executeCommandWindows(commande);
-        if (resultatCommande == null) {
-        return ClientMonitoring.PB;
-        }
-        for (String ligne : resultatCommande) {
-        if(ligne.contains("STATE")){
-        if(ligne.contains("RUNNING")){
-        return ClientMonitoring.OK;
-        }else{
-        return ClientMonitoring.KO;
-        }
-        }
-        }
-        //on retourn PB car la ligne qui contiend "STATE" n'existe pas
-        //ce qui veux dire que le service n'es pas reconnue
-        return ClientMonitoring.PB;
-         */
-        //cette version es moin optimisé mais marche sur toute les vertion de windows
-        String commande = "net start ";
+        String commande = "sc query " + nomService;
         List<String> resultatCommande = executeCommand(commande);
         if (resultatCommande == null) {
             return PB;
         }
         for (String ligne : resultatCommande) {
-            if (ligne.contains(nomService)) {
-                return OK;
+            if (ligne.contains("STATE")) {
+                if (ligne.contains("RUNNING")) {
+                    return OK;
+                } else {
+                    return KO;
+                }
             }
         }
-        return KO;
+        //on retourn PB car la ligne qui contiend "STATE" n'existe pas
+        //ce qui veux dire que le service n'es pas reconnue
+        return PB;
+
+        //cette version es moin optimisé mais marche sur toute les vertion de windows
+        /*String commande = "net start ";
+        List<String> resultatCommande = executeCommand(commande);
+        if (resultatCommande == null) {
+        return PB;
+        }
+        for (String ligne : resultatCommande) {
+        if (ligne.contains(nomService)) {
+        return OK;
+        }
+        }
+        return KO;*/
     }
 
     /**
@@ -723,6 +728,7 @@ public class BeanClient {
      * @return
      */
     public static boolean verifiExistanceFichier(String nomFichier) {
+        System.out.println("vérifie existence de fichier");
         try {
             File f = new File(nomFichier);
             if (f.exists()) {
@@ -743,6 +749,7 @@ public class BeanClient {
      * @return "-1" s'il ya eu un pb: le fichier n'existe pas par exemple
      */
     public static long tailleFichier(String nomFichier) {
+        System.out.println("taille du fichier: " + nomFichier);
         try {
             File f = new File(nomFichier);
             if (f.exists()) {
@@ -950,6 +957,13 @@ public class BeanClient {
 
     }
 
+    /**
+     * retourne la date de dernier modification du repertoire passé en
+     * paramettre
+     *
+     * @param repertoire
+     * @return null si le reppertoire est invalide ou si il ya une exception
+     */
     public static Date dateDernierFichier(String repertoire) {
         try {
             File file = new File(repertoire);
@@ -1002,21 +1016,81 @@ public class BeanClient {
      * @return
      */
     public static String testTache(Tache tache) {
+        int resultaExecutionInt;
+        String resultaExecutionString;
         String typeCompte = tache.getTypeTache();
+        String nom = tache.getNom();
+        //int seuil = tache.getSeuilAlerte();
+        String resultat;
         switch (typeCompte) {
             case TACHE_DD:
-                int pourcentage = pourcentageOccupationDD(tache.getNom());
-                if (pourcentage > 100) {
-                    return PB;
+                resultaExecutionInt = pourcentageOccupationDD(nom);
+                if (resultaExecutionInt > 100) {
+                    resultat = PB;
                 } else {
-                    return pourcentage + "";
+                    resultat = resultaExecutionInt + "";
                 }
+                break;
+            case TACHE_PROCESSUS:
+                resultat = verifiProcessusWindows(nom, 1);
+                break;
+            case TACHE_SERVICE:
+                resultat = verifiService(nom);
+                break;
+            case TACHE_PING:
+                if (pinger(nom, 1)) {
+                    resultat = OK;
+                } else {
+                    resultat = KO;
+                }
+                break;
+            case TACHE_FICHIER_EXISTE:
+                if (verifiExistanceFichier(nom)) {
+                    resultat = OK;
+                } else {
+                    resultat = KO;
+                }
+                break;
+            case TACHE_TAILLE_FICHIER:
+                long resultaExecutionIntl = tailleFichier(nom);
+                if (resultaExecutionIntl < 0) {
+                    resultat = PB;
+                } else {
+                    resultat = resultaExecutionIntl + "";
+                }
+                break;
+            case TACHE_TELNET:
+                if (telnet(nom, 1)) {
+                    resultat = OK;
+                } else {
+                    resultat = KO;
+                }
+                break;
+            case TACHE_DATE_MODIFICATION_DERNIER_FICHIER:
+                Date date = dateDernierFichier(nom);
+                if (date == null) {
+                    resultat = PB;
+                } else {
+                    resultat = date + "";
+                }
+                break;
+            case TACHE_UPTIME_MACHINE:
+                resultaExecutionInt = uptimeMachine();
+                if (resultaExecutionInt < 0) {
+                    resultat = PB;
+                } else {
+                    resultat = resultaExecutionInt + "";
+                }
+                break;
+            case TACHE_TEST_LIEN:
+                resultat = testLien(nom, 1);
+                break;
             default:
                 String erreur = "le type de compte \"" + typeCompte + "\" n'es pas connue sur cet agent";
                 logger.log(Level.SEVERE, erreur);
                 return TYPE_COMPTE_INCONUE;
-
         }
+        return resultat;
     }
 
     /**
@@ -1055,22 +1129,23 @@ public class BeanClient {
     /**
      * cette fonction d'effectué le test d'un lien
      *
-     * @param adresse
+     * @param lien
      * @param nbTentative
-     * @return
+     * @return KO, OK et PB
      */
-    public static String testLien(String adresse, int nbTentative) {
+    public static String testLien(String lien, int nbTentative) {
+        System.out.println("test du lien: "+lien);
         String resultat = KO;
         int i = 0;
         do {
             i++;
             try {
-                URL obj = new URL(adresse);
+                URL obj = new URL(lien);
                 URLConnection conn = obj.openConnection();
                 String entete = conn.getHeaderField(null);
                 if (entete.contains("200 OK")) {
                     return OK;
-                } 
+                }
 
             } catch (Exception ex) {
                 if (i >= nbTentative) {//cette instruction évite d'écrire plusieur fois dans le fichier des logs
@@ -1078,6 +1153,7 @@ public class BeanClient {
                     resultat = PB;
                 }
             }
+            System.out.println("Tentative numéro " + i + " du lien : " + lien);
         } while (i < nbTentative);
 
         return resultat;
