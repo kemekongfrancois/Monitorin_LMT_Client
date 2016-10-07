@@ -101,7 +101,7 @@ public class BeanClient {
     public static final String TACHE_DATE_MODIFICATION_DERNIER_FICHIER = "Last Date";
     public static final String TACHE_FICHIER_EXISTE = "Fichier existe";
     public static final String TACHE_TAILLE_FICHIER = "Taille fichier";
-    public static final String TACHE_UPTIME_MACHINE = "Redémarrage machine";
+    public static final String TACHE_UPTIME_MACHINE = "Uptime machine";
     public static final String TACHE_TEST_LIEN = "Tester lien";
 
     public static final int NB_LIGNE_FICHIER_CONF = 4;
@@ -934,22 +934,33 @@ public class BeanClient {
     public static boolean telnet(String adresseEtPort, int nbDeTentative) {
 
         TelnetClient telnet = new TelnetClient();
-        String tab[] = adresseEtPort.split(",");
-        String adresse = tab[0];
-        int port = new Integer(tab[1]);
+        String adresse = null;
+        int port = 0;
+        try {
+            String tab[] = adresseEtPort.split(":");
+            adresse = tab[0];
+            port = new Integer(tab[1]);
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "format adresse invalide" ,ex);
+            return false;
+        }
         logger.log(Level.INFO, "Telne à l'adresse \"" + adresse + "\" et au port \"" + port + "\"");
         int i = 0;
         do {
+            
+            i++;
             try {
                 telnet.connect(adresse, port);
                 if (telnet.isConnected()) {
                     telnet.disconnect();
                 }
                 return true;
-            } catch (Exception e) {
-                logger.log(Level.WARNING, "tentative du telnet(" + adresseEtPort + ") numero:" + i);
+            } catch (Exception ex) {
+                if (i >= nbDeTentative) {//cette instruction évite d'écrire plusieur fois dans le fichier des logs
+                    logger.log(Level.SEVERE, "impossible d'effectué le telnet", ex);
+                }
+                System.out.println("tentative du telnet(" + adresseEtPort + ") numero:" + i);
             }
-            i++;
         } while (i < nbDeTentative);
 
         logger.log(Level.SEVERE, "impossible de faire le telnet à l'adresse \"" + adresseEtPort + "\"\n");

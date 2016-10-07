@@ -1,80 +1,288 @@
-oct. 06, 2016 4:56:34 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
+oct. 07, 2016 2:01:16 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
 INFOS: Web Service démarer: http://192.168.100.182:9039/
-oct. 06, 2016 4:56:34 PM clientmonitoring.BeanClient demarerLeScheduler
+oct. 07, 2016 2:01:16 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-oct. 06, 2016 4:56:35 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
+oct. 07, 2016 2:01:16 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
 INFOS: les web service de test sont disponible :http://192.168.100.182:9139/
-oct. 06, 2016 4:56:35 PM clientmonitoring.BeanClient arreterLeScheduler
+oct. 07, 2016 2:01:16 PM clientmonitoring.BeanClient arreterLeScheduler
 INFOS: SCHEDULER Arreté 
-oct. 06, 2016 4:56:35 PM clientmonitoring.BeanClient demarerLeScheduler
+oct. 07, 2016 2:01:16 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-oct. 06, 2016 4:56:35 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: le statut de la machine es à "STOP" donc aucun job n'es lancé
-oct. 06, 2016 4:58:25 PM clientmonitoring.BeanClient testLien
-GRAVE: le lien est injoignable. 
-java.net.MalformedURLException: unknown protocol: localhost
-	at java.net.URL.<init>(URL.java:593)
-	at java.net.URL.<init>(URL.java:483)
-	at java.net.URL.<init>(URL.java:432)
-	at clientmonitoring.BeanClient.testLien(BeanClient.java:1143)
-	at clientmonitoring.BeanClient.testTache(BeanClient.java:1086)
-	at clientmonitoring.ws.WSClientMonitoring.TestTache(WSClientMonitoring.java:53)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at sun.reflect.misc.Trampoline.invoke(MethodUtil.java:71)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at sun.reflect.misc.MethodUtil.invoke(MethodUtil.java:275)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:497)
-	at com.sun.xml.internal.ws.api.server.MethodUtil.invoke(MethodUtil.java:68)
-	at com.sun.xml.internal.ws.api.server.InstanceResolver$1.invoke(InstanceResolver.java:235)
-	at com.sun.xml.internal.ws.server.InvokerTube$2.invoke(InvokerTube.java:134)
-	at com.sun.xml.internal.ws.server.sei.SEIInvokerTube.processRequest(SEIInvokerTube.java:73)
-	at com.sun.xml.internal.ws.api.pipe.Fiber.__doRun(Fiber.java:1121)
-	at com.sun.xml.internal.ws.api.pipe.Fiber._doRun(Fiber.java:1035)
-	at com.sun.xml.internal.ws.api.pipe.Fiber.doRun(Fiber.java:1004)
-	at com.sun.xml.internal.ws.api.pipe.Fiber.runSync(Fiber.java:862)
-	at com.sun.xml.internal.ws.server.WSEndpointImpl$2.process(WSEndpointImpl.java:404)
-	at com.sun.xml.internal.ws.transport.http.HttpAdapter$HttpToolkit.handle(HttpAdapter.java:706)
-	at com.sun.xml.internal.ws.transport.http.HttpAdapter.handle(HttpAdapter.java:260)
-	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handleExchange(WSHttpHandler.java:98)
-	at com.sun.xml.internal.ws.transport.http.server.WSHttpHandler.handle(WSHttpHandler.java:82)
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
-	at sun.net.httpserver.AuthFilter.doFilter(AuthFilter.java:83)
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:82)
-	at sun.net.httpserver.ServerImpl$Exchange$LinkHandler.handle(ServerImpl.java:675)
-	at com.sun.net.httpserver.Filter$Chain.doFilter(Filter.java:79)
-	at sun.net.httpserver.ServerImpl$Exchange.run(ServerImpl.java:647)
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
-	at java.lang.Thread.run(Thread.java:745)
-
-oct. 06, 2016 5:14:39 PM clientmonitoring.BeanClient executeCommand
+oct. 07, 2016 2:01:17 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.116
+oct. 07, 2016 2:01:17 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+AVERTISSEMENT: Redemarrage machine: ce type n'es pas reconnue 
+oct. 07, 2016 2:01:17 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.207
+oct. 07, 2016 2:01:17 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.212
+oct. 07, 2016 2:01:17 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.213
+oct. 07, 2016 2:01:17 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.214
+oct. 07, 2016 2:01:17 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.215
+oct. 07, 2016 2:01:17 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: nombre de tache démaré: 6
+oct. 07, 2016 2:01:17 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: la tache principale à bien été lancé. cle=192.168.100.182.14
+oct. 07, 2016 2:01:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+oct. 07, 2016 2:01:36 PM clientmonitoring.BeanClient executeCommand
 INFOS: la commande "uptime.exe" c'es bien exécuté
-oct. 06, 2016 5:14:54 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "uptime.exe" c'es bien exécuté
-oct. 06, 2016 5:16:22 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "ping -n 1 www.yahoo.com" c'es bien exécuté
-oct. 06, 2016 5:16:27 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "ping -n 1 www.yahoo.com" c'es bien exécuté
-oct. 06, 2016 5:16:32 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "ping -n 1 www.yahoo.com" c'es bien exécuté
-oct. 06, 2016 5:21:44 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "ping -n 1 www.yahoo.com" c'es bien exécuté
-oct. 06, 2016 5:21:55 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "ping -n 1 www.yahoo.com" c'es bien exécuté
-oct. 06, 2016 5:22:00 PM clientmonitoring.BeanClient executeCommand
-INFOS: la commande "ping -n 1 www.yahoo.com" c'es bien exécuté
-oct. 06, 2016 6:11:28 PM clientmonitoring.BeanClient arreterLeScheduler
+oct. 07, 2016 2:01:36 PM clientmonitoring.jobs.JobUptimeMachine execute
+INFOS: la machine est alumer depuis 2 jours ce qui est OK
+oct. 07, 2016 2:01:40 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:01:43 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:01:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "sc query Connectify" c'es bien exécuté
+oct. 07, 2016 2:01:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+oct. 07, 2016 2:01:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:01:49 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:01:52 PM clientmonitoring.jobs.JobVerificationProcessus execute
+GRAVE: le processus "vlc.exe" n'es pas en cour de fonctionnement
+oct. 07, 2016 2:02:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+oct. 07, 2016 2:02:01 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "ping -n 1 www.google.com" c'es bien exécuté
+oct. 07, 2016 2:02:01 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers "www.google.com" es OK
+oct. 07, 2016 2:02:05 PM clientmonitoring.jobs.JobTestLien execute
+INFOS: le lien "http://192.168.100.86:8090/modispatcher" est OK
+oct. 07, 2016 2:02:10 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:02:12 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:02:13 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:02:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "sc query Connectify" c'es bien exécuté
+oct. 07, 2016 2:02:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+oct. 07, 2016 2:02:17 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:02:17 PM clientmonitoring.jobs.JobVerificationProcessus execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc.exe" n'es pas en cour de fonctionnement
+oct. 07, 2016 2:02:25 PM clientmonitoring.BeanClient arreterLeScheduler
 INFOS: SCHEDULER Arreté 
-oct. 06, 2016 6:11:28 PM clientmonitoring.BeanClient demarerLeScheduler
+oct. 07, 2016 2:02:25 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-oct. 06, 2016 6:11:28 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+oct. 07, 2016 2:02:25 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
 INFOS: le statut de la machine es à "STOP" donc aucun job n'es lancé
+oct. 07, 2016 2:02:46 PM clientmonitoring.BeanClient arreterLeScheduler
+INFOS: SCHEDULER Arreté 
+oct. 07, 2016 2:02:46 PM clientmonitoring.BeanClient demarerLeScheduler
+INFOS: SCHEDULER démarer 
+oct. 07, 2016 2:02:46 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.116
+oct. 07, 2016 2:02:46 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+AVERTISSEMENT: Redemarrage machine: ce type n'es pas reconnue 
+oct. 07, 2016 2:02:46 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.207
+oct. 07, 2016 2:02:46 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.212
+oct. 07, 2016 2:02:46 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.213
+oct. 07, 2016 2:02:46 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.214
+oct. 07, 2016 2:02:46 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.215
+oct. 07, 2016 2:02:46 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: nombre de tache démaré: 6
+oct. 07, 2016 2:02:46 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: la tache principale à bien été lancé. cle=192.168.100.182.14
+oct. 07, 2016 2:03:05 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+oct. 07, 2016 2:03:05 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "ping -n 1 www.google.com" c'es bien exécuté
+oct. 07, 2016 2:03:05 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers "www.google.com" es OK
+oct. 07, 2016 2:03:05 PM clientmonitoring.jobs.JobTestLien execute
+INFOS: le lien "http://192.168.100.86:8090/modispatcher" est OK
+oct. 07, 2016 2:03:10 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:03:11 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:03:12 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:03:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "sc query Connectify" c'es bien exécuté
+oct. 07, 2016 2:03:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+oct. 07, 2016 2:03:16 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:03:19 PM clientmonitoring.jobs.JobVerificationProcessus execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc.exe" n'es pas en cour de fonctionnement
+oct. 07, 2016 2:03:27 PM clientmonitoring.BeanClient arreterLeScheduler
+INFOS: SCHEDULER Arreté 
+oct. 07, 2016 2:03:27 PM clientmonitoring.BeanClient demarerLeScheduler
+INFOS: SCHEDULER démarer 
+oct. 07, 2016 2:03:27 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.116
+oct. 07, 2016 2:03:27 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+AVERTISSEMENT: Redemarrage machine: ce type n'es pas reconnue 
+oct. 07, 2016 2:03:27 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.207
+oct. 07, 2016 2:03:27 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.212
+oct. 07, 2016 2:03:27 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.213
+oct. 07, 2016 2:03:27 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.214
+oct. 07, 2016 2:03:27 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=14.215
+oct. 07, 2016 2:03:27 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: nombre de tache démaré: 6
+oct. 07, 2016 2:03:27 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: la tache principale à bien été lancé. cle=192.168.100.182.14
+oct. 07, 2016 2:03:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+oct. 07, 2016 2:03:35 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "uptime.exe" c'es bien exécuté
+oct. 07, 2016 2:03:35 PM clientmonitoring.jobs.JobUptimeMachine execute
+INFOS: la machine est alumer depuis 2 jours ce qui est OK
+oct. 07, 2016 2:03:40 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:03:41 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:03:43 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:03:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "sc query Connectify" c'es bien exécuté
+oct. 07, 2016 2:03:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+oct. 07, 2016 2:03:47 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:03:50 PM clientmonitoring.jobs.JobVerificationProcessus execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc.exe" n'es pas en cour de fonctionnement
+oct. 07, 2016 2:04:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+oct. 07, 2016 2:04:01 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "ping -n 1 www.google.com" c'es bien exécuté
+oct. 07, 2016 2:04:01 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers "www.google.com" es OK
+oct. 07, 2016 2:04:05 PM clientmonitoring.jobs.JobTestLien execute
+INFOS: le lien "http://192.168.100.86:8090/modispatcher" est OK
+oct. 07, 2016 2:04:10 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:04:11 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:04:14 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:04:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "sc query Connectify" c'es bien exécuté
+oct. 07, 2016 2:04:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+oct. 07, 2016 2:04:17 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:04:19 PM clientmonitoring.jobs.JobVerificationProcessus execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc.exe" n'es pas en cour de fonctionnement
+oct. 07, 2016 2:04:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+oct. 07, 2016 2:04:35 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "uptime.exe" c'es bien exécuté
+oct. 07, 2016 2:04:35 PM clientmonitoring.jobs.JobUptimeMachine execute
+INFOS: la machine est alumer depuis 2 jours ce qui est OK
+oct. 07, 2016 2:04:40 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:04:43 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:04:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "sc query Connectify" c'es bien exécuté
+oct. 07, 2016 2:04:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+oct. 07, 2016 2:04:46 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:04:46 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:04:49 PM clientmonitoring.jobs.JobVerificationProcessus execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc.exe" n'es pas en cour de fonctionnement
+oct. 07, 2016 2:05:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+oct. 07, 2016 2:05:01 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "ping -n 1 www.google.com" c'es bien exécuté
+oct. 07, 2016 2:05:01 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers "www.google.com" es OK
+oct. 07, 2016 2:05:05 PM clientmonitoring.jobs.JobTestLien execute
+INFOS: le lien "http://192.168.100.86:8090/modispatcher" est OK
+oct. 07, 2016 2:05:10 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:05:10 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:05:13 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:05:13 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:05:13 PM clientmonitoring.jobs.JobVerificationProcessus execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc.exe" n'es pas en cour de fonctionnement
+oct. 07, 2016 2:05:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "sc query Connectify" c'es bien exécuté
+oct. 07, 2016 2:05:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+oct. 07, 2016 2:05:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+oct. 07, 2016 2:05:35 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "uptime.exe" c'es bien exécuté
+oct. 07, 2016 2:05:35 PM clientmonitoring.jobs.JobUptimeMachine execute
+INFOS: la machine est alumer depuis 2 jours ce qui est OK
+oct. 07, 2016 2:05:40 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:05:42 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:05:42 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:05:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "sc query Connectify" c'es bien exécuté
+oct. 07, 2016 2:05:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+oct. 07, 2016 2:05:46 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:05:50 PM clientmonitoring.jobs.JobVerificationProcessus execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc.exe" n'es pas en cour de fonctionnement
+oct. 07, 2016 2:06:00 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+oct. 07, 2016 2:06:01 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "ping -n 1 www.google.com" c'es bien exécuté
+oct. 07, 2016 2:06:01 PM clientmonitoring.jobs.JobPing execute
+INFOS: le ping vers "www.google.com" es OK
+oct. 07, 2016 2:06:05 PM clientmonitoring.jobs.JobTestLien execute
+INFOS: le lien "http://192.168.100.86:8090/modispatcher" est OK
+oct. 07, 2016 2:06:10 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:06:14 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:06:15 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "sc query Connectify" c'es bien exécuté
+oct. 07, 2016 2:06:15 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+oct. 07, 2016 2:06:18 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:06:22 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:06:24 PM clientmonitoring.jobs.JobVerificationProcessus execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc.exe" n'es pas en cour de fonctionnement
+oct. 07, 2016 2:06:30 PM clientmonitoring.jobs.JobVerificationDisk execute
+INFOS: espase disque OK: pourcentage d'utilisation du disque es de: 88%
+oct. 07, 2016 2:06:35 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "uptime.exe" c'es bien exécuté
+oct. 07, 2016 2:06:35 PM clientmonitoring.jobs.JobUptimeMachine execute
+INFOS: la machine est alumer depuis 2 jours ce qui est OK
+oct. 07, 2016 2:06:40 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:06:42 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:06:45 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "sc query Connectify" c'es bien exécuté
+oct. 07, 2016 2:06:45 PM clientmonitoring.jobs.JobVerificationService execute
+INFOS: le service "Connectify" es en cour de fonctionnement
+oct. 07, 2016 2:06:46 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:06:50 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" c'es bien exécuté
+oct. 07, 2016 2:06:50 PM clientmonitoring.jobs.JobVerificationProcessus execute
+AVERTISSEMENT: ce problème à déja été signaler au serveur: le processus "vlc.exe" n'es pas en cour de fonctionnement
