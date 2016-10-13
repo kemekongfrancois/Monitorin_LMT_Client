@@ -80,6 +80,7 @@
 <xs:complexType name="machine">
 <xs:sequence>
 <xs:element name="adresseIP" type="xs:string" minOccurs="0"/>
+<xs:element name="descriptionDeLaPeriode" type="xs:string" minOccurs="0"/>
 <xs:element name="idMachine" type="xs:int" minOccurs="0"/>
 <xs:element name="niveauDAlerte" type="xs:int" minOccurs="0"/>
 <xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
@@ -87,6 +88,21 @@
 <xs:element name="portEcoute" type="xs:string" minOccurs="0"/>
 <xs:element name="statut" type="xs:string" minOccurs="0"/>
 <xs:element name="typeOS" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creerOuVerifiMachine">
+<xs:sequence>
+<xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
+<xs:element name="Port" type="xs:string" minOccurs="0"/>
+<xs:element name="nonOS" type="xs:string" minOccurs="0"/>
+<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="creerOuVerifiMachineResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:machine" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -104,6 +120,7 @@
 
 <xs:complexType name="tache">
 <xs:sequence>
+<xs:element name="descriptionDeLaPeriode" type="xs:string" minOccurs="0"/>
 <xs:element name="descriptionTache" type="xs:string" minOccurs="0"/>
 <xs:element name="envoiyerAlerteMail" type="xs:boolean" minOccurs="0"/>
 <xs:element name="envoyerAlerteSms" type="xs:boolean" minOccurs="0"/>
@@ -116,21 +133,6 @@
 <xs:element name="seuilAlerte" type="xs:int" minOccurs="0"/>
 <xs:element name="statut" type="xs:string" minOccurs="0"/>
 <xs:element name="typeTache" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="creerOuVerifiMachine">
-<xs:sequence>
-<xs:element name="AdresIP" type="xs:string" minOccurs="0"/>
-<xs:element name="Port" type="xs:string" minOccurs="0"/>
-<xs:element name="nonOS" type="xs:string" minOccurs="0"/>
-<xs:element name="nomMachine" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="creerOuVerifiMachineResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:machine" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

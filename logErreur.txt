@@ -1,2 +1,0 @@
-oct. 07, 2016 2:01:52 PM clientmonitoring.jobs.JobVerificationProcessus execute
-GRAVE: le processus "vlc.exe" n'es pas en cour de fonctionnement
