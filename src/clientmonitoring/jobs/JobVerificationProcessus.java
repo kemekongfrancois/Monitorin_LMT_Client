@@ -42,8 +42,8 @@ public class JobVerificationProcessus implements Job {
             resultat = BeanClient.verifiProcessusWindows(nomProcessus,nbTentative);
         //}
         String msg;
-        if (resultat.equals(BeanClient.OK)) {//le processus es en fonction
-            msg = "le processus \"" + nomProcessus + "\" es en cour de fonctionnement";
+        if (resultat.equals(BeanClient.OK)) {//le processus est en fonction
+            msg = "le processus \"" + nomProcessus + "\" est en cours de fonctionnement";
             if (alerteOK) {
                 logger.log(Level.INFO, "Problème résolue: " + msg);
                 if (BeanClient.problemeTacheResolu(cle)) {
@@ -53,13 +53,13 @@ public class JobVerificationProcessus implements Job {
             } else {
                 logger.log(Level.INFO, msg);
             }
-        } else {//le processus n'es pas en cour de fonctionnement ou il ya un pb
+        } else {//le processus n'est pas en cours de fonctionnement ou il ya un pb
             int code;//
             if (resultat.equals(BeanClient.KO)) {
-                msg = "le processus \"" + nomProcessus + "\" n'es pas en cour de fonctionnement";
+                msg = "le processus \"" + nomProcessus + "\" n'est pas en cours de fonctionnement";
                 code = 0;
             } else {//il ya eu un pb
-                msg = "le processus \"" + nomProcessus + "\" n'es pas valide";
+                msg = "le processus \"" + nomProcessus + "\" n'est pas valide";
                 code = 1;
             }
             if (!alerteOK) {//si l'alerte n'a pas encore été envoyer, on le fait
@@ -67,7 +67,7 @@ public class JobVerificationProcessus implements Job {
                 alerteOK = BeanClient.envoiAlerteAuServeur(cle, code);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur
                 context.getJobDetail().getJobDataMap().put("alerteOK", alerteOK);
             } else {
-                logger.log(Level.WARNING, "ce problème à déja été signaler au serveur: " + msg);
+                logger.log(Level.WARNING, "ce problème a déjà été signaler au serveur: " + msg);
             }
         }
 

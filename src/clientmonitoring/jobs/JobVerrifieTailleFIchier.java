@@ -40,26 +40,26 @@ public class JobVerrifieTailleFIchier implements Job {
         int code = 20;
         if (taille != -1) {
             taille = taille / (1024);//on mais la taille en Ko
-            if (seuil < 0) {//cas où on verrifie que le fichier à surveille es toujour plus grand que le seuil
+            if (seuil < 0) {//cas où on verrifie que le fichier à surveille est toujour plus grand que le seuil
                 seuil *= -1;//on rend le seuil positif
                 if (taille < seuil) {
-                    msg = "Alerte: le fichier \"" + nomFichier + "\" es inférieure à la taille autorisé";
+                    msg = "Alerte: le fichier \"" + nomFichier + "\" est inférieure à la taille autorisé";
                     code = 0;
                 }
-            } else//cas où on verrifie que le fichier à surveille es toujour plus petit que le seuil
+            } else//cas où on verrifie que le fichier à surveille est toujour plus petit que le seuil
             {
                 if (taille > seuil) {
-                    msg = "Alerte: le fichier \"" + nomFichier + "\" es supérieure à la taille autorisé";
+                    msg = "Alerte: le fichier \"" + nomFichier + "\" est supérieure à la taille autorisé";
                     code = 0;
                 }
             }
         } else {//il ya eu un pb lors de l'éxécution de la fonction
-            msg = "le fichier \"" + nomFichier + "\" n'es pas valide ou il ya eu un pb inconue";
+            msg = "le fichier \"" + nomFichier + "\" n'est pas valide ou il ya eu un pb inconue";
             code = -1;
         }
 
         if (code == 20) {//tous c'est bien passé
-            msg = "la taille du fichier \"" + nomFichier + "\" es OK";
+            msg = "la taille du fichier \"" + nomFichier + "\" est OK";
             if (alerteOK) {
                 logger.log(Level.INFO, "Problème résolue: " + msg);
                 if (BeanClient.problemeTacheResolu(cle)) {
@@ -75,7 +75,7 @@ public class JobVerrifieTailleFIchier implements Job {
             alerteOK = BeanClient.envoiAlerteAuServeur(cle, code);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur
             context.getJobDetail().getJobDataMap().put("alerteOK", alerteOK);
         } else {
-            logger.log(Level.WARNING, "ce problème à déja été signaler au serveur: " + msg);
+            logger.log(Level.WARNING, "ce problème a déjà été signaler au serveur: " + msg);
         }
 
     }

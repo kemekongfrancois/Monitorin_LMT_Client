@@ -49,12 +49,12 @@ public class JobVerificationDisk implements Job {
              pourcentage = BeanClient.pourcentageOccupationDD(lettrePartition);
         //}
         String msg;
-        if (pourcentage > seuil) {//le sueil es atteind
+        if (pourcentage > seuil) {//le sueil est atteind
 
-            if (pourcentage == 200) {//cas où la lettre de partition n'es pa valide
-                msg = "la lettre de partition ne correspont a aucune partition ou elle es invalide : \"" + lettrePartition + " \"";
+            if (pourcentage == 200) {//cas où la lettre de partition n'est pa valide
+                msg = "la lettre de partition ne correspont a aucune partition ou elle est invalide : \"" + lettrePartition + " \"";
             } else {
-                msg = " espace restant du disque \"" + lettrePartition + "\"" + "de la machine\"" + ipAdresse + "\" es faible ";
+                msg = " espace restant du disque \"" + lettrePartition + "\"" + "de la machine\"" + ipAdresse + "\" est faible ";
             }
 
             if (!alerteOK) {//si l'alerte n'a pas encore été envoyer, on le fait
@@ -62,11 +62,11 @@ public class JobVerificationDisk implements Job {
                 alerteOK = BeanClient.envoiAlerteAuServeur(cle, pourcentage);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur
                 context.getJobDetail().getJobDataMap().put("alerteOK", alerteOK);
             } else {
-                logger.log(Level.WARNING, "ce problème à déja été signaler au serveur: " + msg);
+                logger.log(Level.WARNING, "ce problème a déjà été signaler au serveur: " + msg);
             }
 
-        } else {//le seuil d'allerte n'es pas atteind
-            msg = "espase disque OK: pourcentage d'utilisation du disque es de: " + pourcentage + "%";
+        } else {//le seuil d'allerte n'est pas atteind
+            msg = "espase disque OK: pourcentage d'utilisation du disque est de: " + pourcentage + "%";
             if (alerteOK) {
                 logger.log(Level.INFO, "Problème résolue: " + msg);
                 if (BeanClient.problemeTacheResolu(cle)) {

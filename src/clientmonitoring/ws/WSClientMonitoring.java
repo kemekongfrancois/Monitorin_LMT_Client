@@ -22,7 +22,7 @@ public class WSClientMonitoring {
     public String hello(@WebParam(name = "name") String txt) {
         //logger.log(Level.SEVERE, "le message de test");
         //arreterLeScheduler();
-        return "Agent " + txt + " ! version= 2.0 IP=" + BeanClient.ADRESSE_MACHINE + " Port:" + BeanClient.PORT_MACHINE + " Nom:" + BeanClient.NOM_MACHINE + " OS:" + BeanClient.OS_MACHINE;
+        return "Agent " + txt + " ! version= 2.03 IP=" + BeanClient.ADRESSE_MACHINE + " Port:" + BeanClient.PORT_MACHINE + " Nom:" + BeanClient.NOM_MACHINE + " OS:" + BeanClient.OS_MACHINE;
     }
 
     @WebMethod

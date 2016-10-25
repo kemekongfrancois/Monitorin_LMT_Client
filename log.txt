@@ -1,12 +1,24 @@
-oct. 13, 2016 6:03:40 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
+oct. 25, 2016 5:00:52 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
 INFOS: Web Service démarer: http://192.168.100.182:9039/
-oct. 13, 2016 6:03:40 PM clientmonitoring.BeanClient demarerLeScheduler
+oct. 25, 2016 5:00:52 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-oct. 13, 2016 6:03:40 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
+oct. 25, 2016 5:00:53 PM clientmonitoring.BeanClient demarerWSClientEtScheduler
 INFOS: les web service de test sont disponible :http://192.168.100.182:9139/
-oct. 13, 2016 6:03:40 PM clientmonitoring.BeanClient arreterLeScheduler
-INFOS: SCHEDULER Arreté 
-oct. 13, 2016 6:03:40 PM clientmonitoring.BeanClient demarerLeScheduler
+oct. 25, 2016 5:00:53 PM clientmonitoring.BeanClient arreterLeScheduler
+INFOS: SCHEDULER arrêté 
+oct. 25, 2016 5:00:53 PM clientmonitoring.BeanClient demarerLeScheduler
 INFOS: SCHEDULER démarer 
-oct. 13, 2016 6:03:40 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
-INFOS: le statut de la machine es à "STOP" donc aucun job n'es lancé
+oct. 25, 2016 5:00:53 PM clientmonitoring.BeanClient demarerMetAJourOUStopperTache
+INFOS: tache démaré. cle=1.3
+oct. 25, 2016 5:00:53 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: Nombre de tache démarré: 1
+oct. 25, 2016 5:00:53 PM clientmonitoring.BeanClient redemarerTachePrincipaleEtSousTache
+INFOS: la tâche principale a bien été lancé. cle=192.168.100.182.1
+oct. 25, 2016 5:01:00 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" s'est bien exécuté
+oct. 25, 2016 5:01:00 PM clientmonitoring.jobs.JobVerificationProcessus execute
+INFOS: le processus "vlc.exe" est en cours de fonctionnement
+oct. 25, 2016 5:01:30 PM clientmonitoring.BeanClient executeCommand
+INFOS: la commande "tasklist /fi  "ImageName eq  vlc.exe"" s'est bien exécuté
+oct. 25, 2016 5:01:30 PM clientmonitoring.jobs.JobVerificationProcessus execute
+INFOS: le processus "vlc.exe" est en cours de fonctionnement

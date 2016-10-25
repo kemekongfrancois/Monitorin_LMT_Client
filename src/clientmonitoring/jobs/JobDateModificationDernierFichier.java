@@ -49,7 +49,7 @@ public class JobDateModificationDernierFichier implements Job {
             Date dateModifDernierFichierEtseuil = c.getTime();
 
             if (dateModifDernierFichierEtseuil.after(new Date())) {//on comparer la date de dernier modification + le seuil à la date courante
-                msg = "la date de derniere modification (" + dateModifDernierFichier + ") es OK pour le repertoire \"" + nomRepertoire + "\" ";
+                msg = "la date de derniere modification (" + dateModifDernierFichier + ") est OK pour le repertoire \"" + nomRepertoire + "\" ";
                 if (alerteOK) {
                     logger.log(Level.INFO, "Problème résolue: " + msg);
                     if (BeanClient.problemeTacheResolu(cle)) {
@@ -61,8 +61,8 @@ public class JobDateModificationDernierFichier implements Job {
                 }
                 return;
             }
-            //la date courante es supérieure à la date de dernière modification + le seuil
-            msg = "la date de derniere modification (" + dateModifDernierFichier + ") es antérieur à la date autorisé pour le repertoire \"" + nomRepertoire + "\" ";
+            //la date courante est supérieure à la date de dernière modification + le seuil
+            msg = "la date de derniere modification (" + dateModifDernierFichier + ") est antérieur à la date autorisé pour le repertoire \"" + nomRepertoire + "\" ";
 
         } else {
             msg = null;
@@ -74,7 +74,7 @@ public class JobDateModificationDernierFichier implements Job {
             alerteOK = BeanClient.envoiAlerteAuServeur(cle, 0);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur
             context.getJobDetail().getJobDataMap().put("alerteOK", alerteOK);
         } else {
-            logger.log(Level.WARNING, "ce problème à déja été signaler au serveur: " + msg);
+            logger.log(Level.WARNING, "ce problème a déjà été signaler au serveur: " + msg);
         }
 
     }

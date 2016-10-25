@@ -39,7 +39,7 @@ public class JobExistanceFichier implements Job {
             fichierExiste = BeanClient.verifiExistanceFichier(nomFichier);
         //}
         if (fichierExiste) {
-            msg = "le fichier \"" + nomFichier + "\" es OK";
+            msg = "le fichier \"" + nomFichier + "\" est OK";
             if (alerteOK) {
                 logger.log(Level.INFO, "Problème résolue: " + msg);
                 if (BeanClient.problemeTacheResolu(cle)) {
@@ -56,7 +56,7 @@ public class JobExistanceFichier implements Job {
                 alerteOK = BeanClient.envoiAlerteAuServeur(cle, 0);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur
                 context.getJobDetail().getJobDataMap().put("alerteOK", alerteOK);
             } else {
-                logger.log(Level.WARNING, "ce problème à déja été signaler au serveur: " + msg);
+                logger.log(Level.WARNING, "ce problème a déjà été signaler au serveur: " + msg);
             }
 
         }

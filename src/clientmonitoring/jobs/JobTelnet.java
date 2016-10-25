@@ -40,7 +40,7 @@ public class JobTelnet implements Job {
              telnetOK = BeanClient.telnet(adresseAEtPort,nbDeTentative);
         //}
         if (telnetOK) {
-            msg = "le telnet vers \"" + adresseAEtPort + "\" es OK";
+            msg = "le telnet vers \"" + adresseAEtPort + "\" est OK";
             if (alerteOK) {
                 logger.log(Level.INFO, "Problème résolue: " + msg);
                 if (BeanClient.problemeTacheResolu(cle)) {
@@ -57,7 +57,7 @@ public class JobTelnet implements Job {
                 alerteOK = BeanClient.envoiAlerteAuServeur(cle, 0);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur
                 context.getJobDetail().getJobDataMap().put("alerteOK", alerteOK);
             } else {
-                logger.log(Level.WARNING, "ce problème à déja été signaler au serveur: " + msg);
+                logger.log(Level.WARNING, "ce problème a déjà été signaler au serveur: " + msg);
             }
 
         }

@@ -62,7 +62,7 @@ public class JobTestLien implements Job {
                 alerteOK = BeanClient.envoiAlerteAuServeur(cle, code);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur
                 context.getJobDetail().getJobDataMap().put("alerteOK", alerteOK);
             } else {
-                logger.log(Level.WARNING, "ce problème à déja été signaler au serveur: " + msg);
+                logger.log(Level.WARNING, "ce problème a déjà été signaler au serveur: " + msg);
             }
 
             // beanClient.envoiAlerteAuServeur(cle, 0);

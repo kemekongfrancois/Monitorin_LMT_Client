@@ -107,7 +107,7 @@ public class BeanClient {
     public static final int NB_LIGNE_FICHIER_CONF = 4;
     public static final String ficfierConfig = "parametre.txt";
     public static final int PORT_DE_TEST_DES_FONCTIONS = 9139;
-    public static final String TYPE_COMPTE_INCONUE = "Ce type de compte n'es pas connue";
+    public static final String TYPE_COMPTE_INCONUE = "Ce type de compte n'est pas connue";
 
     public static WsMonitoring wsServeur;
 
@@ -186,10 +186,10 @@ public class BeanClient {
                 ADRESSE_MACHINE = parmettre.get(i++);
                 PORT_MACHINE = parmettre.get(i++);
             } else {
-                logger.log(Level.SEVERE, "le fichier de configuration es incorect");
+                logger.log(Level.SEVERE, "le fichier de configuration est incorect");
                 return false;
             }
-            //------on verifie que l'adresse de la machine es valide---------
+            //------on verifie que l'adresse de la machine est valide---------
             if (!verrifieAdresseMachine(ADRESSE_MACHINE)) {
                 logger.log(Level.SEVERE, "l'adresse de la machine ne correspond à aucune interface réseau: " + ADRESSE_MACHINE);
                 return false;
@@ -223,7 +223,7 @@ public class BeanClient {
         try {
             SCHEDULER.shutdown();
             TACHE_EN_COUR_D_EXECUTION.clear();
-            logger.log(Level.INFO, "SCHEDULER Arreté ");
+            logger.log(Level.INFO, "SCHEDULER arrêté ");
             return true;
         } catch (SchedulerException ex) {
             logger.log(Level.SEVERE, "impossible de stopper le SCHEDULER", ex);
@@ -244,7 +244,7 @@ public class BeanClient {
     }
 
     /**
-     * cette fonction es un complement à la fonction de démarage de tache elle
+     * cette fonction est un complement à la fonction de démarage de tache elle
      * permet de démarer les taches de type verifie DD
      */
     private static JobDetail initialiseVerificationDD(Tache tache) {
@@ -254,7 +254,7 @@ public class BeanClient {
         //data.put("tache", tache);
         JobDetail jobDetaille = newJob(JobVerificationDisk.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déjà été envoyé
                 .usingJobData("seuil", tache.getSeuilAlerte())
                 .usingJobData("lettrePartition", tache.getNom())
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
@@ -268,7 +268,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerificationProcessus.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déjà été envoyé
                 .usingJobData("nomProcessus", tache.getNom())
                 .usingJobData("attente", tache.getSeuilAlerte())
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
@@ -281,7 +281,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerificationService.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déjà été envoyé
                 .usingJobData("nomService", tache.getNom())
                 .usingJobData("redemarerAuto", tache.isRedemarerAutoService())
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
@@ -294,7 +294,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobPing.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déjà été envoyé
                 .usingJobData("nbTentative", tache.getSeuilAlerte())
                 .usingJobData("adresseAPinger", tache.getNom())
                 .build();
@@ -306,7 +306,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobExistanceFichier.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déjà été envoyé
                 .usingJobData("nomFichier", tache.getNom())
                 .build();
 
@@ -317,7 +317,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobVerrifieTailleFIchier.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déjà été envoyé
                 .usingJobData("nomFichier", tache.getNom())
                 .usingJobData("seuil", tache.getSeuilAlerte())
                 .build();
@@ -329,7 +329,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobDateModificationDernierFichier.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déjà été envoyé
                 .usingJobData("nomRepertoire", tache.getNom())
                 .usingJobData("seuil", tache.getSeuilAlerte())
                 .build();
@@ -341,7 +341,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobTelnet.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déjà été envoyé
                 .usingJobData("ipAdresse", tache.getIdMachine().getAdresseIP())
                 .usingJobData("adresseAEtPort", tache.getNom())
                 .usingJobData("nbDeTentative", tache.getSeuilAlerte())
@@ -354,7 +354,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobUptimeMachine.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déjà été envoyé
                 .usingJobData("nbDeJourPourAlerte", tache.getSeuilAlerte())
                 .build();
 
@@ -365,7 +365,7 @@ public class BeanClient {
         JobKey cle = getJobKeyTache(tache);
         JobDetail jobDetaille = newJob(JobTestLien.class)
                 .withIdentity(cle)
-                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déja été envoyé
+                .usingJobData("alerteOK", tache.getStatut().equals(ALERTE))//cette instruction permet de signifié que l'alerte avais déjà été envoyé
                 .usingJobData("nbTentative", tache.getSeuilAlerte())
                 .usingJobData("lien", tache.getNom())
                 .build();
@@ -384,14 +384,14 @@ public class BeanClient {
         try {
 
             if (tache == null) {
-                logger.log(Level.SEVERE, "la tache es null");
+                logger.log(Level.SEVERE, "la tache est null");
                 return false;
             }
             String identifiant = tache.getIdTache() + "";
             String groupe = tache.getIdMachine().getIdMachine() + "";
             JobKey cle = JobKey.jobKey(identifiant, groupe);
 
-            if (tache.getStatut().equals(STOP) || SCHEDULER.checkExists(cle)) {//si le job existe déja on le stoppe
+            if (tache.getStatut().equals(STOP) || SCHEDULER.checkExists(cle)) {//si le job existe déjà on le stoppe
                 arreterJob(cle);//suppression du job
                 if (tache.getStatut().equals(STOP)) {//cas où on veux stopper la tache
                     return true;//le job a été stoppé
@@ -430,7 +430,7 @@ public class BeanClient {
                 case TACHE_TELNET://cas de la tache Telnet
                     jobDetaille = initialiseTelnet(tache);
                     break;
-                case TACHE_DATE_MODIFICATION_DERNIER_FICHIER://cas de la tache qui vérrifier que la date de derniere modification du dernier fichier es correct
+                case TACHE_DATE_MODIFICATION_DERNIER_FICHIER://cas de la tache qui vérrifier que la date de derniere modification du dernier fichier est correct
                     jobDetaille = initialiseDateModificationDernierFichier(tache);
                     break;
                 case TACHE_UPTIME_MACHINE://cas de la tache qui vérrifier depuis combien de temps la machine est en marche
@@ -440,7 +440,7 @@ public class BeanClient {
                     jobDetaille = initialiseTestLien(tache);
                     break;
                 default:
-                    logger.log(Level.WARNING, TypeDeTache + ": ce type n'es pas reconnue ");
+                    logger.log(Level.WARNING, TypeDeTache + ": ce type n'est pas reconnue ");
                     return false;
             }
 
@@ -461,7 +461,7 @@ public class BeanClient {
                 SCHEDULER.deleteJob(cle);//suppression du job
                 logger.log(Level.INFO, "tache stoppé. cle=" + cle);
             }
-            TACHE_EN_COUR_D_EXECUTION.remove(cle);//on le retire des taches en cour d'exécution
+            TACHE_EN_COUR_D_EXECUTION.remove(cle);//on le retire des taches en cours d'exécution
             return true;
         } catch (SchedulerException ex) {
             logger.log(Level.SEVERE, null, ex);
@@ -471,7 +471,7 @@ public class BeanClient {
 
     /**
      * cette fonction démare(ou redémare) la tache principale ainsi que la liste
-     * des taches associé si le statut de le machine es à STOP alors on arretera
+     * des taches associé si le statut de le machine est à STOP alors on arretera
      * toute les taches ainsi que la tache principale
      *
      * @return
@@ -485,7 +485,7 @@ public class BeanClient {
             Machine machine = wsServeur.creerOuVerifiMachine(ADRESSE_MACHINE, PORT_MACHINE, OS_MACHINE, NOM_MACHINE);
 
             if (machine.getStatut().equals(STOP)) {
-                logger.log(Level.INFO, "le statut de la machine es à \"STOP\" donc aucun job n'es lancé");
+                logger.log(Level.INFO, "le statut de la machine est à \"STOP\" donc aucun job n'est lancé");
                 return true;
             }
 
@@ -507,11 +507,11 @@ public class BeanClient {
 
             //on démare les taches
             demarerListeTAche(wsServeur.getListTacheMachine(machine.getAdresseIP()));
-            logger.log(Level.INFO, "nombre de tache démaré: " + TACHE_EN_COUR_D_EXECUTION.size());
+            logger.log(Level.INFO, "Nombre de tache démarré: " + TACHE_EN_COUR_D_EXECUTION.size());
 
             // on démarer le job principale
             SCHEDULER.scheduleJob(jobDetaille, trigger);
-            logger.log(Level.INFO, "la tache principale à bien été lancé. cle=" + cle);
+            logger.log(Level.INFO, "la tâche principale a bien été lancé. cle=" + cle);
             return true;
 
         } catch (SchedulerException ex) {
@@ -556,13 +556,13 @@ public class BeanClient {
     }
 
     /**
-     * cete fonction verrifie si le processus donc le nom es pris en paramettre
-     * es en cour de fonctionnement cette fonction ne marche pour le moment que
+     * cete fonction verrifie si le processus donc le nom est pris en paramettre
+     * est en cours de fonctionnement cette fonction ne marche pour le moment que
      * sur les machine windows
      *
      * @param nomProcessus exemple: "vlc.exe"
      * @param nbTentative nbr de tentative
-     * @return OK s'il es en cour de fonctionnement, KO s'il n'es pas en cour de
+     * @return OK s'il est en cours de fonctionnement, KO s'il n'est pas en cours de
      * fonctionnement , PB s'il ya une exception
      */
     public static String verifiProcessusWindows(String nomProcessus, int nbTentative) {
@@ -576,7 +576,7 @@ public class BeanClient {
             if (resultatCommande == null) {
                 return PB;
             }
-            if (resultatCommande.size() > 1) {//le processus es en cour d'éxécution
+            if (resultatCommande.size() > 1) {//le processus est en cours d'éxécution
                 return OK;
             }
             try {//on met le tread en attente
@@ -597,7 +597,7 @@ public class BeanClient {
     /**
      *
      * @param nomService
-     * @return OK s'il es en cour de fonctionnement, KO s'il n'es pas en cour de
+     * @return OK s'il est en cours de fonctionnement, KO s'il n'est pas en cours de
      * fonctionnement , PB s'il ya une exception ou si service n'existe pas
      */
     public static String verifiService(String nomService) {
@@ -609,7 +609,7 @@ public class BeanClient {
     }
 
     /**
-     * verifie si un service es en fonctionnement dans une machine Windows
+     * verifie si un service est en fonctionnement dans une machine Windows
      *
      * @param nomService
      * @return "OK" , "KO" et "PB"
@@ -630,10 +630,10 @@ public class BeanClient {
             }
         }
         //on retourn PB car la ligne qui contiend "STATE" n'existe pas
-        //ce qui veux dire que le service n'es pas reconnue
+        //ce qui veux dire que le service n'est pas reconnue
         return PB;
 
-        //cette version es moin optimisé mais marche sur toute les vertion de windows
+        //cette version est moin optimisé mais marche sur toute les vertion de windows
         /*String commande = "net start ";
         List<String> resultatCommande = executeCommand(commande);
         if (resultatCommande == null) {
@@ -648,7 +648,7 @@ public class BeanClient {
     }
 
     /**
-     * verifie si un service es en fonctionnement dans une machine linux
+     * verifie si un service est en fonctionnement dans une machine linux
      *
      * @param nomService
      * @return "OK" , "KO" et "PB"
@@ -670,7 +670,7 @@ public class BeanClient {
     }
 
     /**
-     * cette fonction permet de démarer le service donc le nom es pris en
+     * cette fonction permet de démarer le service donc le nom est pris en
      * paramettre cette fonction demande une autorisation Super admin pour
      * fonctionné
      *
@@ -789,7 +789,7 @@ public class BeanClient {
             }
             logger.log(Level.INFO, "le resultat de l'éxécution de la commande \"" + commande + "\" est:\n" + resultatCommande);
              */
-            logger.log(Level.INFO, "la commande \"" + commande + "\" c'es bien exécuté");
+            logger.log(Level.INFO, "la commande \"" + commande + "\" s'est bien exécuté");
             return processes;
         } catch (Exception e) {
             logger.log(Level.SEVERE, "impossible d'exécuter la command \"" + commande + "\"\n", e);
@@ -810,9 +810,9 @@ public class BeanClient {
         while (i < nbTentative && !pingOK) {
             System.out.println(i + ": ping à l'adresse " + adres);
             char param;
-            if (OS_MACHINE.equals(OSWINDOWS)) {//on es sur une machine windows
+            if (OS_MACHINE.equals(OSWINDOWS)) {//on est sur une machine windows
                 param = 'n';
-            } else {//on es sur une machine linux
+            } else {//on est sur une machine linux
                 param = 'c';
             }
             String commande = "ping -" + param + " 1 " + adres;
@@ -844,7 +844,7 @@ public class BeanClient {
         try {
             JobDetail jobDetail = SCHEDULER.getJobDetail(key);
             if (jobDetail == null) {
-                logger.log(Level.WARNING, "cette tâche n'es pas en cour de fonctionnement " + key);
+                logger.log(Level.WARNING, "cette tâche n'est pas en cours de fonctionnement " + key);
                 return false;
             }
             Trigger trigger = newTrigger()
@@ -941,13 +941,13 @@ public class BeanClient {
             adresse = tab[0];
             port = new Integer(tab[1]);
         } catch (Exception ex) {
-            logger.log(Level.SEVERE, "format adresse invalide" ,ex);
+            logger.log(Level.SEVERE, "format adresse invalide", ex);
             return false;
         }
         logger.log(Level.INFO, "Telne à l'adresse \"" + adresse + "\" et au port \"" + port + "\"");
         int i = 0;
         do {
-            
+
             i++;
             try {
                 telnet.connect(adresse, port);
@@ -996,7 +996,7 @@ public class BeanClient {
                 System.out.println("le plus rescent des fichiers est: " + lePlusRescent.getName());
                 return new Date(lePlusRescent.lastModified());
             } else {
-                logger.log(Level.SEVERE, "repertoire \"" + repertoire + "\" es vide");
+                logger.log(Level.SEVERE, "repertoire \"" + repertoire + "\" est vide");
                 return null;
             }
         } catch (Exception e) {
@@ -1097,7 +1097,7 @@ public class BeanClient {
                 resultat = testLien(nom, 1);
                 break;
             default:
-                String erreur = "le type de compte \"" + typeCompte + "\" n'es pas connue sur cet agent";
+                String erreur = "le type de compte \"" + typeCompte + "\" n'est pas connue sur cet agent";
                 logger.log(Level.SEVERE, erreur);
                 return TYPE_COMPTE_INCONUE;
         }
@@ -1114,7 +1114,7 @@ public class BeanClient {
     public static int uptimeMachine() {
         try {
             String commande = "uptime";
-            if (OS_MACHINE.equals(OSWINDOWS)) {//on es sur une machine windows
+            if (OS_MACHINE.equals(OSWINDOWS)) {//on est sur une machine windows
                 commande += ".exe";
             }
             List<String> resultat = executeCommand(commande);
@@ -1145,9 +1145,9 @@ public class BeanClient {
      * @return KO, OK et PB
      */
     public static String testLien(String lien, int nbTentative) {
-        System.out.println("test du lien: "+lien);
+        System.out.println("test du lien: " + lien);
         String resultat = KO;
-        int i = 0;
+        int nb, i = 0;
         do {
             i++;
             try {
@@ -1164,7 +1164,19 @@ public class BeanClient {
                     resultat = PB;
                 }
             }
+            if (nbTentative <= 1) {//On n'a pas besoin d'attendre entre 2 test de lien si le nombre de test est inférieure à 1
+                System.out.println("le test ne c'est effectué qu'une fois");
+                break;
+            }
             System.out.println("Tentative numéro " + i + " du lien : " + lien);
+            
+            try {//on met le tread en attente
+                nb = (new Random()).nextInt(nbTentative) + 1;//on génère un nombre aléatoire compris entre 1 "nbTentative"
+                //System.out.println("le nombre générer es: "+nb);
+                Thread.sleep((nb) * 1000);//on attend en seconde
+            } catch (InterruptedException ex) {
+                logger.log(Level.SEVERE, "problème avec l'attente", ex);
+            }
         } while (i < nbTentative);
 
         return resultat;

@@ -1,6 +1,6 @@
 /*
  * ce job a pour rôle principale de s'assurer que toute les taches sont fonctionnelles
- * elle permet aussi de dire au serveur que la machine es en fonctionnement
+ * elle permet aussi de dire au serveur que la machine est en fonctionnement
  */
 package clientmonitoring.jobs;
 
@@ -45,7 +45,7 @@ public class JobPrincipale implements Job {
         JobDataMap dataMap = context.getJobDetail().getJobDataMap();
         int tempAttente = 10;//represente le nombre de seconde qu'il faut attendre après l'éxécution d'un job qui à eu un pb
 
-        //on verrifie que les taches sont en cour de fonctionnement
+        //on verrifie que les taches sont en cours de fonctionnement
         List<Integer> listTachePB = new ArrayList<>();
         Tache tache;
         for (Entry<JobKey, Tache> e : TACHE_EN_COUR_D_EXECUTION.entrySet()) {
@@ -55,10 +55,10 @@ public class JobPrincipale implements Job {
             if (!BeanClient.jobExiste(jobKeyTache.getName(), jobKeyTache.getGroup())) {
                 listTachePB.add(tache.getIdTache());
                 (new BeanClient()).demarerMetAJourOUStopperTache(tache);//on redémarer la taches
-                logger.log(Level.WARNING, "la tache " + jobKeyTache + " n'es pas en cour de fonctionnement bien vouloir verrifier les log, elle vien d'être redémarer");
-            } else//la tache es bien en marche
-            if (tache.getStatut().equals(BeanClient.ALERTE)) {//On demande la réxécution du Job dans cas où il y avait un pb ainsi si le pb es resolue on vas le signallé
-                logger.log(Level.INFO, "la tache " + jobKeyTache + " es de nouveau éxcuter pour verrifie si la sitution es de nouveau normal");
+                logger.log(Level.WARNING, "la tache " + jobKeyTache + " n'est pas en cours de fonctionnement bien vouloir verrifier les log, elle vien d'être redémarer");
+            } else//la tache est bien en marche
+            if (tache.getStatut().equals(BeanClient.ALERTE)) {//On demande la réxécution du Job dans cas où il y avait un pb ainsi si le pb est resolue on vas le signallé
+                logger.log(Level.INFO, "la tache " + jobKeyTache + " est de nouveau éxcuter pour verrifie si la sitution est de nouveau normal");
                 BeanClient.executeJob(jobKeyTache);
                 try {
                     Thread.sleep(tempAttente*1000);//on fait patiente la tache principale le temps que le job puisse s'écuter
@@ -66,9 +66,9 @@ public class JobPrincipale implements Job {
                     Logger.getLogger(JobPrincipale.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                System.out.println(jobKeyTache + ": est bien en cour de fonctionnement");
+                System.out.println(jobKeyTache + ": est bien en cours de fonctionnement");
 
-            } // logger.log(Level.INFO, e.getKey() + ": est bien en cour de fonctionnement");
+            } // logger.log(Level.INFO, e.getKey() + ": est bien en cours de fonctionnement");
         }
         traitementDesTachesAProbleme(listTachePB, key);
 
@@ -89,7 +89,7 @@ public class JobPrincipale implements Job {
 
         }
         try {
-            if (!BeanClient.wsServeur.traitementAlerteMachine(new Integer(key.getName()), listTachePB)) {//on envoie un msg au serveur pour signalé les taches qui on eu un pb si pb il ya sinon on dis au serveur qu'on es là
+            if (!BeanClient.wsServeur.traitementAlerteMachine(new Integer(key.getName()), listTachePB)) {//on envoie un msg au serveur pour signalé les taches qui on eu un pb si pb il ya sinon on dis au serveur qu'on est là
                 logger.log(Level.WARNING, " le serveur n'a pas pus traiter la requete");
             }
         } catch (Exception e) {

@@ -43,8 +43,8 @@ public class JobVerificationService implements Job {
             resultat = BeanClient.verifiService(nomService);
         //}
         String msg;
-        if (resultat.equals(BeanClient.OK)) {//le service es en fonction
-            msg = "le service \"" + nomService + "\" es en cour de fonctionnement";
+        if (resultat.equals(BeanClient.OK)) {//le service est en fonction
+            msg = "le service \"" + nomService + "\" est en cours de fonctionnement";
             if (alerteOK) {
                 logger.log(Level.INFO, "Problème résolue: " + msg);
                 if (BeanClient.problemeTacheResolu(cle)) {
@@ -56,12 +56,12 @@ public class JobVerificationService implements Job {
             }
             return;
         }
-        //le processus n'es pas en cour de fonctionnement ou il ya un pb
+        //le processus n'est pas en cours de fonctionnement ou il ya un pb
         int code;
         if (resultat.equals(BeanClient.KO)) {
-            msg = "le service \"" + nomService + "\" n'es pas en cour de fonctionnement";
+            msg = "le service \"" + nomService + "\" n'est pas en cours de fonctionnement";
 
-            if (redemarerAuto) {//le redemarage automatique es activé sur cette tache
+            if (redemarerAuto) {//le redemarage automatique est activé sur cette tache
                 if (BeanClient.demarerService(nomService)) {//on redemarer le service
                     logger.log(Level.INFO, "le service \"" + nomService + "\" a été redémarer");
                     code = -1;
@@ -69,13 +69,13 @@ public class JobVerificationService implements Job {
                     logger.log(Level.SEVERE, "le service \"" + nomService + "\" n'a pas pus être redémarer");
                     code = 0;
                 }
-            } else {//le redemarage automatique es désactivé
-                System.out.println("le redémarage automatique n'es pas activé pour le service \"" + nomService + ">");
+            } else {//le redemarage automatique est désactivé
+                System.out.println("le redémarage automatique n'est pas activé pour le service \"" + nomService + ">");
                 code = 0;
             }
 
         } else {//il ya eu un pb
-            msg = "le service \"" + nomService + "\" n'es pas valide";
+            msg = "le service \"" + nomService + "\" n'est pas valide";
             code = 1;
         }
             if (!alerteOK) {//si l'alerte n'a pas encore été envoyer, on le fait
@@ -83,7 +83,7 @@ public class JobVerificationService implements Job {
                 alerteOK = BeanClient.envoiAlerteAuServeur(cle, code);//on met à jour la variable "alerteOK" pour que à la prochaine exécution que l'alerte ne soit plus envoyer au serveur
                 context.getJobDetail().getJobDataMap().put("alerteOK", alerteOK);
             } else {
-                logger.log(Level.WARNING, "ce problème à déja été signaler au serveur: " + msg);
+                logger.log(Level.WARNING, "ce problème a déjà été signaler au serveur: " + msg);
             }
         
         
